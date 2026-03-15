@@ -1,0 +1,37 @@
+== SHORT DESCRIPTION (30 chars) ==
+Batch Image Converter
+
+== FULL DESCRIPTION ==
+NemJPG is a fast, free batch image converter for macOS. Drag and drop your images or entire folders, choose your output format and quality, and convert hundreds of images in seconds.
+
+FEATURES:
+- Convert 20+ image formats to JPG, PNG, WebP, or TIFF
+- Drag and drop files and folders
+- Batch convert hundreds of images at once
+- Adjustable quality: High (95%), Medium (80%), Web (70%), Compressed (50%)
+- Optional image resizing with preserved aspect ratio
+- Automatic white background for transparent images
+- File size report showing space saved
+- Clean, native macOS interface built with SwiftUI
+- Dark mode support
+
+SUPPORTED INPUT FORMATS:
+PNG, BMP, GIF, TIFF, WebP, ICO, HEIC, HEIF, AVIF, PSD, JP2, and RAW camera formats (CR2, NEF, ARW, DNG, ORF, RAW).
+
+PRIVACY:
+NemJPG processes all images locally on your Mac. No data is collected, uploaded, or shared. No account required. No internet connection needed.
+
+NemJPG is free and open source.
+
+== KEYWORDS (100 chars max) ==
+image,converter,batch,JPG,HEIC,PNG,WebP,photo,convert,resize,TIFF,format,RAW,AVIF,drag,drop,free
+
+== CATEGORY ==
+Photography
+
+== WHAT'S NEW ==
+- Drag and drop support for files and folders
+- Multiple output formats: JPG, PNG, WebP, TIFF
+- Adjustable quality and resize settings
+- File size comparison report
+- Native SwiftUI interface with dark mode support

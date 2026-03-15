@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NemJPG - Batch Image Converter for macOS & Windows</title>
+    <style>
+        :root {
+            --blue: #3B82F6;
+            --blue-dark: #1D4ED8;
+            --green: #10B981;
+            --bg: #0F172A;
+            --card: #1E293B;
+            --text: #F8FAFC;
+            --muted: #94A3B8;
+            --radius: 16px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+            background: var(--bg); color: var(--text); line-height: 1.6;
+        }
+        .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+        /* Hero */
+        .hero {
+            text-align: center; padding: 80px 24px 60px;
+            background: linear-gradient(180deg, #1E3A5F 0%, var(--bg) 100%);
+        }
+        .hero-icon { width: 140px; height: 140px; border-radius: 32px; margin-bottom: 24px; box-shadow: 0 20px 60px rgba(59,130,246,0.3); }
+        .hero h1 { font-size: 3.2em; font-weight: 800; letter-spacing: -1px; margin-bottom: 12px; }
+        .hero h1 span { background: linear-gradient(135deg, var(--blue), #60A5FA); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 1.3em; color: var(--muted); max-width: 560px; margin: 0 auto 32px; }
+        .badges { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+        .badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 6px 14px; border-radius: 20px; font-size: 0.85em; font-weight: 600;
+            background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1);
+        }
+        .badge.green { background: rgba(16,185,129,0.15); border-color: rgba(16,185,129,0.3); color: #6EE7B7; }
+
+        /* Download buttons */
+        .downloads { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .dl-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 16px 32px; border-radius: 12px; text-decoration: none;
+            font-size: 1.1em; font-weight: 700; transition: transform 0.15s, box-shadow 0.15s;
+        }
+        .dl-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+        .dl-btn.mac { background: linear-gradient(135deg, var(--blue), var(--blue-dark)); color: white; }
+        .dl-btn.win { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); }
+        .dl-btn .icon { font-size: 1.4em; }
+
+        /* Sections */
+        section { padding: 60px 0; }
+        section h2 {
+            font-size: 2em; font-weight: 800; text-align: center; margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+        section .subtitle { text-align: center; color: var(--muted); margin-bottom: 48px; font-size: 1.1em; }
+
+        /* Feature grid */
+        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .feature {
+            background: var(--card); border-radius: var(--radius); padding: 28px;
+            border: 1px solid rgba(255,255,255,0.06); transition: border-color 0.2s;
+        }
+        .feature:hover { border-color: rgba(59,130,246,0.3); }
+        .feature .icon { font-size: 2em; margin-bottom: 12px; }
+        .feature h3 { font-size: 1.15em; margin-bottom: 8px; }
+        .feature p { color: var(--muted); font-size: 0.95em; }
+
+        /* Formats */
+        .formats-grid { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+        .format-pill {
+            padding: 8px 18px; border-radius: 10px; font-weight: 700; font-size: 0.9em;
+            background: rgba(59,130,246,0.12); border: 1px solid rgba(59,130,246,0.25); color: #93C5FD;
+        }
+        .format-pill.extra { background: rgba(251,191,36,0.12); border-color: rgba(251,191,36,0.25); color: #FCD34D; }
+
+        /* How it works */
+        .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; counter-reset: step; }
+        .step {
+            text-align: center; padding: 24px;
+            background: var(--card); border-radius: var(--radius);
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .step::before {
+            counter-increment: step;
+            content: counter(step);
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 40px; height: 40px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+            font-weight: 800; font-size: 1.1em; margin-bottom: 12px;
+        }
+        .step h3 { margin-bottom: 8px; }
+        .step p { color: var(--muted); font-size: 0.9em; }
+
+        /* Requirements */
+        .req-table { width: 100%; border-collapse: collapse; }
+        .req-table th { text-align: left; padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); color: var(--muted); font-weight: 600; }
+        .req-table td { padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .req-table tr:last-child td { border: none; }
+
+        /* FAQ */
+        details {
+            background: var(--card); border-radius: var(--radius); margin-bottom: 8px;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        summary {
+            padding: 16px 20px; cursor: pointer; font-weight: 600; list-style: none;
+        }
+        summary::before { content: "+ "; color: var(--blue); font-weight: 800; }
+        details[open] summary::before { content: "- "; }
+        details p { padding: 0 20px 16px; color: var(--muted); }
+
+        /* Footer */
+        footer {
+            text-align: center; padding: 40px; color: var(--muted); font-size: 0.85em;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+        footer a { color: var(--blue); text-decoration: none; }
+
+        /* Screenshot */
+        .screenshot-wrap { text-align: center; margin: 40px 0; }
+        .screenshot-wrap img {
+            max-width: 100%; border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        @media (max-width: 640px) {
+            .hero h1 { font-size: 2.2em; }
+            .downloads { flex-direction: column; align-items: center; }
+            .features { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <img src="icon.svg" alt="NemJPG" class="hero-icon">
+    <h1><span>NemJPG</span></h1>
+    <p>Konverter alle dine billeder med et klik. Gratis, hurtig og uden bloatware.</p>
+
+    <div class="badges">
+        <span class="badge green">Gratis</span>
+        <span class="badge">macOS</span>
+        <span class="badge">Windows</span>
+        <span class="badge">Ingen bloatware</span>
+        <span class="badge">20+ formater</span>
+    </div>
+
+    <div class="downloads">
+        <a href="#" class="dl-btn mac">
+            <span class="icon">&#63743;</span> Download til macOS
+        </a>
+        <a href="#" class="dl-btn win">
+            <span class="icon">&#8862;</span> Download til Windows
+        </a>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- Features -->
+    <section>
+        <h2>Alt hvad du har brug for</h2>
+        <p class="subtitle">Ingen installation af tunge programmer. Bare konverter.</p>
+
+        <div class="features">
+            <div class="feature">
+                <div class="icon">&#9889;</div>
+                <h3>Lynhurtig konvertering</h3>
+                <p>Konverter hundredvis af billeder paa sekunder. Bruger dit systems native billedbehandling.</p>
+            </div>
+            <div class="feature">
+                <div class="icon">&#128736;</div>
+                <h3>Hoejreklik-magi (Windows)</h3>
+                <p>Installer en gang, og konverter derefter direkte fra hoejreklik-menuen i Stifinder.</p>
+            </div>
+            <div class="feature">
+                <div class="icon">&#128194;</div>
+                <h3>Drag &amp; Drop (macOS)</h3>
+                <p>Traek billeder eller hele mapper ind i appen. Vaelg format, kvalitet og resize.</p>
+            </div>
+            <div class="feature">
+                <div class="icon">&#127912;</div>
+                <h3>Alle formater</h3>
+                <p>PNG, BMP, GIF, TIFF, WebP, HEIC, HEIF, AVIF, RAW (CR2, NEF, ARW, DNG) og mange flere.</p>
+            </div>
+            <div class="feature">
+                <div class="icon">&#128200;</div>
+                <h3>Filstoerrelse-rapport</h3>
+                <p>Se praecis hvor meget plads du sparer. Original vs. ny stoerrelse for hver fil.</p>
+            </div>
+            <div class="feature">
+                <div class="icon">&#9881;</div>
+                <h3>Fuldt konfigurerbar</h3>
+                <p>Kvalitet, resize, output-mappe, baggrundsfarve, undermapper - du bestemmer.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formats -->
+    <section>
+        <h2>Understoettede formater</h2>
+        <p class="subtitle">Input-formater der konverteres til JPG, PNG, WebP eller TIFF</p>
+
+        <div class="formats-grid">
+            <span class="format-pill">PNG</span>
+            <span class="format-pill">BMP</span>
+            <span class="format-pill">GIF</span>
+            <span class="format-pill">TIFF</span>
+            <span class="format-pill">WebP</span>
+            <span class="format-pill">ICO</span>
+            <span class="format-pill">HEIC</span>
+            <span class="format-pill">HEIF</span>
+            <span class="format-pill">AVIF</span>
+            <span class="format-pill extra">CR2</span>
+            <span class="format-pill extra">NEF</span>
+            <span class="format-pill extra">ARW</span>
+            <span class="format-pill extra">DNG</span>
+            <span class="format-pill extra">ORF</span>
+            <span class="format-pill extra">PSD</span>
+            <span class="format-pill extra">JP2</span>
+            <span class="format-pill extra">RAW</span>
+        </div>
+    </section>
+
+    <!-- How it works -->
+    <section>
+        <h2>Saadan virker det</h2>
+        <p class="subtitle">Tre trin - det er det hele</p>
+
+        <div class="steps">
+            <div class="step">
+                <h3>Download</h3>
+                <p>Hent NemJPG til din platform. macOS app eller Windows installer.</p>
+            </div>
+            <div class="step">
+                <h3>Vaelg billeder</h3>
+                <p>Traek billeder ind (macOS) eller hoejreklik i Stifinder (Windows).</p>
+            </div>
+            <div class="step">
+                <h3>Faerdig!</h3>
+                <p>Konverterede billeder gemmes i en undermappe. Originaler beholdes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- System Requirements -->
+    <section>
+        <h2>Systemkrav</h2>
+        <p class="subtitle">Minimale krav - virker paa de fleste maskiner</p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+            <div style="background: var(--card); border-radius: var(--radius); padding: 24px; border: 1px solid rgba(255,255,255,0.06);">
+                <h3 style="margin-bottom: 16px;">&#63743; macOS</h3>
+                <table class="req-table">
+                    <tr><th>Krav</th><th>Detaljer</th></tr>
+                    <tr><td>System</td><td>macOS 13 Ventura+</td></tr>
+                    <tr><td>Chip</td><td>Apple Silicon &amp; Intel</td></tr>
+                    <tr><td>Pris</td><td>Gratis</td></tr>
+                </table>
+            </div>
+            <div style="background: var(--card); border-radius: var(--radius); padding: 24px; border: 1px solid rgba(255,255,255,0.06);">
+                <h3 style="margin-bottom: 16px;">&#8862; Windows</h3>
+                <table class="req-table">
+                    <tr><th>Krav</th><th>Detaljer</th></tr>
+                    <tr><td>System</td><td>Windows 10/11</td></tr>
+                    <tr><td>PowerShell</td><td>5.1+ (indbygget)</td></tr>
+                    <tr><td>Pris</td><td>Gratis</td></tr>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section>
+        <h2>Ofte stillede spoergsmaal</h2>
+        <p class="subtitle">Svar paa de mest almindelige spoergsmaal</p>
+
+        <details>
+            <summary>Sletter NemJPG mine originale billeder?</summary>
+            <p>Nej. Alle originaler bevares. Konverterede filer gemmes i en separat undermappe.</p>
+        </details>
+        <details>
+            <summary>Hvad med gennemsigtige PNG-billeder?</summary>
+            <p>Gennemsigtige omraader erstattes med en hvid baggrund (kan aendres i indstillinger).</p>
+        </details>
+        <details>
+            <summary>Hvilken JPEG-kvalitet bruges?</summary>
+            <p>Standard er 95% (hoej kvalitet). Du kan vaelge mellem hoej (95%), medium (80%), web (70%) og komprimeret (50%).</p>
+        </details>
+        <details>
+            <summary>Kan jeg resize billeder samtidig?</summary>
+            <p>Ja. Saet en max bredde eller hoejde i indstillingerne. Aspect ratio bevares altid.</p>
+        </details>
+        <details>
+            <summary>Virker HEIC/HEIF paa Windows?</summary>
+            <p>Ja, hvis "HEIF Image Extensions" er installeret fra Microsoft Store (ofte pre-installeret paa Windows 10/11).</p>
+        </details>
+        <details>
+            <summary>Er NemJPG sikkert?</summary>
+            <p>Ja. NemJPG sender ingen data over internettet. Al konvertering sker lokalt paa din maskine. Koden er open source.</p>
+        </details>
+    </section>
+
+</div>
+
+<footer>
+    <p>NemJPG &mdash; Lavet af <a href="https://hejmadi.com">Michael Skov Hejmadi</a></p>
+    <p style="margin-top: 8px;">Open source &middot; <a href="https://github.com/DrHejmadi/NemJPG">GitHub</a></p>
+</footer>
+
+</body>
+</html>

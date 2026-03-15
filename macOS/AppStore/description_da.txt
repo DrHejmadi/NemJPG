@@ -1,0 +1,37 @@
+== KORT BESKRIVELSE (30 tegn) ==
+Batch-billedkonvertering
+
+== FULD BESKRIVELSE ==
+NemJPG er en hurtig, gratis batch-billedkonverter til macOS. Traek dine billeder eller hele mapper ind, vaelg outputformat og kvalitet, og konverter hundredvis af billeder paa faa sekunder.
+
+FUNKTIONER:
+- Konverter 20+ billedformater til JPG, PNG, WebP eller TIFF
+- Traek og slip filer og mapper
+- Batch-konverter hundredvis af billeder paa en gang
+- Justerbar kvalitet: Hoej (95%), Medium (80%), Web (70%), Komprimeret (50%)
+- Valgfri stoerrelseaendring med bevaret billedformat
+- Automatisk hvid baggrund for gennemsigtige billeder
+- Filstoerrelse-rapport der viser sparet plads
+- Rent, native macOS-interface bygget med SwiftUI
+- Understottelse af moerk tilstand
+
+UNDERSTOETTEDE INPUTFORMATER:
+PNG, BMP, GIF, TIFF, WebP, ICO, HEIC, HEIF, AVIF, PSD, JP2 og RAW-kameraformater (CR2, NEF, ARW, DNG, ORF, RAW).
+
+PRIVATLIV:
+NemJPG behandler alle billeder lokalt paa din Mac. Ingen data indsamles, uploades eller deles. Ingen konto paakraevet. Ingen internetforbindelse noedvendig.
+
+NemJPG er gratis og open source.
+
+== NOEGLEORD (maks 100 tegn) ==
+billede,konverter,batch,JPG,HEIC,PNG,WebP,foto,resize,TIFF,format,RAW,AVIF,traek,slip,gratis
+
+== KATEGORI ==
+Fotografi
+
+== NYHEDER I DENNE VERSION ==
+- Traek og slip-understottelse for filer og mapper
+- Flere outputformater: JPG, PNG, WebP, TIFF
+- Justerbar kvalitet og stoerrelseindstillinger
+- Filstoerrelse-sammenligningsrapport
+- Native SwiftUI-interface med understottelse af moerk tilstand

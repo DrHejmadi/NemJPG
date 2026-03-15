@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - NemJPG</title>
+    <style>
+        :root {
+            --blue: #3B82F6;
+            --blue-dark: #1D4ED8;
+            --bg: #0F172A;
+            --card: #1E293B;
+            --text: #F8FAFC;
+            --muted: #94A3B8;
+            --radius: 16px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+            background: var(--bg); color: var(--text); line-height: 1.7;
+        }
+        .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+        /* Header */
+        .header {
+            text-align: center; padding: 60px 24px 40px;
+            background: linear-gradient(180deg, #1E3A5F 0%, var(--bg) 100%);
+        }
+        .header a {
+            color: var(--muted); text-decoration: none; font-size: 0.9em;
+            display: inline-block; margin-bottom: 24px;
+        }
+        .header a:hover { color: var(--blue); }
+        .header h1 { font-size: 2.4em; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px; }
+        .header p { color: var(--muted); font-size: 1.1em; }
+
+        /* Content */
+        .content { padding: 48px 0 80px; }
+        .content h2 {
+            font-size: 1.4em; font-weight: 700; margin: 40px 0 16px;
+            padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .content h2:first-child { margin-top: 0; }
+        .content p { color: var(--muted); margin-bottom: 12px; }
+        .content ul {
+            list-style: none; margin: 0 0 16px 0; padding: 0;
+        }
+        .content ul li {
+            color: var(--muted); padding: 8px 0 8px 24px; position: relative;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .content ul li::before {
+            content: "";
+            position: absolute; left: 0; top: 16px;
+            width: 8px; height: 8px; border-radius: 50%;
+            background: var(--blue);
+        }
+        .content ul li:last-child { border-bottom: none; }
+
+        .highlight-box {
+            background: var(--card); border-radius: var(--radius); padding: 24px;
+            border: 1px solid rgba(255,255,255,0.06); margin: 24px 0;
+            border-left: 4px solid var(--blue);
+        }
+        .highlight-box p { color: var(--text); font-weight: 600; margin: 0; }
+
+        .contact-box {
+            background: var(--card); border-radius: var(--radius); padding: 24px;
+            border: 1px solid rgba(255,255,255,0.06); margin-top: 24px;
+        }
+        .contact-box a { color: var(--blue); text-decoration: none; }
+        .contact-box a:hover { text-decoration: underline; }
+
+        /* Footer */
+        footer {
+            text-align: center; padding: 40px; color: var(--muted); font-size: 0.85em;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+        footer a { color: var(--blue); text-decoration: none; }
+
+        @media (max-width: 640px) {
+            .header h1 { font-size: 1.8em; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <a href="index.html">&larr; Back to NemJPG</a>
+    <h1>Privacy Policy</h1>
+    <p>Last updated: March 2026</p>
+</div>
+
+<div class="container">
+    <div class="content">
+
+        <div class="highlight-box">
+            <p>NemJPG does not collect, store, transmit, or share any user data. All image processing happens entirely on your device.</p>
+        </div>
+
+        <h2>Data Collection</h2>
+        <p>NemJPG collects absolutely no data. Specifically:</p>
+        <ul>
+            <li>No personal information is collected</li>
+            <li>No usage data or analytics are gathered</li>
+            <li>No crash reports are sent</li>
+            <li>No cookies or tracking technologies are used</li>
+            <li>No third-party services or SDKs are integrated</li>
+            <li>No network connections are made by the app</li>
+            <li>No account or sign-in is required</li>
+        </ul>
+
+        <h2>Image Processing</h2>
+        <p>All image conversion is performed entirely on your device using native system frameworks. On macOS, NemJPG uses Apple's Core Image and Core Graphics. On Windows, NemJPG uses the built-in Windows Imaging Component (WIC).</p>
+        <p>Your images are read from disk, converted locally, and saved to your chosen location. At no point are images or any derived data uploaded, transmitted, or shared with any server or third party.</p>
+
+        <h2>Third-Party Sharing</h2>
+        <p>NemJPG does not share any data with third parties. There is no data to share.</p>
+
+        <h2>Children's Privacy</h2>
+        <p>NemJPG does not collect any data from any user, including children under the age of 13.</p>
+
+        <h2>Changes to This Policy</h2>
+        <p>If this privacy policy is ever updated, the changes will be posted on this page with an updated revision date. Given that NemJPG collects no data, significant changes are unlikely.</p>
+
+        <h2>Contact</h2>
+        <div class="contact-box">
+            <p style="color: var(--text); margin-bottom: 8px;"><strong>Michael Skov Hejmadi</strong></p>
+            <p>Website: <a href="https://hejmadi.com">hejmadi.com</a></p>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    <p>NemJPG &mdash; <a href="https://hejmadi.com">Michael Skov Hejmadi</a></p>
+</footer>
+
+</body>
+</html>
