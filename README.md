@@ -22,11 +22,11 @@
 NemJPG is a free, open-source batch image converter that processes everything locally on your machine. No uploads, no accounts, no bloatware. Just fast, reliable image conversion.
 
 - **macOS**: Native SwiftUI app with drag-and-drop support
-- **Windows**: Lightweight script with right-click context menu integration
+- **Windows**: Right-click context menu integration with PowerShell conversion engine
 
 ## Features
 
-- Convert 20+ image formats to JPG (and more)
+- Convert 20+ image formats to JPG, PNG, or WebP
 - Batch processing -- convert hundreds of images at once
 - Drag and drop files or entire folders (macOS)
 - Right-click context menu integration (Windows)
@@ -51,24 +51,69 @@ NemJPG is a free, open-source batch image converter that processes everything lo
 
 ### macOS
 
-Download NemJPG from the [Mac App Store](#) or build from source:
-
-```bash
-cd macOS
-swift build
-```
+<a href="https://apps.apple.com/app/nemjpg/id6760638406">
+  <img src="https://developer.apple.com/assets/elements/badges/download-on-the-mac-app-store.svg" alt="Download on the Mac App Store" height="48">
+</a>
 
 **Requirements:** macOS 13 Ventura or later. Supports Apple Silicon and Intel.
 
 ### Windows
 
-1. Download `Konverter til JPG.bat` from the [website](https://hejmadi.com/NemJPG/)
-2. Place the file in the folder containing your images
-3. Double-click to convert all images to JPG
+**Option 1: Download zip (recommended)**
 
-For right-click context menu integration, run the Windows installer.
+1. Download [NemJPG-Windows-v1.1.zip](https://github.com/DrHejmadi/NemJPG/releases/latest/download/NemJPG-Windows-v1.1.zip)
+2. Extract the zip file
+3. Double-click `Installer NemJPG.bat`
+4. Done! Right-click any image or folder in File Explorer to convert
+
+**Option 2: Clone this repo**
+
+```
+git clone https://github.com/DrHejmadi/NemJPG.git
+cd NemJPG/Windows
+```
+
+Then run `Installer NemJPG.bat` to install the right-click context menu.
 
 **Requirements:** Windows 10 or later. PowerShell 5.1+ (built-in).
+
+### Windows Installation Details
+
+The installer does the following:
+- Copies `nemjpg.ps1` and `nemjpg.ini` to `%LOCALAPPDATA%\NemJPG\`
+- Registers a right-click context menu for image files and folders (HKCU registry, no admin required)
+
+After installation, right-click any image or folder and choose from:
+
+```
+NemJPG >
+  ├── Konverter til JPG (Hoej kvalitet)     95% quality
+  ├── Konverter til JPG (Web)                80% quality
+  ├── Konverter til JPG + Resize (1920px)    Resize to max 1920px width
+  ├── Konverter til PNG
+  └── Konverter til WebP
+```
+
+Converted files are saved in a `NemJPG_output` subfolder. Originals are never modified.
+
+### Configuration
+
+Edit `%LOCALAPPDATA%\NemJPG\nemjpg.ini` to change defaults:
+
+```ini
+[NemJPG]
+Quality=95              ; JPEG quality (1-100)
+OutputFolder=NemJPG_output
+BackgroundColor=White   ; For transparent PNGs: White, Black, #RRGGBB
+Recursive=false         ; Process subfolders
+MaxWidth=0              ; Max width in px (0 = no limit)
+MaxHeight=0             ; Max height in px (0 = no limit)
+PreserveMetadata=true   ; Keep EXIF data
+```
+
+### Uninstall
+
+Run `Afinstaller NemJPG.bat` (included in the zip) to remove all registry entries and files.
 
 ## Supported Formats
 
@@ -111,20 +156,6 @@ For right-click context menu integration, run the Windows installer.
 | **Architecture** | Apple Silicon & Intel | x64 |
 | **Runtime** | None (native SwiftUI) | PowerShell 5.1+ (built-in) |
 | **Price** | Free | Free |
-
-## Building from Source
-
-### macOS
-
-```bash
-cd macOS
-swift build
-swift run NemJPG
-```
-
-### Windows
-
-No build step required. The `.bat` file is the complete application.
 
 ## License
 
