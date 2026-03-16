@@ -1,0 +1,96 @@
+name: Build MSIX Package
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Generate icon assets from SVG
+      shell: pwsh
+      run: |
+        # Create Assets directory in MSIX
+        New-Item -ItemType Directory -Force -Path "MSIX\Assets"
+
+        # Use magick (ImageMagick) to convert SVG to required PNG sizes
+        # ImageMagick is pre-installed on windows-latest
+        $sizes = @(
+          @{ Name = "StoreLogo.png"; Size = "50x50" },
+          @{ Name = "Square44x44Logo.png"; Size = "44x44" },
+          @{ Name = "Square71x71Logo.png"; Size = "71x71" },
+          @{ Name = "SmallTile.png"; Size = "71x71" },
+          @{ Name = "Square150x150Logo.png"; Size = "150x150" },
+          @{ Name = "Wide310x150Logo.png"; Size = "310x150" },
+          @{ Name = "LargeTile.png"; Size = "310x310" },
+          @{ Name = "Square44x44Logo.targetsize-16.png"; Size = "16x16" },
+          @{ Name = "Square44x44Logo.targetsize-24.png"; Size = "24x24" },
+          @{ Name = "Square44x44Logo.targetsize-32.png"; Size = "32x32" },
+          @{ Name = "Square44x44Logo.targetsize-48.png"; Size = "48x48" },
+          @{ Name = "Square44x44Logo.targetsize-256.png"; Size = "256x256" }
+        )
+
+        foreach ($s in $sizes) {
+          $dims = $s.Size -split "x"
+          $w = $dims[0]
+          $h = $dims[1]
+          magick convert -background none -resize "${w}x${h}" "Assets\icon.svg" "MSIX\Assets\$($s.Name)"
+          Write-Host "Created $($s.Name) ($($s.Size))"
+        }
+
+    - name: Compile launcher EXE
+      shell: pwsh
+      run: |
+        # Use .NET Framework csc.exe to compile the launcher
+        $csc = "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe"
+        & $csc /target:exe /out:MSIX\NemJPG.exe /platform:x64 MSIX\NemJPG.cs
+        if ($LASTEXITCODE -ne 0) { throw "Compilation failed" }
+        Write-Host "Compiled NemJPG.exe"
+
+    - name: Prepare MSIX content
+      shell: pwsh
+      run: |
+        # Copy Windows scripts into MSIX package directory
+        Copy-Item "Windows\nemjpg.ps1" "MSIX\nemjpg.ps1"
+        Copy-Item "Windows\nemjpg.ini" "MSIX\nemjpg.ini"
+        Copy-Item "Windows\Installer NemJPG.bat" "MSIX\Installer NemJPG.bat"
+        Copy-Item "Windows\Afinstaller NemJPG.bat" "MSIX\Afinstaller NemJPG.bat"
+
+        # Remove source file (not needed in package)
+        Remove-Item "MSIX\NemJPG.cs" -ErrorAction SilentlyContinue
+
+        Write-Host "MSIX content prepared"
+        Get-ChildItem -Path MSIX -Recurse | Format-Table Name, Length
+
+    - name: Create MSIX package
+      shell: pwsh
+      run: |
+        # Find makeappx.exe from Windows SDK
+        $sdkPath = Get-ChildItem "C:\Program Files (x86)\Windows Kits\10\bin" -Directory |
+          Where-Object { $_.Name -match "^\d+\.\d+\.\d+\.\d+$" } |
+          Sort-Object Name -Descending |
+          Select-Object -First 1
+
+        $makeappx = Join-Path $sdkPath.FullName "x64\makeappx.exe"
+
+        if (-not (Test-Path $makeappx)) {
+          throw "makeappx.exe not found at: $makeappx"
+        }
+
+        Write-Host "Using makeappx: $makeappx"
+
+        # Create the MSIX package
+        & $makeappx pack /d MSIX /p NemJPG-ImageConverter.msix /o
+        if ($LASTEXITCODE -ne 0) { throw "makeappx pack failed" }
+
+        Write-Host "MSIX package created successfully"
+        Get-Item NemJPG-ImageConverter.msix | Format-Table Name, Length
+
+    - name: Upload MSIX artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: NemJPG-MSIX
+        path: NemJPG-ImageConverter.msix
