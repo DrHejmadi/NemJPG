@@ -10,7 +10,7 @@
   <Identity
     Name="MichaelSkovHejmadi.NemJPG-ImageConverter"
     Publisher="CN=DF3C6725-362F-4F88-8122-2D7F349D3697"
-    Version="1.1.0.0"
+    Version="1.2.0.0"
     ProcessorArchitecture="x64" />
 
   <Properties>
