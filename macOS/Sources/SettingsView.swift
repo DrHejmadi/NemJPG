@@ -5,46 +5,46 @@ struct SettingsView: View {
 
     var body: some View {
         Form {
-            Section("Output") {
-                Picker("Standardformat", selection: $converter.outputFormat) {
+            Section(String(localized: "Output")) {
+                Picker(String(localized: "Default format"), selection: $converter.outputFormat) {
                     ForEach(OutputFormat.allCases) { format in
                         Text(format.rawValue).tag(format)
                     }
                 }
 
                 if converter.outputFormat == .jpeg {
-                    Picker("JPEG-kvalitet", selection: $converter.qualityPreset) {
+                    Picker(String(localized: "JPEG quality"), selection: $converter.qualityPreset) {
                         ForEach(QualityPreset.allCases) { preset in
-                            Text(preset.rawValue).tag(preset)
+                            Text(preset.displayName).tag(preset)
                         }
                     }
                 }
 
-                Toggle("Gem i undermappe", isOn: $converter.useOutputFolder)
+                Toggle(String(localized: "Save in subfolder"), isOn: $converter.useOutputFolder)
                 if converter.useOutputFolder {
-                    TextField("Mappenavn", text: $converter.outputFolderName)
+                    TextField(String(localized: "Folder name"), text: $converter.outputFolderName)
                 }
             }
 
-            Section("Resize") {
+            Section(String(localized: "Resize")) {
                 HStack {
-                    Text("Max bredde (px)")
-                    TextField("0 = ingen", value: $converter.maxWidth, format: .number)
+                    Text("Max width (px)", comment: "Resize setting label")
+                    TextField(String(localized: "0 = none"), value: $converter.maxWidth, format: .number)
                         .frame(width: 100)
                 }
                 HStack {
-                    Text("Max hoejde (px)")
-                    TextField("0 = ingen", value: $converter.maxHeight, format: .number)
+                    Text("Max height (px)", comment: "Resize setting label")
+                    TextField(String(localized: "0 = none"), value: $converter.maxHeight, format: .number)
                         .frame(width: 100)
                 }
-                Text("0 = ingen resize. Aspect ratio bevares altid.")
+                Text("0 = no resize. Aspect ratio is always preserved.", comment: "Resize help text")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
 
-            Section("Transparens") {
+            Section(String(localized: "Transparency")) {
                 HStack {
-                    Text("Baggrundsfarve")
+                    Text("Background color", comment: "Transparency setting label")
                     Spacer()
                     ColorPicker("", selection: Binding(
                         get: { Color(nsColor: converter.backgroundColor) },
@@ -53,8 +53,8 @@ struct SettingsView: View {
                 }
             }
 
-            Section("Avanceret") {
-                Toggle("Inkluder undermapper", isOn: $converter.includeSubfolders)
+            Section(String(localized: "Advanced")) {
+                Toggle(String(localized: "Include subfolders"), isOn: $converter.includeSubfolders)
             }
         }
         .formStyle(.grouped)

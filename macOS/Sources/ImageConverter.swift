@@ -29,12 +29,21 @@ enum OutputFormat: String, CaseIterable, Identifiable {
 }
 
 enum QualityPreset: String, CaseIterable, Identifiable {
-    case high = "Hoej kvalitet (95%)"
-    case medium = "Medium (80%)"
-    case web = "Web-optimeret (70%)"
-    case low = "Komprimeret (50%)"
+    case high = "high"
+    case medium = "medium"
+    case web = "web"
+    case low = "low"
 
     var id: String { rawValue }
+
+    var displayName: String {
+        switch self {
+        case .high: return String(localized: "High quality (95%)")
+        case .medium: return String(localized: "Medium (80%)")
+        case .web: return String(localized: "Web optimized (70%)")
+        case .low: return String(localized: "Compressed (50%)")
+        }
+    }
 
     var quality: Double {
         switch self {
@@ -184,7 +193,7 @@ class ImageConverter: ObservableObject {
             return ConversionResult(
                 sourceURL: sourceURL, outputURL: nil,
                 originalSize: originalSize, newSize: 0,
-                success: false, error: "Kunne ikke aabne billedet", skipped: false
+                success: false, error: String(localized: "Could not open image"), skipped: false
             )
         }
 
@@ -225,7 +234,7 @@ class ImageConverter: ObservableObject {
             return ConversionResult(
                 sourceURL: sourceURL, outputURL: nil,
                 originalSize: originalSize, newSize: 0,
-                success: false, error: "Kunne ikke behandle billedet", skipped: false
+                success: false, error: String(localized: "Could not process image"), skipped: false
             )
         }
 
@@ -239,7 +248,7 @@ class ImageConverter: ObservableObject {
             return ConversionResult(
                 sourceURL: sourceURL, outputURL: nil,
                 originalSize: originalSize, newSize: 0,
-                success: false, error: "Kunne ikke kode billedet", skipped: false
+                success: false, error: String(localized: "Could not encode image"), skipped: false
             )
         }
 

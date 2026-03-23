@@ -3,6 +3,7 @@ import PackageDescription
 
 let package = Package(
     name: "NemJPG",
+    defaultLocalization: "en",
     platforms: [.macOS(.v13)],
     targets: [
         .executableTarget(

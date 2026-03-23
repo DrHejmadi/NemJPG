@@ -38,7 +38,7 @@ struct ContentView: View {
             Spacer()
 
             // Format picker
-            Picker("Format", selection: $converter.outputFormat) {
+            Picker(String(localized: "Format"), selection: $converter.outputFormat) {
                 ForEach(OutputFormat.allCases) { format in
                     Text(format.rawValue).tag(format)
                 }
@@ -50,7 +50,7 @@ struct ContentView: View {
             if converter.outputFormat == .jpeg {
                 Picker("", selection: $converter.qualityPreset) {
                     ForEach(QualityPreset.allCases) { preset in
-                        Text(preset.rawValue).tag(preset)
+                        Text(preset.displayName).tag(preset)
                     }
                 }
                 .frame(width: 180)
@@ -86,16 +86,16 @@ struct ContentView: View {
                         .scaleEffect(isDragging ? 1.15 : 1.0)
                         .animation(.easeInOut(duration: 0.2), value: isDragging)
 
-                    Text("Traek billeder eller mapper hertil")
+                    Text("Drop images or folders here", comment: "Drop zone main text")
                         .font(.title3)
                         .fontWeight(.medium)
 
-                    Text("PNG, BMP, GIF, TIFF, WebP, HEIC, RAW og mange flere")
+                    Text("PNG, BMP, GIF, TIFF, WebP, HEIC, RAW and many more", comment: "Supported formats list")
                         .font(.callout)
                         .foregroundStyle(.secondary)
 
                     Button(action: openFilePicker) {
-                        Label("Vaelg filer...", systemImage: "folder")
+                        Label(String(localized: "Choose files..."), systemImage: "folder")
                             .padding(.horizontal, 20)
                             .padding(.vertical, 10)
                     }
@@ -111,8 +111,8 @@ struct ContentView: View {
 
             // Options row
             HStack(spacing: 20) {
-                Toggle("Gem i undermappe", isOn: $converter.useOutputFolder)
-                Toggle("Inkluder undermapper", isOn: $converter.includeSubfolders)
+                Toggle(String(localized: "Save in subfolder"), isOn: $converter.useOutputFolder)
+                Toggle(String(localized: "Include subfolders"), isOn: $converter.includeSubfolders)
                 Spacer()
             }
             .padding(.horizontal, 30)
@@ -127,24 +127,24 @@ struct ContentView: View {
             // Info bar
             HStack {
                 Image(systemName: "photo.stack")
-                Text("\(converter.droppedFiles.count) billede(r) klar til konvertering")
+                Text("\(converter.droppedFiles.count) image(s) ready for conversion")
                     .fontWeight(.medium)
                 Spacer()
 
-                Button("Ryd") {
+                Button(String(localized: "Clear")) {
                     converter.clearFiles()
                 }
                 .buttonStyle(.plain)
                 .foregroundStyle(.secondary)
 
                 Button(action: openFilePicker) {
-                    Label("Tilfoej flere", systemImage: "plus")
+                    Label(String(localized: "Add more"), systemImage: "plus")
                 }
 
                 Button(action: {
                     Task { await converter.convert() }
                 }) {
-                    Label("Konverter til \(converter.outputFormat.rawValue)", systemImage: "arrow.triangle.2.circlepath")
+                    Label(String(localized: "Convert to \(converter.outputFormat.rawValue)"), systemImage: "arrow.triangle.2.circlepath")
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
                 }
@@ -181,8 +181,8 @@ struct ContentView: View {
 
             // Options
             HStack(spacing: 20) {
-                Toggle("Gem i undermappe", isOn: $converter.useOutputFolder)
-                Toggle("Inkluder undermapper", isOn: $converter.includeSubfolders)
+                Toggle(String(localized: "Save in subfolder"), isOn: $converter.useOutputFolder)
+                Toggle(String(localized: "Include subfolders"), isOn: $converter.includeSubfolders)
 
                 if converter.maxWidth > 0 {
                     Text("Max: \(converter.maxWidth)px")
@@ -206,7 +206,7 @@ struct ContentView: View {
                 VStack(spacing: 8) {
                     ProgressView(value: converter.progress)
                         .progressViewStyle(.linear)
-                    Text("Konverterer... \(Int(converter.progress * 100))%")
+                    Text("Converting... \(Int(converter.progress * 100))%")
                         .font(.callout)
                         .foregroundStyle(.secondary)
                 }
@@ -216,24 +216,24 @@ struct ContentView: View {
             // Summary bar
             if !converter.results.isEmpty {
                 HStack(spacing: 24) {
-                    Label("\(converter.totalConverted) konverteret", systemImage: "checkmark.circle.fill")
+                    Label(String(localized: "\(converter.totalConverted) converted"), systemImage: "checkmark.circle.fill")
                         .foregroundStyle(.green)
                     if converter.totalSkipped > 0 {
-                        Label("\(converter.totalSkipped) sprunget over", systemImage: "arrow.right.circle.fill")
+                        Label(String(localized: "\(converter.totalSkipped) skipped"), systemImage: "arrow.right.circle.fill")
                             .foregroundStyle(.orange)
                     }
                     if converter.totalErrors > 0 {
-                        Label("\(converter.totalErrors) fejl", systemImage: "xmark.circle.fill")
+                        Label(String(localized: "\(converter.totalErrors) error(s)"), systemImage: "xmark.circle.fill")
                             .foregroundStyle(.red)
                     }
                     Spacer()
                     if converter.totalSavedBytes > 0 {
-                        Text("Sparet: \(formatBytes(converter.totalSavedBytes))")
+                        Text("Saved: \(formatBytes(converter.totalSavedBytes))")
                             .fontWeight(.semibold)
                             .foregroundStyle(.green)
                     }
 
-                    Button("Ny konvertering") {
+                    Button(String(localized: "New conversion")) {
                         converter.clearFiles()
                     }
                     .buttonStyle(.bordered)
@@ -272,11 +272,11 @@ struct ContentView: View {
                                 .fontWeight(.semibold)
                                 .foregroundStyle(.green)
                         } else if result.skipped {
-                            Text("Sprunget over")
+                            Text("Skipped", comment: "File was skipped during conversion")
                                 .font(.callout)
                                 .foregroundStyle(.orange)
                         } else {
-                            Text(result.error ?? "Ukendt fejl")
+                            Text(result.error ?? String(localized: "Unknown error"))
                                 .font(.callout)
                                 .foregroundStyle(.red)
                         }
@@ -294,7 +294,7 @@ struct ContentView: View {
         panel.canChooseFiles = true
         panel.canChooseDirectories = true
         panel.allowedContentTypes = [.image]
-        panel.message = "Vaelg billeder eller mapper der skal konverteres"
+        panel.message = String(localized: "Choose images or folders to convert")
 
         if panel.runModal() == .OK {
             converter.addFiles(panel.urls)
