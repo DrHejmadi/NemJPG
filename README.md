@@ -1,168 +1,201 @@
-<p align="center">
-  <img src="Assets/icon.svg" alt="NemJPG" width="128" height="128">
-</p>
+# Fire bud — Dykkerlæge & Lægehuset Ferritslev
 
-<h1 align="center">NemJPG</h1>
+Fire komplette designbud på to hjemmesider. Samme indhold som i dag, fire helt forskellige
+udtryk. Ren HTML/CSS/JS — ingen frameworks, ingen build, ingen eksterne kald.
 
-<p align="center">
-  <strong>Batch image converter for macOS and Windows</strong><br>
-  Convert 20+ image formats to JPG, PNG, WebP, or TIFF in seconds.
-</p>
-
-<p align="center">
-  <a href="https://hejmadi.com/NemJPG/">Website</a> &middot;
-  <a href="#download">Download</a> &middot;
-  <a href="#supported-formats">Formats</a>
-</p>
+**Start her:** åbn `index.html` i roden. Den viser alle fire bud side om side.
 
 ---
 
-## About
-
-NemJPG is a free, open-source batch image converter that processes everything locally on your machine. No uploads, no accounts, no bloatware. Just fast, reliable image conversion.
-
-- **macOS**: Native SwiftUI app with drag-and-drop support
-- **Windows**: Right-click context menu integration with PowerShell conversion engine
-
-## Features
-
-- Convert 20+ image formats to JPG, PNG, or WebP
-- Batch processing -- convert hundreds of images at once
-- Drag and drop files or entire folders (macOS)
-- Right-click context menu integration (Windows)
-- Configurable quality settings (high, medium, web, compressed)
-- Optional image resizing with preserved aspect ratio
-- Transparent PNG backgrounds handled automatically (white fill)
-- File size report showing space saved per image
-- All processing done locally -- no data leaves your machine
-- Free and open source
-
-## Screenshots
-
-<p align="center">
-  <img src="Assets/screenshot-macos.png" alt="NemJPG macOS" width="600">
-</p>
-
-<p align="center">
-  <img src="Assets/screenshot-windows.png" alt="NemJPG Windows" width="600">
-</p>
-
-## Download
-
-### macOS
-
-<a href="https://apps.apple.com/app/nemjpg/id6760638406">
-  <img src="https://developer.apple.com/assets/elements/badges/download-on-the-mac-app-store.svg" alt="Download on the Mac App Store" height="48">
-</a>
-
-**Requirements:** macOS 13 Ventura or later. Supports Apple Silicon and Intel.
-
-### Windows
-
-**Option 1: Download zip (recommended)**
-
-1. Download [NemJPG-Windows-v1.1.zip](https://github.com/DrHejmadi/NemJPG/releases/latest/download/NemJPG-Windows-v1.1.zip)
-2. Extract the zip file
-3. Double-click `Installer NemJPG.bat`
-4. Done! Right-click any image or folder in File Explorer to convert
-
-**Option 2: Clone this repo**
+## Hvad ligger hvor
 
 ```
-git clone https://github.com/DrHejmadi/NemJPG.git
-cd NemJPG/Windows
+index.html                              Oversigtsside — vælg mellem de fire bud
+favicon.svg
+
+dykkerlaege/
+  nedstigningen/                        BUD A · filmisk, mørk, scroll-drevet
+    index.html  style.css  app.js  favicon.svg
+  instrumentet/                         BUD B · redaktionel, klinisk, interaktiv
+    index.html  style.css  app.js  favicon.svg
+
+laegehuset-ferritslev/
+  huset/                                BUD A · varm, fynsk, live åbningsstatus
+    index.html  style.css  app.js  favicon.svg
+  klarbesked/                           BUD B · værktøj, søgning først
+    index.html  style.css  app.js  favicon.svg
+
+assets/
+  fonts/      9 selvhostede variable webfonts (.woff2, latin-subset)
+  img/dyk/    dykkerbilleder, WebP i to størrelser
+  img/lhf/    lægehusets billeder og portrætter, WebP i to størrelser
+  video/      dykkermedicin-intro.mp4
+  previews/   skærmbilleder brugt på oversigtssiden
 ```
 
-Then run `Installer NemJPG.bat` to install the right-click context menu.
+---
 
-**Requirements:** Windows 10 or later. PowerShell 5.1+ (built-in).
+## De fire bud
 
-### Windows Installation Details
+### 1 · Dykkermedicin — «Nedstigningen» (bud A)
 
-The installer does the following:
-- Copies `nemjpg.ps1` and `nemjpg.ini` to `%LOCALAPPDATA%\NemJPG\`
-- Registers a right-click context menu for image files and folders (HKCU registry, no admin required)
+Hele siden er ét dyk. Sidens scrollposition er en rigtig dykkerprofil: du starter på
+overfladen, stiger ned til 40 m ved underviserne, og på vej op holder du sikkerhedsstop
+på 5 m — præcis dér hvor tilmeldingen ligger.
 
-After installation, right-click any image or folder and choose from:
+* **Levende hav i canvas.** Vandsøjlens farve, lysstråler, marinesne og bobler beregnes
+  ud fra din aktuelle «dybde». Lyset forsvinder efterhånden som du kommer ned, og
+  kommer igen på vej op.
+* **Dykkercomputer.** Fast HUD med dybde, omgivende tryk (1 + d/10 bar) og vejledende
+  nul-stop-tid, interpoleret fra en tabel for atmosfærisk luft. Status skifter mellem
+  Overfladen / Nedstigning / Arbejdsdybde / Maksimal dybde / Sikkerhedsstop.
+* **Dybdestige** i venstre side (bliver til fuldskærmsmenu under 1180 px).
+* **Dykkerlygte** følger musen på computer; slået fra på touch og ved reduceret bevægelse.
+* Koøje-ramme om introvideoen, glasruder, nitter og genskin.
 
+### 2 · Dykkermedicin — «Instrumentet» (bud B)
+
+Bevidst det stik modsatte: papir og blæk, hårfine linjer, tabeldata, 12-kolonners gitter
+og papirkorn. Som en artikel i et fagtidsskrift.
+
+* **Instrumentet** (sektion 02) er sidens hjerte: træk i dybdeskyderen og se
+  omgivende tryk, inspiratoriske partialtryk for O₂ og N₂, gasvolumen efter Boyles lov,
+  luftforbrugsfaktor, nul-stop-tid og ækvivalent narkosedybde ændre sig i realtid.
+  Advarselsflag tænder ved kvælstofnarkose, ved Pₒ₂ ≥ 1,4 bar og ved MOD for atmosfærisk
+  luft. Formlerne står i panelet.
+  Modellen er illustrativ og erstatter ikke tabel eller dykkercomputer — det står på siden.
+* **Duotone-plader.** Billederne ligger i tonet monokrom og springer i fuld farve ved hover.
+* **Kinetisk overskrift**, nyhedsticker, læseprogress i toppen, tælleanimation på tal.
+* **Lyst og mørkt tema** med knap i toppen; følger systemet indtil du vælger selv.
+
+### 3 · Lægehuset Ferritslev — «Huset» (bud A)
+
+Et hus, ikke en portal. Buede former, papirfarver, Fraunces (samme skrift som hejmadi.com).
+
+* **Live åbningsstatus** ved siden af overskriften: ved præcis hvad klokken er og siger
+  fx «Telefonen er åben for tid samme dag indtil kl. 8.30», «Telefonpause og møde — vi tager
+  telefonen igen kl. 10.15» eller «Lukket i weekenden — ring til Lægevagten».
+* **Dagbånd**: hele dagens rytme på én linje — konsultation, telefontid, pause, vagtmobil —
+  med en «nu»-markør der flytter sig.
+* **Levende himmel** i canvas bag hero'en. Farvestemningen følger tidspunktet på dagen
+  (morgen, dag, eftermiddag, aften).
+* **Rød akutbjælke** øverst med 112 og lægevagten, altid.
+* Alle læger, sygeplejersker, farmakonom, uddannelseslæge, praksisassistenter og øvrige
+  med portræt og fulde profiler. Triage-kort, priser, praktisk info og kort over Fyn.
+
+### 4 · Lægehuset Ferritslev — «Klar besked» (bud B)
+
+Bygget til den, der har travlt og er bekymret. Sort/hvid, én signalfarve, kæmpe type.
+
+* **Tre nødnumre** klæber til toppen af siden — 112, lægevagten, lægehuset.
+* **Instant søgning.** Skriv «recept», «kørekort», «gravid», «blodprøve» — svaret findes,
+  mens du skriver, og folder sig ud med et blink. Piletaster + Enter, `/` eller `⌘K`
+  åbner søgefeltet. Indekset bygges automatisk af sidens eget indhold, så det aldrig
+  bliver forældet.
+* **Live statusboks** med stort ÅBENT/LUKKET, hvad der gælder lige nu, og hvad der sker
+  som det næste — plus dagens forløb med markering af, hvor vi er.
+* **«Din vej ind»** — tre ruter i stedet for en menu.
+* Alt indhold som foldelister, så siden er kort og skanbar. Mørkt tema.
+
+---
+
+## Om indholdet
+
+Teksterne er de eksisterende, gengivet så tæt som muligt. De er læst igennem for
+**sprog, ikke for mening**: stavning, kommaer, orddeling og manglende mellemrum.
+
+Rettede eksempler:
+
+| Original | Rettet til |
+|---|---|
+| «Vi arbejdet efter princippet» | «Vi arbejder efter princippet» |
+| «Helena Thell , Rikke Bak Toft Andreasen ogNicolai Soll» | «Helena Thell, Rikke Bak Toft Andreasen og Nicolai Soll» |
+| «Programmet er foreløbigt og rækkefølgen kan ændres» | «Programmet er foreløbigt, og rækkefølgen kan ændres» |
+| «ØNH-undersøgelse med fokus på tryk-udligning» | «… på trykudligning» |
+| «Anita har ansat som sygeplejerske» | «Anita har været ansat som sygeplejerske» |
+| «Giftlinjen er en landsækkende telefonrådgivning» | «… landsdækkende …» |
+| «kun håndterer kutte henvendelser» | «… akutte henvendelser» |
+| «udenlanske prostituerede» | «udenlandske prostituerede» |
+| «kunstig inteligens» | «kunstig intelligens» |
+| «universiterne» | «universiteterne» |
+
+**Nyskrevet tekst** — det eneste, der ikke stod på de gamle sider — er den korte
+brugstekst, som de nye elementer kræver: introduktionen til instrumentet, etiketterne i
+dagbåndet, de tre «vej ind»-kort, statusteksterne og oversigtssiden. Alt sammen let at
+slette, hvis du hellere vil undvære det.
+
+**Ikke medtaget fra det gamle site** (bevidst — de er lange enkeltemner, der fint kan
+blive liggende som undersider): behandlingsvejledning ved fnat, vorter, glemt p-pille,
+den fulde privatlivspolitik (der linkes til den), inhalationsvideoer og
+find-speciallæge-værktøjet.
+
+---
+
+## Teknik
+
+* **Ingen afhængigheder.** Ingen npm, ingen build, ingen CDN. Læg en mappe på en
+  webserver, og den virker.
+* **Ingen eksterne kald.** Alle 9 skrifter er selvhostede (`assets/fonts/`, latin-subset,
+  variable, 21–147 KB pr. stk.). Ingen Google Fonts, ingen analytics, ingen cookies.
+* **Billeder** er komprimeret til WebP i to bredder med `srcset`/`sizes` og
+  `loading="lazy"` + `decoding="async"`. Samlet ~2,7 MB for alle fire sider.
+* **Tilgængelighed.** Semantisk HTML, springlink, synlige fokusmarkeringer,
+  `aria-live` på statusfelter, tastaturbetjening overalt, korrekt overskriftshierarki.
+* **`prefers-reduced-motion`** slår al bevægelse fra — også canvas-animationerne, der
+  falder tilbage til et statisk billede.
+* **Print.** Alle fire sider har et print-stylesheet: baggrunde og HUD forsvinder,
+  foldelister åbnes, teksten bliver sort på hvidt.
+* **Ydelse.** Canvas-løkkerne stopper på `visibilitychange`, scroll-handlers er
+  rAF-throttlede, og partikelantal skaleres efter skærmareal.
+
+### Struktureret data
+
+Begge dykkersider udgiver `Course`-schema med `CourseInstance`, sted, datoer og pris.
+Begge lægehussider udgiver `MedicalClinic`-schema med adresse, telefon, CVR og
+åbningstider.
+
+---
+
+## Sådan kører du det lokalt
+
+```bash
+# hvilken som helst statisk server, fx:
+npx http-server . -p 8080
+# eller
+python3 -m http.server 8080
 ```
-NemJPG >
-  ├── Konverter til JPG (Hoej kvalitet)     95% quality
-  ├── Konverter til JPG (Web)                80% quality
-  ├── Konverter til JPG + Resize (1920px)    Resize to max 1920px width
-  ├── Konverter til PNG
-  └── Konverter til WebP
-```
 
-Converted files are saved in a `NemJPG_output` subfolder. Originals are never modified.
+Åbn så `http://localhost:8080/`.
 
-### Configuration
+Filerne kan også åbnes direkte fra disken (`file://`), men så blokerer browseren
+webfonts og video i nogle tilfælde — brug hellere en server.
 
-Edit `%LOCALAPPDATA%\NemJPG\nemjpg.ini` to change defaults:
+## Sådan lægger du et bud i drift
 
-```ini
-[NemJPG]
-Quality=95              ; JPEG quality (1-100)
-OutputFolder=NemJPG_output
-BackgroundColor=White   ; For transparent PNGs: White, Black, #RRGGBB
-Recursive=false         ; Process subfolders
-MaxWidth=0              ; Max width in px (0 = no limit)
-MaxHeight=0             ; Max height in px (0 = no limit)
-PreserveMetadata=true   ; Keep EXIF data
-```
+Hvert bud er selvstændigt. For at sætte fx «Nedstigningen» op på
+`dykkerlaege.hejmadi.dk`:
 
-### Uninstall
+1. Kopiér `dykkerlaege/nedstigningen/*` til webrodens top.
+2. Kopiér `assets/fonts/`, `assets/img/dyk/` og `assets/video/` med.
+3. Ret stierne fra `../../assets/` til `assets/` i `index.html` og `style.css`
+   (i CSS'en er det kun `@font-face`-blokken øverst).
+4. Ret `og:image` og eventuelle absolutte links.
 
-Run `Afinstaller NemJPG.bat` (included in the zip) to remove all registry entries and files.
+Til `hejmadi.github.io` kan mappen lægges direkte ind som fx
+`/dykkermedicin/`, og så virker `../../assets/`-stierne, hvis `assets/` ligger i roden.
 
-## Supported Formats
+---
 
-### Standard Formats
-| Format | Extension |
-|--------|-----------|
-| PNG | `.png` |
-| BMP | `.bmp` |
-| GIF | `.gif` |
-| TIFF | `.tiff`, `.tif` |
-| WebP | `.webp` |
-| ICO | `.ico` |
-| JPEG 2000 | `.jp2` |
-| PSD | `.psd` |
+## Ting du selv skal beslutte
 
-### Apple / Modern Formats
-| Format | Extension |
-|--------|-----------|
-| HEIC | `.heic` |
-| HEIF | `.heif` |
-| AVIF | `.avif` |
-
-### RAW Camera Formats
-| Format | Camera | Extension |
-|--------|--------|-----------|
-| DNG | Adobe | `.dng` |
-| CR2 | Canon | `.cr2` |
-| NEF | Nikon | `.nef` |
-| ARW | Sony | `.arw` |
-| ORF | Olympus | `.orf` |
-| RAW | Generic | `.raw` |
-
-> **Note (Windows):** HEIC/HEIF and AVIF support requires codecs from the Microsoft Store (often pre-installed on Windows 10/11). RAW formats require camera-specific codecs.
-
-## System Requirements
-
-| | macOS | Windows |
-|---|---|---|
-| **OS** | macOS 13 Ventura+ | Windows 10/11 |
-| **Architecture** | Apple Silicon & Intel | x64 |
-| **Runtime** | None (native SwiftUI) | PowerShell 5.1+ (built-in) |
-| **Price** | Free | Free |
-
-## License
-
-[MIT License](LICENSE) -- Copyright 2026 Michael Skov Hejmadi
-
-## Links
-
-- **Website:** [hejmadi.com/NemJPG](https://hejmadi.com/NemJPG/)
-- **Author:** [Michael Skov Hejmadi](https://hejmadi.com)
-- **GitHub:** [github.com/DrHejmadi/NemJPG](https://github.com/DrHejmadi/NemJPG)
+* **Bookinglinket.** `https://www.laegevejen.dk/` er brugt som mål for «Book tid samme
+  dag». Hvis I har et direkte dybt link ind i jeres booking, skal det ind i stedet
+  (søg efter `laegevejen.dk` i de to lægehussider).
+* **Helligdage.** Åbningsstatus regner kun med hverdage kontra weekend. Skal den også
+  kende danske helligdage, skal der en lille datotabel ind i `app.js`.
+* **Ventelisten til kurset.** Kontaktoplysningen ligger i billedet
+  `assets/img/dyk/tilmelding.webp`. Overvej at skrive mailadressen som tekst også — den
+  kan hverken kopieres, læses op eller klikkes som den er nu.
+* **Billedernes ophav.** Dykkerbillederne ser ud til at være AI-genererede (der er et
+  sparkle-mærke i nederste højre hjørne på flere af dem). Til en artikel i et
+  fagtidsskrift bør det formentlig oplyses.

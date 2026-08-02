@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="da" data-concept="nedstigningen">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dykkermedicin — Fitness to Dive | EDTC-certificeret kursus, Rigshospitalet 2026</title>
+<meta name="description" content="EDTC-certificeret dykkermedicinkursus 19.–22. maj 2026 på Rigshospitalet. Fire intensive dage. Bliv certificeret til at udføre fitness to dive-undersøgelser.">
+<meta name="author" content="Michael Skov Hejmadi">
+<meta name="theme-color" content="#02141f">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="da_DK">
+<meta property="og:site_name" content="Dykkerlæge">
+<meta property="og:title" content="Dykkermedicin — Fitness to Dive">
+<meta property="og:description" content="EDTC-certificeret kursus på Rigshospitalet, 19.–22. maj 2026.">
+<meta property="og:image" content="../../assets/img/dyk/preview.webp">
+<meta name="twitter:card" content="summary_large_image">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "EDTC Dykkermedicin Kursus 2026",
+  "description": "EDTC-certificeret dykkermedicinkursus. Bliv certificeret til at udføre fitness to dive-undersøgelser.",
+  "inLanguage": "da",
+  "provider": { "@type": "Organization", "name": "Rigshospitalet", "sameAs": "https://www.rigshospitalet.dk" },
+  "hasCourseInstance": {
+    "@type": "CourseInstance",
+    "courseMode": "https://schema.org/OnSite",
+    "location": { "@type": "Place", "name": "Rigshospitalet",
+      "address": { "@type": "PostalAddress", "streetAddress": "Blegdamsvej 9", "postalCode": "2100", "addressLocality": "København", "addressCountry": "DK" } },
+    "startDate": "2026-05-19", "endDate": "2026-05-22", "duration": "P4D",
+    "offers": { "@type": "Offer", "price": "8800", "priceCurrency": "DKK", "availability": "https://schema.org/SoldOut" }
+  }
+}
+</script>
+
+<link rel="preload" href="../../assets/fonts/instrumentserif.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+
+<body>
+<a class="skip" href="#hovedindhold">Spring til indhold</a>
+
+<!-- ══ Levende havbaggrund ══════════════════════════════════════ -->
+<canvas id="ocean" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+<div class="torch" aria-hidden="true"></div>
+
+<!-- ══ Dykkercomputer (HUD) ═════════════════════════════════════ -->
+<aside class="hud" id="hud" aria-label="Dykkercomputer — viser din position på siden">
+  <div class="hud__grid">
+    <div class="hud__cell">
+      <span class="hud__label">Dybde</span>
+      <span class="hud__value"><b id="hudDepth">0.0</b><i>m</i></span>
+    </div>
+    <div class="hud__cell">
+      <span class="hud__label">Tryk</span>
+      <span class="hud__value"><b id="hudPress">1.00</b><i>bar</i></span>
+    </div>
+    <div class="hud__cell">
+      <span class="hud__label" id="hudNdlLabel">NDL</span>
+      <span class="hud__value"><b id="hudNdl">∞</b><i id="hudNdlUnit">min</i></span>
+    </div>
+  </div>
+  <div class="hud__bar" role="presentation"><span id="hudFill"></span></div>
+  <p class="hud__status" id="hudStatus">Overfladen</p>
+</aside>
+
+<!-- ══ Dybdestige ═══════════════════════════════════════════════ -->
+<nav class="ladder" id="ladder" aria-label="Sektioner">
+  <ol>
+    <li><a href="#overflade" data-d="0"><span>0 m</span><em>Overfladen</em></a></li>
+    <li><a href="#om" data-d="12"><span>12 m</span><em>Om kurset</em></a></li>
+    <li><a href="#indhold" data-d="24"><span>24 m</span><em>Indhold</em></a></li>
+    <li><a href="#program" data-d="36"><span>36 m</span><em>Program</em></a></li>
+    <li><a href="#undervisere" data-d="40"><span>40 m</span><em>Undervisere</em></a></li>
+    <li><a href="#praktisk" data-d="18"><span>18 m</span><em>Praktisk</em></a></li>
+    <li><a href="#tilmelding" data-d="5"><span>5 m</span><em>Tilmelding</em></a></li>
+  </ol>
+</nav>
+
+<header class="topbar">
+  <a class="topbar__home" href="../../index.html">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+    <span>Hejmadi.com</span>
+  </a>
+  <button class="topbar__menu" id="menuBtn" aria-expanded="false" aria-controls="ladder">
+    <span></span><span></span><span></span>
+    <em class="sr">Menu</em>
+  </button>
+</header>
+
+<main id="hovedindhold">
+
+<!-- ══ 0 m — OVERFLADEN ═════════════════════════════════════════ -->
+<section class="hero" id="overflade" data-depth-start="0" data-depth-end="8">
+  <div class="hero__inner">
+    <div class="hero__text">
+      <p class="eyebrow reveal">EDTC-certificeret kursus</p>
+      <h1 class="hero__title">
+        <span class="reveal" style="--i:0">Dykkermedicin</span>
+        <em class="reveal" style="--i:1">Fitness to Dive</em>
+      </h1>
+      <p class="hero__lead reveal" style="--i:2">
+        4 dages intensivt kursus på Rigshospitalet med erfarne klinikere.
+        Bliv certificeret til at udføre dykkermedicinske undersøgelser og vurderinger.
+      </p>
+      <ul class="hero__meta reveal" style="--i:3">
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          19.–22. maj 2026
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          Rigshospitalet
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          Max 15 deltagere
+        </li>
+      </ul>
+      <a class="btn btn--ghost reveal" style="--i:4" href="#om">
+        Begynd nedstigningen
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="btn__arrow"><path d="M12 4v16m0 0l-6-6m6 6l6-6"/></svg>
+      </a>
+    </div>
+
+    <figure class="porthole reveal" style="--i:2">
+      <div class="porthole__rim">
+        <video id="introVideo" controls playsinline preload="metadata"
+               poster="../../assets/img/dyk/dykker-selfie-800.webp">
+          <source src="../../assets/video/dykkermedicin-intro.mp4" type="video/mp4">
+          Din browser understøtter ikke video.
+        </video>
+        <span class="porthole__glare" aria-hidden="true"></span>
+      </div>
+      <figcaption>Introduktion til kurset</figcaption>
+    </figure>
+  </div>
+
+  <div class="scrollcue" aria-hidden="true">
+    <span class="scrollcue__line"></span>
+  </div>
+</section>
+
+<!-- ══ 12 m — OM KURSET ═════════════════════════════════════════ -->
+<section class="band" id="om" data-depth-start="8" data-depth-end="18">
+  <div class="wrap">
+    <p class="eyebrow reveal">Om kurset</p>
+    <h2 class="h2 reveal">Bliv certificeret <em>dykkerlæge</em></h2>
+
+    <p class="lead reveal">
+      Kurset giver dig de nødvendige kompetencer til at udføre &bdquo;fitness to dive&ldquo;-undersøgelser og
+      rådgive om dykkermedicinske problemstillinger. Du lærer om alt fra trykrelaterede sygdomme til
+      den praktiske vurdering af sportsdykkere og erhvervsdykkere.
+    </p>
+
+    <div class="callout reveal">
+      <svg viewBox="0 0 24 24" aria-hidden="true" class="callout__mark"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+      <p><strong>EDTC-certificering:</strong> Kurset opfylder kravene fra European Diving Technology
+        Committee (EDTC) og giver dig international anerkendelse som dykkerlæge.</p>
+    </div>
+
+    <div class="triptych reveal">
+      <figure><img src="../../assets/img/dyk/dykker-selfie-800.webp" srcset="../../assets/img/dyk/dykker-selfie-800.webp 800w, ../../assets/img/dyk/dykker-selfie.webp 1280w" sizes="(max-width:760px) 90vw, 30vw" alt="Dykkere under vand" width="1280" height="1120" loading="lazy" decoding="async"></figure>
+      <figure><img src="../../assets/img/dyk/dykkerudstyr-1-800.webp" srcset="../../assets/img/dyk/dykkerudstyr-1-800.webp 800w, ../../assets/img/dyk/dykkerudstyr-1.webp 960w" sizes="(max-width:760px) 90vw, 30vw" alt="Professionelt dykkerudstyr" width="960" height="1280" loading="lazy" decoding="async"></figure>
+      <figure><img src="../../assets/img/dyk/dykkerudstyr-2-800.webp" srcset="../../assets/img/dyk/dykkerudstyr-2-800.webp 800w, ../../assets/img/dyk/dykkerudstyr-2.webp 960w" sizes="(max-width:760px) 90vw, 30vw" alt="Dykkerudstyr og våddragt" width="960" height="1280" loading="lazy" decoding="async"></figure>
+    </div>
+
+    <div class="cards">
+      <article class="card reveal">
+        <svg class="card__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+        <h3>Teoretisk fundament</h3>
+        <p>25 timers undervisning i fysiologi, patofysiologi og kliniske aspekter af dykkermedicin.</p>
+      </article>
+      <article class="card reveal">
+        <svg class="card__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+        <h3>Praktiske færdigheder</h3>
+        <p>Hands-on træning i undersøgelsesteknikker, spirometri og otoskopi specifikt for dykkere.</p>
+      </article>
+      <article class="card reveal">
+        <svg class="card__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+        <h3>Kliniske cases</h3>
+        <p>Gennemgang af reelle dykkerskader og træning i klinisk beslutningstagning.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 24 m — INDHOLD ═══════════════════════════════════════════ -->
+<section class="band" id="indhold" data-depth-start="18" data-depth-end="30">
+  <div class="wrap">
+    <p class="eyebrow reveal">Kursusindhold</p>
+    <h2 class="h2 reveal">Hvad du <em>lærer</em></h2>
+
+    <div class="split reveal">
+      <figure class="split__img">
+        <img src="../../assets/img/dyk/spirometri-800.webp" srcset="../../assets/img/dyk/spirometri-800.webp 800w, ../../assets/img/dyk/spirometri.webp 1600w" sizes="(max-width:900px) 92vw, 46vw" alt="Spirometri-undersøgelse" width="2000" height="1090" loading="lazy" decoding="async">
+      </figure>
+      <div class="split__body">
+        <h3>Fitness to Dive-vurdering</h3>
+        <p>Lær at udføre en komplet sundhedsvurdering af dykkere. Du får praktisk erfaring med:</p>
+        <ul class="ticks">
+          <li>Anamnese og risikofaktorer specifikt for dykning</li>
+          <li>Kardiovaskulær og pulmonal vurdering</li>
+          <li>ØNH-undersøgelse med fokus på trykudligning</li>
+          <li>Neurologisk vurdering</li>
+          <li>Spirometri og tolkning af lungefunktion</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="split split--flip reveal">
+      <figure class="split__img">
+        <img src="../../assets/img/dyk/trykkammer-eksterior-800.webp" srcset="../../assets/img/dyk/trykkammer-eksterior-800.webp 800w, ../../assets/img/dyk/trykkammer-eksterior.webp 1536w" sizes="(max-width:900px) 92vw, 46vw" alt="Hyperbart trykkammer" width="1536" height="1024" loading="lazy" decoding="async">
+      </figure>
+      <div class="split__body">
+        <h3>Dykkersygdomme og behandling</h3>
+        <p>Forstå patofysiologien bag trykrelaterede skader, og lær at håndtere akutte situationer:</p>
+        <ul class="ticks">
+          <li>Dekompressionssyge (DCS) – typer og behandling</li>
+          <li>Arteriel gasemboli (AGE)</li>
+          <li>Barotraumer – øre, bihuler, lunger</li>
+          <li>Hyperbar iltbehandling (HBO)</li>
+          <li>Akut håndtering og visitation</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="split reveal">
+      <figure class="split__img">
+        <img src="../../assets/img/dyk/otoskopi-800.webp" srcset="../../assets/img/dyk/otoskopi-800.webp 800w, ../../assets/img/dyk/otoskopi.webp 1600w" sizes="(max-width:900px) 92vw, 46vw" alt="Øreundersøgelse af dykker" width="2000" height="1090" loading="lazy" decoding="async">
+      </figure>
+      <div class="split__body">
+        <h3>Specialvurderinger</h3>
+        <p>Gennemgang af særlige patientgrupper og udfordrende vurderinger:</p>
+        <ul class="ticks">
+          <li>Dykning med kroniske sygdomme</li>
+          <li>Medicinering og dykning</li>
+          <li>Psykiatriske tilstande og panikangst</li>
+          <li>Erhvervsdykkere vs. sportsdykkere</li>
+          <li>Juridiske aspekter og Søfartsstyrelsen</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 36 m — PROGRAM ═══════════════════════════════════════════ -->
+<section class="band" id="program" data-depth-start="30" data-depth-end="39">
+  <div class="wrap">
+    <p class="eyebrow reveal">Forventet program</p>
+    <h2 class="h2 reveal">Fire intensive <em>dage</em></h2>
+    <p class="note reveal">Bemærk: Programmet er foreløbigt, og rækkefølgen kan ændres.</p>
+
+    <figure class="wide reveal">
+      <img src="../../assets/img/dyk/undervisning-2-800.webp" srcset="../../assets/img/dyk/undervisning-2-800.webp 800w, ../../assets/img/dyk/undervisning-2.webp 1536w" sizes="(max-width:900px) 94vw, 1100px" alt="Undervisning på dykkermedicinkursus" width="1536" height="1024" loading="lazy" decoding="async">
+    </figure>
+
+    <div class="days">
+      <article class="day reveal">
+        <header><span class="day__n">01</span><h3>Dag 1 – Tirsdag 19. maj</h3></header>
+        <ol>
+          <li><time>09:00–10:00</time><span>Introduktion og velkomst</span></li>
+          <li><time>10:00–12:00</time><span>Dykkerens fysiologi – luftveje og cirkulation under tryk</span></li>
+          <li><time>13:00–15:00</time><span>Trykrelaterede sygdomme: DCS og AGE</span></li>
+          <li><time>15:00–17:00</time><span>Akutte og kroniske dykkerelaterede skader</span></li>
+        </ol>
+      </article>
+      <article class="day reveal">
+        <header><span class="day__n">02</span><h3>Dag 2 – Onsdag 20. maj</h3></header>
+        <ol>
+          <li><time>09:00–10:00</time><span>Lovgivning og regler – Søfartsstyrelsen</span></li>
+          <li><time>10:00–12:00</time><span>Fitness to dive: vurdering og screening</span></li>
+          <li><time>13:00–14:00</time><span>ØNH og dykning</span></li>
+          <li><time>14:00–18:00</time><span>Demonstration: Professionel dykning og udstyr</span></li>
+        </ol>
+      </article>
+      <article class="day reveal">
+        <header><span class="day__n">03</span><h3>Dag 3 – Torsdag 21. maj</h3></header>
+        <ol>
+          <li><time>09:00–11:00</time><span>Dykkerteknologi og sikkerhed</span></li>
+          <li><time>11:00–12:00</time><span>Kardiologi og dykning</span></li>
+          <li><time>13:00–14:00</time><span>Neurologi, psykiatri og dykning</span></li>
+          <li><time>14:00–15:00</time><span>Lungemedicin og dykning</span></li>
+          <li><time>15:00–17:00</time><span>Demonstration: HBO-behandling og rundvisning i trykkammeret</span></li>
+        </ol>
+      </article>
+      <article class="day reveal">
+        <header><span class="day__n">04</span><h3>Dag 4 – Fredag 22. maj</h3></header>
+        <ol>
+          <li><time>09:00–11:00</time><span>Dykkerulykker – håndtering og cases</span></li>
+          <li><time>11:00–13:00</time><span>Fitness to dive: undersøgelse og cases</span></li>
+          <li><time>14:00–15:00</time><span>Praktisk revision af undersøgelsesfærdigheder</span></li>
+          <li><time>15:00–16:00</time><span><strong>Skriftlig eksamen (multiple choice)</strong></span></li>
+          <li><time>16:00–17:00</time><span>Afslutning og certificering</span></li>
+        </ol>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 40 m — UNDERVISERE ═══════════════════════════════════════ -->
+<section class="band band--deep" id="undervisere" data-depth-start="39" data-depth-end="40">
+  <div class="wrap">
+    <p class="eyebrow reveal">Kursusledelse</p>
+    <h2 class="h2 reveal">Erfarne <em>undervisere</em></h2>
+    <p class="lead reveal">Kurset ledes af et hold af erfarne klinikere med specialviden inden for
+      dykkermedicin, hyperbar medicin og anæstesiologi.</p>
+
+    <div class="people">
+      <article class="person reveal">
+        <h3>Bjørn Arenkiel</h3>
+        <p class="person__role">Overlæge, Rigshospitalet</p>
+        <p>Driftsansvarlig overlæge for trykkammerbehandling (hyperbar medicin) ved Rigshospitalet.</p>
+        <p class="person__skills"><span>Særlige kompetencer:</span> Trykkammerbehandling, højdefysiologi, dykkermedicinsk rådgivning.</p>
+        <a class="link" href="https://research.regionh.dk/da/persons/bjørn-arenkiel/" target="_blank" rel="noopener">Se forskningsprofil<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6l6 6-6 6"/></svg></a>
+      </article>
+      <article class="person reveal">
+        <h3>Klaus Tjelle Kristiansen</h3>
+        <p class="person__role">Speciallæge</p>
+        <p>Speciallæge og bestyrelsesmedlem i Dansk Flyve- og Dykkemedicinsk Selskab (DFDMS).</p>
+        <p class="person__skills"><span>Særlige kompetencer:</span> Dykkermedicinsk rådgivning, fitness to dive-vurderinger.</p>
+        <a class="link" href="https://researchprofiles.ku.dk/da/persons/klaus-tjelle-kristiansen/" target="_blank" rel="noopener">Se forskningsprofil<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6l6 6-6 6"/></svg></a>
+      </article>
+      <article class="person reveal">
+        <h3>Vibeke Renée Lind Jørgensen</h3>
+        <p class="person__role">Overlæge, Rigshospitalet</p>
+        <p>Overlæge i anæstesiologi ved Rigshospitalet og tilknyttet Institut for Klinisk Medicin.</p>
+        <p class="person__skills"><span>Særlige kompetencer:</span> Intensiv medicin, ECMO-behandling, anæstesiologi.</p>
+        <a class="link" href="https://researchprofiles.ku.dk/da/persons/vibeke-renée-lind-jørgensen/" target="_blank" rel="noopener">Se forskningsprofil<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6l6 6-6 6"/></svg></a>
+      </article>
+      <article class="person reveal">
+        <h3>Michael Skov Hejmadi</h3>
+        <p class="person__role">Praktiserende læge, speciallæge i almen medicin</p>
+        <p>Speciallæge i almen medicin og ejer af Lægehuset Ferritslev på Fyn.</p>
+        <p class="person__skills"><span>Særlige kompetencer:</span> Almen medicin, sundhedsteknologi, formidling.</p>
+        <a class="link" href="https://hejmadi.com/">Besøg hjemmeside<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6l6 6-6 6"/></svg></a>
+      </article>
+    </div>
+
+    <p class="afterword reveal">Derudover deltager gæsteundervisere med specialviden inden for ØNH,
+      kardiologi, lungemedicin, neurologi og Søfartsstyrelsen.</p>
+  </div>
+</section>
+
+<!-- ══ 18 m — PRAKTISK (opstigning) ═════════════════════════════ -->
+<section class="band" id="praktisk" data-depth-start="40" data-depth-end="12">
+  <div class="wrap">
+    <p class="eyebrow reveal">Praktisk</p>
+    <h2 class="h2 reveal">Praktisk <em>information</em></h2>
+
+    <dl class="facts reveal">
+      <div><dt>Dato</dt><dd>19.–22. maj 2026</dd></div>
+      <div><dt>Sted</dt><dd>Rigshospitalet, Blegdamsvej 9, 2100 København</dd></div>
+      <div><dt>Pris</dt><dd>8.800 kr. (inkl. frokost og materialer)</dd></div>
+      <div><dt>Deltagerantal</dt><dd>Max. 15 deltagere</dd></div>
+    </dl>
+
+    <div class="twocol">
+      <div class="reveal">
+        <h3>Inkluderet i prisen</h3>
+        <ul class="ticks">
+          <li>25 lektionstimer teoretisk undervisning</li>
+          <li>3 timers praktiske øvelser</li>
+          <li>Kursusmaterialer inkl. lærebog (<em>Diving Medicine</em>, 5. udgave)</li>
+          <li>Frokost alle kursusdage</li>
+          <li>Kaffe, te og forfriskninger</li>
+          <li>Ekskursion til Rigshospitalets trykkammer</li>
+          <li>EDTC-certifikat ved bestået eksamen</li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <h3>Forudsætninger</h3>
+        <ul class="ticks">
+          <li>Lægeautorisation (eller sidste del af lægestudiet)</li>
+          <li>Interesse for dykning og dykkermedicin</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 5 m — SIKKERHEDSSTOP / TILMELDING ════════════════════════ -->
+<section class="band band--stop" id="tilmelding" data-depth-start="12" data-depth-end="5">
+  <div class="wrap wrap--center">
+    <p class="eyebrow reveal">Sikkerhedsstop · 5 m</p>
+    <h2 class="h2 h2--big reveal"><s>Tilmeld dig nu</s> <em class="gold">Alle pladser optaget</em></h2>
+    <p class="lead reveal">Skriv til nedenstående for at komme på venteliste.</p>
+    <figure class="signup reveal">
+      <img src="../../assets/img/dyk/tilmelding-800.webp" srcset="../../assets/img/dyk/tilmelding-800.webp 800w, ../../assets/img/dyk/tilmelding.webp 1024w" sizes="(max-width:700px) 90vw, 480px" alt="Tilmelding – skriv til Klaus Tjelle Kristiansen" width="1024" height="1024" loading="lazy" decoding="async">
+    </figure>
+    <p class="fineprint reveal">Kurset arrangeres af Dansk Flyve- og Dykkemedicinsk Selskab (DFDMS)</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <nav class="foot__links" aria-label="Eksterne links">
+      <a href="https://hejmadi.com/">Hejmadi.com</a>
+      <a href="https://dfdms.dk/" target="_blank" rel="noopener">DFDMS</a>
+      <a href="https://www.linkedin.com/in/michael-hejmadi/" target="_blank" rel="noopener">LinkedIn</a>
+    </nav>
+    <p>&copy; 2026 Michael Skov Hejmadi</p>
+  </div>
+</footer>
+
+<script src="app.js" defer></script>
+</body>
+</html>

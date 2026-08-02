@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="da" data-concept="klarbesked">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lægehuset Ferritslev – Fyn | Klar besked</title>
+<meta name="description" content="Lægehuset Ferritslev Fyn. Find svaret med det samme: akut hjælp, tid samme dag, receptfornyelse, åbningstider, priser og kontakt.">
+<meta name="theme-color" content="#0B0B0C">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="da_DK">
+<meta property="og:site_name" content="Lægehuset Ferritslev">
+<meta property="og:title" content="Lægehuset Ferritslev – Fyn">
+<meta property="og:description" content="Klar besked. Find svaret med det samme.">
+<meta property="og:image" content="../../assets/img/lhf/ejere.webp">
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@type":"MedicalClinic",
+  "name":"Lægehuset Ferritslev","url":"https://laegehusetferritslev.dk/",
+  "telephone":"+4565981002","email":"mail@65981002.dk","vatID":"35696326",
+  "address":{"@type":"PostalAddress","streetAddress":"Ørbækvej 871 B","postalCode":"5863","addressLocality":"Ferritslev","addressCountry":"DK"},
+  "sameAs":["https://www.facebook.com/laegehusetferritslev"],
+  "openingHoursSpecification":[
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Thursday","Friday"],"opens":"07:30","closes":"14:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Wednesday","opens":"07:30","closes":"16:15"}
+  ]
+}
+</script>
+
+<link rel="preload" href="../../assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+<script>
+  document.documentElement.classList.add('js');
+  try{var t=localStorage.getItem('lhf-theme'); if(t) document.documentElement.dataset.theme=t;}catch(e){}
+</script>
+</head>
+
+<body>
+<a class="skip" href="#hovedindhold">Spring til indhold</a>
+
+<!-- ══ Nødbjælke ════════════════════════════════════════════════ -->
+<div class="siren">
+  <a href="tel:112"><b>112</b><span>Livstruende</span></a>
+  <a href="tel:+4570110707"><b>70 11 07 07</b><span>Lægevagt &amp; skade — aften, nat, weekend</span></a>
+  <a href="tel:+4565981002"><b>65 98 10 02</b><span>Lægehuset · hverdage</span></a>
+</div>
+
+<!-- ══ Header ═══════════════════════════════════════════════════ -->
+<header class="bar">
+  <a class="logo" href="#hovedindhold"><b>Lægehuset</b> Ferritslev</a>
+  <div class="bar__right">
+    <button class="ghost" id="openSearch" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+      <span>Søg</span><kbd>/</kbd>
+    </button>
+    <button class="ghost ghost--icon" id="themeBtn" type="button" aria-label="Skift mellem lyst og mørkt tema">
+      <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>
+      <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="hovedindhold">
+
+<!-- ══ Hero + søgning ═══════════════════════════════════════════ -->
+<section class="hero">
+  <h1 class="hero__h1"><span>Hvad har du</span><span>brug for?</span></h1>
+
+  <div class="search" id="search" role="search">
+    <label class="sr" for="q">Søg i lægehusets information</label>
+    <div class="search__field">
+      <div class="search__box">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+        <input id="q" type="search" autocomplete="off" spellcheck="false"
+               placeholder="Skriv fx recept, blodprøve, kørekort, gravid …"
+               aria-expanded="false" aria-controls="results" aria-autocomplete="list" role="combobox">
+        <button class="search__clear" id="clearQ" type="button" hidden aria-label="Ryd søgning">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <ul class="results" id="results" role="listbox" aria-label="Søgeresultater" hidden></ul>
+    </div>
+    <p class="search__hint">Prøv: <button type="button" class="chip" data-q="recept">recept</button>
+      <button type="button" class="chip" data-q="tid samme dag">tid samme dag</button>
+      <button type="button" class="chip" data-q="kørekort">kørekort</button>
+      <button type="button" class="chip" data-q="gravid">gravid</button>
+      <button type="button" class="chip" data-q="åbningstider">åbningstider</button></p>
+  </div>
+</section>
+
+<!-- ══ Status ═══════════════════════════════════════════════════ -->
+<section class="live" id="live">
+  <div class="live__now">
+    <p class="live__lbl">Lige nu</p>
+    <p class="live__big" id="liveBig">—</p>
+    <p class="live__sub" id="liveSub">Henter status …</p>
+    <p class="live__next" id="liveNext"></p>
+  </div>
+  <ol class="live__strip" id="liveStrip" aria-label="Dagens forløb">
+    <li data-from="7.5" data-to="8"><b>07.30</b><span>Konsultationen åbner</span></li>
+    <li data-from="8" data-to="8.5"><b>08.00</b><span>Telefon: tid samme dag</span></li>
+    <li data-from="8.5" data-to="9.75"><b>08.30</b><span>Telefon: alle henvendelser</span></li>
+    <li data-from="9.75" data-to="10.25"><b>09.45</b><span>Pause og møde</span></li>
+    <li data-from="10.25" data-to="11.75"><b>10.15</b><span>Telefon åben igen</span></li>
+    <li data-from="11.75" data-to="16"><b>11.45</b><span>Telefon lukker · vagtmobil fra 12.00</span></li>
+    <li data-from="16" data-to="24"><b>16.00</b><span>Lægevagten overtager</span></li>
+  </ol>
+</section>
+
+<!-- ══ Vejen ind ════════════════════════════════════════════════ -->
+<section class="sec" id="vej">
+  <h2 class="h2">Din vej ind</h2>
+  <ol class="paths">
+    <li class="path">
+      <span class="path__n">01</span>
+      <h3>Noget nyt, der ikke kan vente</h3>
+      <p>Book <b>Tid samme dag</b> i Min Læge-appen. Tiderne åbner kl. 16.00 dagen før og lukker kl. 8.30.
+        Ingen IT? Ring 8.00–8.30.</p>
+      <a class="go" href="https://www.laegevejen.dk/" target="_blank" rel="noopener">Book nu
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6l6 6-6 6"/></svg></a>
+    </li>
+    <li class="path">
+      <span class="path__n">02</span>
+      <h3>Kontrol, graviditet, barn eller attest</h3>
+      <p>Det er en <b>planlagt tid</b>. Book online eller ring i telefontiden. Husk at bestille
+        blodprøver en uge før, hvis det er aftalt.</p>
+      <a class="go" href="#planlagt">Se hvad der kan forudbookes
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6l6 6-6 6"/></svg></a>
+    </li>
+    <li class="path">
+      <span class="path__n">03</span>
+      <h3>Kun medicin</h3>
+      <p>Brug <b>Min Læge</b> eller Medicinkortet. Rød trekant-medicin, sovemedicin og stærkt
+        beroligende kræver fremmøde.</p>
+      <a class="go" href="#recept">Sådan fornyer du
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6l6 6-6 6"/></svg></a>
+    </li>
+  </ol>
+</section>
+
+<!-- ══ Indeks ═══════════════════════════════════════════════════ -->
+<section class="sec sec--index" id="alt">
+  <h2 class="h2">Alt det praktiske</h2>
+  <p class="sub">Klik for at folde ud. Eller søg foroven — det er hurtigere.</p>
+
+  <div class="idx">
+
+  <!-- AKUT -->
+  <h3 class="idx__h" id="akut">Akut sygdom</h3>
+
+  <details class="q" id="akut-dag" data-tags="akut, akut sygdom, samme dag, ringe, hastende, vagtmobil, feber, syg">
+    <summary>Akut i dagtid — hverdage kl. 8.00–16.00</summary>
+    <div class="a">
+      <p><strong>Tid samme dag.</strong> Online booking er åben fra kl. 16.00 dagen før og frem til
+        kl. 8.30. Du kan også ringe til klinikken kl. 8.00–8.30 for tid samme dag.</p>
+      <p><strong>Akut opstået sygdom.</strong> Ved akut sygdom, der kræver lægelig vurdering samme
+        dag, kan du ringe efter kl. 8.30 og tale med vores sekretariat.</p>
+      <p>Efter kl. 12.00 kan du ved uopsætteligt behov blive viderestillet til vagtmobilen. Bemærk,
+        at den vagthavende samtidig har patienter.</p>
+    </div>
+  </details>
+
+  <details class="q" id="akut-aften" data-tags="lægevagt, vagt, aften, nat, weekend, helligdag, 70110707">
+    <summary>Aften, nat, weekend og helligdage</summary>
+    <div class="a">
+      <p>Ring til Lægevagten: <a href="tel:+4570110707">70 11 07 07</a>. Du kan <strong>ikke</strong>
+        bestille medicin i lægevagten.</p>
+      <p>På hverdage efter kl. 16.00, i weekenden og på helligdage kan Lægevagten i Region Syd
+        kontaktes på 70 11 07 07.</p>
+    </div>
+  </details>
+
+  <details class="q" id="skade" data-tags="skade, sår, brud, fald, skadestue, skadesvisitation">
+    <summary>Akut skade, sår eller brud</summary>
+    <div class="a">
+      <p>Vi ser ikke akutte skadestueopgaver (akutte sår, brud, fald osv.), de skal i skadestuen.
+        Ring til skadesvisitationen på <a href="tel:+4570110707">70 11 07 07</a> og følg
+        anvisningerne. Vi har ikke kapacitet til skadestuearbejde.</p>
+    </div>
+  </details>
+
+  <details class="q" id="livsvigtigt" data-tags="112, ambulance, blodprop, hjerte, hjerne, lunge, livsvigtigt">
+    <summary>Livsvigtigt</summary>
+    <div class="a">
+      <p>For akut ambulance ring: <a href="tel:112"><strong>112</strong></a>.</p>
+      <p>Det gælder også mistanke om blodprop i hjernen, hjertet eller lungerne. Er man i tvivl, er
+        det ok at kontakte vagthavende læge eller lægevagten.</p>
+    </div>
+  </details>
+
+  <details class="q" id="psykiatri" data-tags="psykiatri, psykisk, selvmord, psykose, akutmodtagelse, odense">
+    <summary>Akut psykiatri</summary>
+    <div class="a">
+      <p>Akut psykisk problemstilling hører til i akutmodtagelserne i Psykiatrien i Region
+        Syddanmark – også selvom man ikke følges dér i forvejen. Akutmodtagelserne er et tilbud til
+        voksne, unge og børn. De er døgnåbne, og du kan henvende dig uden henvisning fra en læge.
+        Vi anbefaler, at du ringer først. Det sikrer dig den bedst mulige service:</p>
+      <p class="addr"><strong>Psykiatrisk Akutmodtagelse Odense</strong><br>
+        Tlf. <a href="tel:+4599449140">99 44 91 40</a><br>
+        Afsnit P301<br>J.B. Winsløws Vej 22B (indgang 224)<br>5000 Odense C</p>
+    </div>
+  </details>
+
+  <details class="q" id="gift" data-tags="forgiftning, gift, giftlinjen, tandlægevagt, kiropraktorvagt">
+    <summary>Forgiftning, tandlægevagt og kiropraktorvagt</summary>
+    <div class="a">
+      <p>Ring til Giftlinjen på <a href="tel:+4582121212">82 12 12 12</a> døgnet rundt. Giftlinjen er
+        en landsdækkende telefonrådgivning, hvor alle kan få direkte råd og hjælp i tilfælde af
+        forgiftning. Sygeplejersker og læger, der er særligt uddannede inden for forgiftning, sidder
+        klar ved telefonerne døgnet rundt.</p>
+      <p>Ved akut behov for kontakt til en tandlæge i weekenden kan du mod egenbetaling kontakte
+        Tandlægevagten. Ved akut behov for en kiropraktor i weekenden kan du kontakte
+        Kiropraktorvagten.</p>
+    </div>
+  </details>
+
+  <!-- TID -->
+  <h3 class="idx__h" id="tid">Tid og booking</h3>
+
+  <details class="q" id="tsd" data-tags="tid samme dag, booking, min læge, app, ventetid, mitid">
+    <summary>Tid samme dag — sådan virker det</summary>
+    <div class="a">
+      <p>Vi har haft Tid samme dag siden 2017, som betyder, at man kan få vurderet sit helbredsproblem
+        uden ventetid – uanset om det handler om en ny eller en &bdquo;gammel&ldquo; problemstilling.
+        Dermed undgår vi lange ventetider. Vi har afsat særlige tider til personer uden MitID.</p>
+      <p>Kroniske sygdomme/receptpligtig medicin følges dog hos fast team i huset, men er der akut
+        behov for vurdering, vil vi forsøge at hjælpe med bedste mulighed og konferere eller
+        planlægge opfølgning hos fast behandler.</p>
+      <ul>
+        <li>BOOK tid via MIN LÆGE APP</li>
+        <li>TIDERNE ÅBNES kl. 16.00 dagen FØR</li>
+        <li>Særligt sårbare/ældre uden IT kan kontakte os på telefon 8.00–8.30 på dagen</li>
+        <li>Du har IKKE mulighed for at bestille en tid via en e-mail til lægen</li>
+        <li>TID-SAMME-DAG-tiderne ligger jævnt fordelt over hele dagen</li>
+        <li>KONSULTATIONEN er typisk af 15 minutters varighed, hvori er indeholdt lægens forberedelse og efterfølgende dokumentation</li>
+        <li>BOOK den kategori, der dækker din problemstilling bedst (fx KVINDE, underliv). Og skriv i teksten, hvad det evt. er, der generer/bekymrer, og hvis du foretrækker video</li>
+        <li>Står der KUN VIDEO, kan du ikke møde op, da vi ikke nødvendigvis har et egnet lokale</li>
+        <li>Vi har defineret, HVILKE TILSTANDE der ses hos hvilke personalegrupper, så vi passer bedst på tiderne, og flest mulige kan blive set</li>
+        <li>Vi forsøger at have MANGE LEDIGE TIDER hos alle ansatte i huset, så ressourcer fordeles bedst muligt. Men vi kan ikke garantere, at du kommer ind til dén behandler, du specifikt ønsker</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="q" id="tsd-eks" data-tags="hud, udslæt, urinvej, infektion, hoste, led, muskel, vægttab, video, kørekort">
+    <summary>Eksempler på Tid samme dag</summary>
+    <div class="a">
+      <ul class="pills">
+        <li>Blodprøver (+/- EKG) – KUN efter forudgående præcis aftale</li>
+        <li>HUD fx udslæt, sår, dimser</li>
+        <li>MAND fx urinveje, potens mv.</li>
+        <li>KVINDE fx underlivsproblemer, prævention, celleskrab, ønsket/uønsket graviditet mfl.</li>
+        <li>VÆGTTAB — ønske om vægttab med medicinsk behandling ved BMI over 30</li>
+        <li>INFEKTIONER (hoste, snot, øre, øjne, urinvejsinfektioner, kønssygdomme)</li>
+        <li>LED/MUSKEL (hofte, knæ, skulder mv.) — ryg kan oftest ses hos kiropraktor uden om os</li>
+        <li>VIDEO VISITATION vedr. PSYKISK problemstilling</li>
+        <li>OPFØLGNING VIDEO — kun efter aftale</li>
+        <li>KØREKORTSATTESTER (pris 750 kr., kontant eller MobilePay)</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="q" id="planlagt" data-tags="planlagt tid, forudbooket, børneundersøgelse, graviditet, årskontrol, attest, operation, tolk">
+    <summary>Planlagte tider — hvad kan forudbookes</summary>
+    <div class="a">
+      <ul>
+        <li>Børneundersøgelser</li>
+        <li>Graviditetsundersøgelser</li>
+        <li>Rutinekontrol af kroniske sygdomme, f.eks. sukkersyge, kroniske lunge- og hjertesygdomme, osteoporose, stofskifte, ADHD, smertetilstande, angst, depression mv.</li>
+        <li>Hér skal der oftest også bestilles tid til evt. blodprøver, EKG, urinundersøgelse mv. én uge før – det kan du selv gøre online eller på telefon</li>
+        <li>Kontrol af tilstande der kræver receptpligtig medicin inkl. rød trekantmedicin</li>
+        <li>Samtale om psykiske problemstillinger inkl. medicinjustering efter aftale</li>
+        <li>Attester til kørekort hos kronikere og ældre, forsikringsselskaber og visse attester til kommunen</li>
+        <li>Mindre operationer efter forudgående aftale med læge</li>
+        <li>Hvis konsultationen skal arrangeres, så tolk eller pårørende kommer med</li>
+      </ul>
+      <p>Mange konsultationer er videokonsultationer, så du kan logge på hjemmefra eller fra dit
+        arbejde/sommerhus mv. Der kan naturligvis forekomme ventetid som i et fysisk venteværelse.</p>
+    </div>
+  </details>
+
+  <details class="q" id="forsinkelse" data-tags="forsinkelse, venter, ventetid, ferie, skoleferie, feriebemanding">
+    <summary>Forsinkelser og ferieperioder</summary>
+    <div class="a">
+      <p><strong>FORSINKELSER:</strong> Nogle dage bliver vi forsinkede på grund af uforudset arbejde
+        med akut syge patienter. Det kunne jo være dig, der har behov en anden gang, så vi regner
+        med din forståelse.</p>
+      <p><strong>I SKOLERNES FERIE</strong> har vi ikke samme høje serviceniveau, da vi afvikler
+        vores ferie på skift. Derfor ser vi primært akutte patienter, alvorligt syge eller mistanke
+        om alvorlig sygdom. Mulighederne for tid samme dag-booking er også begrænsede i ferierne.</p>
+      <p>Vi holder ferie med vores børn, når skolerne holder ferie. Det betyder også, at vi kun kører
+        med lavt blus disse dage og dermed kun håndterer akutte henvendelser, herunder udredning for
+        alvorlig sygdom.</p>
+      <table class="tbl">
+        <caption class="sr">Feriebemanding</caption>
+        <tbody>
+          <tr><th scope="row">Vinterferien</th><td>Uge 7</td></tr>
+          <tr><th scope="row">Påskeferie</th><td>De tre hverdage op til påske</td></tr>
+          <tr><th scope="row">Sommerferie</th><td>Ugerne 27+28+29+30+31+32</td></tr>
+          <tr><th scope="row">Efterårsferien</th><td>Uge 42</td></tr>
+          <tr><th scope="row">Juleferien</th><td>23/12 + mellem jul og nytår + første dag i det nye år</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+
+  <!-- MEDICIN -->
+  <h3 class="idx__h" id="recept">Medicin og recept</h3>
+
+  <details class="q" id="recept-hvordan" data-tags="recept, receptfornyelse, medicin, forny, apotek, min læge, lægevejen">
+    <summary>Receptfornyelse</summary>
+    <div class="a">
+      <ul>
+        <li>Primært ved din årskontrol og øvrige kontroller i lægehuset</li>
+        <li>Telefonisk mellem kl. 9.00–12.00</li>
+        <li>Via den nemme app Min Læge, som vi også bruger til mailsvar, video mv. (eller lægevejen.dk)</li>
+        <li>Vi står til ansvar for dén medicin, der udskrives, og derfor forventer vi også, at du kommer til faste kontroller som aftalt</li>
+        <li>Udskrivelse af rød trekant-medicin kræver fremmøde og fast plan</li>
+        <li>Disse midler kan ej heller fornyes pr. telefon eller via mail</li>
+      </ul>
+      <p class="flag flag--warn"><strong>OBS ved vanedannende medicin:</strong> Der kræves en
+        konsultation, dvs. fremmøde i klinikken, ved fornyelse af sovemedicin, stærkt beroligende
+        medicin og visse former for smertestillende medicin.</p>
+      <p><strong>Hav følgende klar:</strong> navn på medicin · styrken (dvs. antal mg) ·
+        pakningsstørrelse (antal) · dosis (hvornår på dagen du tager din medicin) · hvor medicinen
+        ønskes leveret – hvilket apotek eller på receptserver.</p>
+      <p>Medicinen hedder ofte noget andet ved ny udlevering, idet apoteket altid udleverer det
+        billigste præparat. Det kan give anledning til forvirring. Navnet på indholdsstoffet – det
+        aktive i medicinen – står altid på pakningen under handelsnavnet. I enkelte tilfælde kan der
+        være grund til at vælge et bestemt mærke, hvilket så skal anføres på recepten. Du betaler
+        differencen til det billigste mærke.</p>
+      <p>Medicinbestillinger ekspederes løbende og normalt på 24–48 timer.</p>
+    </div>
+  </details>
+
+  <details class="q" id="sovemedicin" data-tags="sovepiller, beroligende, benzodiazepin, morfin, smertestillende, afhængighed, kørekort">
+    <summary>Beroligende midler og sovepiller</summary>
+    <div class="a">
+      <p>Sundhedsstyrelsen har besluttet, at recept på sovemedicin og angstdæmpende medicin nu kun
+        kan fås ved konsultation. Det er derfor ikke muligt at bestille medicinen hos sekretæren
+        eller over internettet.</p>
+      <p>Behandling med de pågældende midler kan endvidere føre til inddragelse af kørekortet samt
+        manglende mulighed for udstedelse, fornyelse og bevarelse af kørekortet.</p>
+      <p>Sundhedsstyrelsen har ligeledes indskærpet, at beroligende midler og sovetabletter kun må
+        udskrives for en periode på op til 2 uger. Det er derfor ikke længere muligt at få udskrevet
+        pakninger større end 30 stk. og kun efter konsultation ved lægen.</p>
+      <p>Morfinpræparater må kun udskrives efter kontakt med læge og skal begrænses i størst muligt
+        omfang pga. risikoen for afhængighed og påvirkning af nervesystemet.</p>
+    </div>
+  </details>
+
+  <details class="q" id="selvbetjening" data-tags="min læge, app, medicinkort, selvbetjening, sundhed.dk, lægevejen">
+    <summary>Selvbetjening: Min Læge og Medicinkortet</summary>
+    <div class="a">
+      <p>Undgå at vente i telefonen vedr. service, der ikke haster.</p>
+      <p><strong>Min Læge</strong> — af Praktiserende Lægers Organisation. Med appen Min Læge kan du
+        nemt og via mobilen få kontakt til din egen læge.</p>
+      <p><strong>Medicinkortet</strong> — af Sundhedsdatastyrelsen. Med denne app kan du se din
+        aktuelle medicin. Du kan også se dine åbne recepter samt den medicin, du allerede har fået
+        udleveret på apotek. Via appen kan du anmode din praktiserende læge om receptfornyelse på de
+        lægemidler, der optræder som aktive. Vær opmærksom på, at appen ikke kan anvendes, hvis du
+        har navnebeskyttelse.</p>
+    </div>
+  </details>
+
+  <!-- ÅBNINGSTIDER -->
+  <h3 class="idx__h" id="aabningstider">Åbningstider</h3>
+
+  <details class="q" id="tider" data-tags="åbningstider, telefontid, konsultation, hvornår, åbent, lukket">
+    <summary>Telefon, konsultation og lægevagt</summary>
+    <div class="a">
+      <p>Lægehuset har åbent alle hverdage.</p>
+      <p><strong>Telefon</strong></p>
+      <ul>
+        <li>Telefonerne er åbne fra 8.00–8.30 for tid samme dag</li>
+        <li>Telefonen er åben for øvrige henvendelser fra 8.30–11.45</li>
+        <li>Dog er telefonen lukket i tidsrummet kl. 9.45–10.15 pga. pause og møde</li>
+        <li>Fra 12.00–16.00 kan man ved akut uopsætteligt behov blive stillet om til vagtmobilen og tale med vagthavende personale. Vedkommende er ikke nødvendigvis ved en computer eller i huset</li>
+      </ul>
+      <p><strong>Konsultation</strong></p>
+      <ul>
+        <li>Mandag til fredag: 07.30–14.00</li>
+        <li>Onsdag har vi åbent indtil kl. 16.15</li>
+      </ul>
+      <p><strong>Lægevagten</strong></p>
+      <ul>
+        <li>Fra 16.00 til 08.00 samt i weekenden skal man henvende sig til lægevagten ved akut behov</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- HVAD VI LAVER -->
+  <h3 class="idx__h" id="opgaver">Hvad vi laver</h3>
+
+  <details class="q" id="hvad" data-tags="almen medicin, speciallæge, henvisning, hospital, tovholder">
+    <summary>Hvad laver en praktiserende læge?</summary>
+    <div class="a">
+      <p>Praktiserende læger er speciallæger i almen medicin, og dermed er vi uddannede til at tage
+        os af langt de fleste helbredsproblemer. Praktiserende læger klarer selv 90 % af de
+        problemer, folk henvender sig med.</p>
+      <p>Vi er specialister i tovholderfunktion og visitation til andre dele af sundhedsvæsnet. Hvis
+        vi vurderer, at patientens problem ikke kan klares hos os, kan vi henvise videre.</p>
+      <p>Vi kan henvise til en anden type praktiserende speciallæge, f.eks. kirurg eller gynækolog.
+        Konsultation hos speciallæge er ved henvisning fra os gratis for gruppe 1-medlemmer af
+        sygesikringen. Gruppe 2-medlemmer betaler et honorar til speciallægen.</p>
+      <p>Vi kan henvise til hospital, enten til undersøgelse og behandling i et ambulatorium eller
+        til akut eller planlagt indlæggelse. Undersøgelse og behandling på offentligt hospital er
+        gratis for alle med dansk sygesikringskort.</p>
+      <p>Vi er uddannede specialister i de almindelige kroniske sygdomme (diabetes, KOL, højt
+        blodtryk, depression, astma mv.), som vi kontrollerer i Lægehuset. Kun i komplicerede
+        tilfælde er det nødvendigt med henvisning til specialafdeling. Vores ansatte er uddannet til
+        at varetage de opgaver, som forekommer i Lægehuset.</p>
+    </div>
+  </details>
+
+  <details class="q" id="kronisk" data-tags="kronisk, diabetes, sukkersyge, blodtryk, kol, astma, osteoporose, depression, angst, årskontrol">
+    <summary>Kroniske sygdomme og årskontroller</summary>
+    <div class="a">
+      <p>Lider du af en eller flere af følgende sygdomme, så ring og få aftalt en tid til årskontrol:
+        sukkersyge (diabetes), forhøjet blodtryk (hypertension), hjertesygdom i øvrigt som fx
+        hjertesvigt el. atrieflimren, astma eller KOL (rygerlunger), knogleskørhed (osteoporose),
+        depression, angst.</p>
+      <p>Oftest vil du få en tid hos vores sygeplejerske eller laborant til blodprøver, EKG og evt.
+        urinprøve samt snak om kost, risikofaktorer mv. 1 uge senere kommer du til årskontrol hos
+        lægen, som giver dig svar på blodprøverne og vurderer konsekvensen af disse.</p>
+      <p>Patienter med kroniske sygdomme kommer til faste årskontroller. Det er en forudsætning for
+        receptfornyelse. Hvor hyppigt afhænger af den enkeltes situation.</p>
+      <p>Ved årskontrollen gennemgås svar på blodprøver og evt. EKG, og vi vurderer din aktuelle
+        medicin. Får du mere end 3 præparater, må du gerne medbringe din medicin – og altid
+        astma-/KOL-medicin pga. kontrol af teknikker mv.</p>
+      <p>Har du andre ting, der ikke vedrører din årskontrol, skal du i stedet bestille tid samme
+        dag, så vi har tid til at gennemgå din kroniske sygdom og forebygge forværring.</p>
+    </div>
+  </details>
+
+  <details class="q" id="kvinder" data-tags="gravid, graviditet, børn, børneundersøgelse, vaccination, smear, celleskrab, p-piller, hpv">
+    <summary>Kvinder og børn: graviditet, børneundersøgelser, smear, p-piller</summary>
+    <div class="a">
+      <p>Der er særlige aftaler med Sygesikringen vedr. forebyggende konsultationer hos kvinder og børn.</p>
+      <p><strong>Graviditet.</strong> Som gravid tilbydes du tæt kontrol i Lægehuset Ferritslev. Der
+        tilbydes som standard 4 lægeundersøgelser under en graviditet/fødsel, men flere kan være
+        nødvendige. Husk urinprøve til alle graviditetsundersøgelser.</p>
+      <p><strong>Børneundersøgelser.</strong> I barnets første leveår tilbydes der børneundersøgelse
+        hos den praktiserende læge ved 5 ugers alder, ved 5 måneder og igen, når barnet fylder 1 år.
+        Frem til det fyldte 5. år ses barnet til børneundersøgelse en gang årligt, typisk omkring
+        det tidspunkt, hvor barnet fylder år.</p>
+      <p><strong>Celleskrab / smear.</strong> En celleprøve fra livmoderhalsen, også kaldet smear,
+        tages for at opdage eventuelle forstadier til livmoderhalskræft. Vi har uddannet vores
+        personale til at varetage denne opgave. Kvinder fra 23–50 år tilbydes smear-undersøgelse
+        hvert 3. år, kvinder i alderen 51–65 år hvert femte år.</p>
+      <p><strong>P-piller.</strong> Ved ønske om p-piller bestilles tid hos vores sygeplejerske.
+        Husk 3 måneders kontrol efter opstart, hvor du får målt dit blodtryk.</p>
+    </div>
+  </details>
+
+  <details class="q" id="sygepleje" data-tags="sygeplejerske, blodprøve, blodprøver, laboratorium, prøvesvar, sår, trådfjernelse, øreskylning, urinprøve, ekg, rejsevaccination">
+    <summary>Sygeplejerskeopgaver og laboratorium</summary>
+    <div class="a">
+      <p>Visse opgaver er det kun sygeplejerskerne, der udfører. De er bedst til det, og så frigiver
+        det lægerne til andre komplekse opgaver: sår, trådfjernelse, øreskylning, urinprøver og meget
+        andet.</p>
+      <p><strong>Laboratoriet.</strong> Planlagte blodprøver samt blodtryksmåling foretages mandag
+        til fredag mellem kl. 8.00–14.00. Lægehuset har et laboratorium, og der hentes desuden
+        blodprøver 2 gange dagligt via transportservice fra sygehusene. Det er ikke muligt selv at
+        beslutte, hvilke blodprøver der skal tages, da det er en lægefaglig vurdering, så blodprøver
+        skal være aftalt med lægen.</p>
+      <p>Vær opmærksom på, at det er dit ansvar at få svar på undersøgelsen. Du kan vælge at få
+        svaret tilsendt via sikker mail eller aftale en ringe-tilbage-tid fra os.</p>
+      <p><strong>Rejsevaccination</strong> er ikke en del af det gratis sundhedsvæsen i Danmark og
+        tilbydes ikke i lægehuset – kontakt i stedet en vaccinationsklinik.</p>
+    </div>
+  </details>
+
+  <details class="q" id="henvisning" data-tags="henvisning, speciallæge, fysioterapeut, psykolog, gruppe 1, gruppe 2">
+    <summary>Henvisninger</summary>
+    <div class="a">
+      <p>Langt de fleste sundhedsproblemer kan løses lokalt hos din praktiserende læge. Hvis vi
+        vurderer, at dit problem er bedre løst hos en speciallæge eller et hospital, henviser vi dig
+        dertil. Derved sørger vi for, at speciallæger og hospitaler bruges til det, de er bedst til,
+        og samtidig undgår vi, at sundhedsudgifterne og ventelisterne stiger yderligere.</p>
+      <p>Som gruppe 1-patient kan du som udgangspunkt ikke &bdquo;bede om en henvisning&ldquo; til en
+        speciallæge eller et hospital. Det er noget, lægen afgør, og det er et krav, at du er
+        undersøgt først. Det kan derfor heller ikke foregå via telefonen eller via personalet. Det
+        samme er gældende for henvisninger til fysioterapeuter og psykolog. Fornyelse af henvisning
+        kan ligeledes kun foregå ved en konsultation.</p>
+      <p>Hvis du ønsker direkte adgang til speciallæger, bør du tilmelde dig hos kommunen som
+        gruppe 2-patient, men så er der en egenbetaling både her og hos speciallægen.</p>
+    </div>
+  </details>
+
+  <details class="q" id="psykolog" data-tags="psykolog, tilskud, depression, angst, henvisning">
+    <summary>Psykolog og tilskud</summary>
+    <div class="a">
+      <p>Du kan kun få tilskud til psykologhjælp, hvis du har en henvisning fra din læge.</p>
+      <p>Tilskuddet udgør 60 % af psykologens honorar. Der kan højst ydes tilskud til 12
+        konsultationer. Personer, som behandles for depression eller angst, kan dog genhenvises,
+        således at tilskud ydes for op til 24 konsultationer i alt.</p>
+      <p>Mange forsikringer dækker hjælp til psykolog, hvis det er indiceret.</p>
+    </div>
+  </details>
+
+  <!-- PRISER -->
+  <h3 class="idx__h" id="priser">Priser</h3>
+
+  <details class="q" id="attester" data-tags="pris, priser, attest, kørekort, sygemelding, forsikring, vaccine">
+    <summary>Priser på attester og vacciner</summary>
+    <div class="a">
+      <p>Tidsbestilling til attester aftales via fast læge fraset kørekortattest, som kan bookes på
+        forhånd eller ved tid samme dag. Kommunale attester eller forsikringsattester betales af disse.</p>
+      <table class="tbl tbl--price">
+        <caption class="sr">Priser på private attester</caption>
+        <thead><tr><th scope="col">Private attester</th><th scope="col">Pris</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Sygemelding – ansat</th><td>1000 kr. (momsfritaget)</td></tr>
+          <tr><th scope="row">Sygemelding – studerende</th><td>300 kr. (momsfritaget)</td></tr>
+          <tr><th scope="row">Kørekortsattest (inkl. diabetes og chauffør)</th><td>750 kr. inkl. moms</td></tr>
+          <tr><th scope="row">Privat konsultation</th><td>500 kr. (momsfritaget)</td></tr>
+          <tr><th scope="row">Pensions- og forsikringsattester</th><td>Aftales med forsikringsselskabet</td></tr>
+          <tr><th scope="row">Rejsevacciner</th><td>Tilbydes ikke i lægehuset – kontakt i stedet en vaccinationsklinik</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+
+  <details class="q" id="korekort" data-tags="kørekort, kørekortsattest, motorattest, syn, briller, 75 år, ældre">
+    <summary>Kørekortsattest — hvad skal du huske?</summary>
+    <div class="a">
+      <p>Vi udarbejder kørekortsattester for de patienter, der er tilmeldt Lægehuset Ferritslev eller
+        kommer jævnligt (gruppe 2-patienter). Når du har bestilt en tid, skal du huske følgende:</p>
+      <ul>
+        <li>Et vellignende og opdateret foto</li>
+        <li>500 kr. eller MobilePay (vi tager ikke betalingskort). Dog 750 kr. ved erhvervskørekort til personbefordring</li>
+        <li>Mød op 5-10 minutter før, så du kan udfylde side 1 i attesten – udleveres hos sekretæren</li>
+        <li>Briller, hvis sådanne anvendes ved bilkørsel</li>
+        <li>Bruger du kontaktlinser, så husk, at synsprøven skal udføres både med og uden linser</li>
+      </ul>
+      <p>Er du over 70 år, skal du ikke længere have kørekortet fornyet hos lægen, men i stedet hos
+        borgerservice. Har du en kronisk sygdom, vil de bede dig tage kontakt til Lægehuset om en tid
+        til motorattest.</p>
+      <p>Har du diabetes, udfylder vi en ekstra attest vedr. dette. Så husk at oplyse dette ved
+        tidsbestilling.</p>
+    </div>
+  </details>
+
+  <!-- PRAKTISK -->
+  <h3 class="idx__h" id="praktisk">Praktisk</h3>
+
+  <details class="q" id="journal" data-tags="journal, elektronisk, sundhed.dk, ny patient, lægeskift, indkaldelse">
+    <summary>Elektronisk patientjournal</summary>
+    <div class="a">
+      <p>Næsten alle journaloplysninger føres elektronisk og kan kun ses af læger og personalet i
+        lægehuset. Via vort elektroniske patientjournalsystem sender vi dagligt henvisninger og
+        recepter. Vi modtager udskrivningsbreve og prøvesvar fra lægevagten, hospitaler og speciallæger.</p>
+      <p>Vi modtager også elektroniske patientjournaler på nye patienter, hvis du har bedt din
+        tidligere læge om at sende journalen til os. Tidligere læge får ikke oplysninger om, hvilken
+        læge man har skiftet til, så det er vigtigt, at du giver besked om, hvem du tidligere har
+        haft som læge.</p>
+      <p>Hvis du ikke har modtaget indkaldelse til en undersøgelse/behandling på sygehuset inden 2
+        uger, bedes du kontakte os, da der ind imellem forekommer svigt i den elektroniske
+        kommunikation.</p>
+    </div>
+  </details>
+
+  <details class="q" id="forsikring" data-tags="sundhedsforsikring, forsikring, attest, fp 710">
+    <summary>Sundhedsforsikring</summary>
+    <div class="a">
+      <p>Det er lægen, der vurderer, om der er lægelig indikation for, at en patient bør have udstedt
+        en lægehenvisning. Det gælder, uanset om patienten har en sundhedsforsikring eller ej.</p>
+      <p>Udstedelse af en lægehenvisning udløser ikke særskilt honorar, men er omfattet af det
+        almindelige konsultationshonorar. Hvis du ønsker at gøre brug af din sundhedsforsikring, får
+        du en kopi af henvisningen. Der opkræves ikke særskilt honorar fra dig.</p>
+      <p>Hvis der ikke er udstedt henvisning, eller forsikringsselskabet ønsker yderligere
+        dokumentation, bruges Sundhedsforsikrings-attest FP 710. Anmodningen om attestudstedelse skal
+        komme fra forsikringsselskabet skriftligt eller pr. mail.</p>
+    </div>
+  </details>
+
+  <details class="q" id="tolk" data-tags="tolk, tolkebistand, sprog, tolkekontoret">
+    <summary>Tolkebistand</summary>
+    <div class="a">
+      <p>Hvis lægen eller patienten skønner, at der er behov for tolkebistand, er dette muligt. Vi
+        samarbejder med tolke, der er tilknyttet Tolkekontoret. Disse tider tilpasses efter, hvornår
+        tolken står til rådighed.</p>
+      <p>Det er klinikken, der i så fald rekvirerer tolken via Tolkekontoret, og der sendes brev til
+        dig, der behøver tolken, med oplysning om tidspunkt for fremmøde.</p>
+      <p class="flag"><strong>Vi ser ikke gerne afbud til aftaler med arrangeret tolk, og slet ikke
+        udeblivelser.</strong> Det er meget uheldigt, hvis tolken møder forgæves.</p>
+    </div>
+  </details>
+
+  <details class="q" id="privatliv" data-tags="privatliv, gdpr, persondata, samtykke, journalføring">
+    <summary>Privatlivspolitik for patienter</summary>
+    <div class="a">
+      <p>I forbindelse med Lægehuset Ferritslevs undersøgelse, diagnostik og behandling af dig som
+        patient indsamler og behandler Lægehuset Ferritslev som dataansvarlig en række
+        personoplysninger om dig. Dette er vi forpligtet til efter autorisationslovens kap. 6 og
+        journalføringsbekendtgørelsen.</p>
+      <p>Udarbejdet af Praktiserende Lægers Organisation i samarbejde med advokatfirmaet Bruun og Hjejle.</p>
+      <p><a class="go go--sm" href="http://laegehusetferritslev.dk/privatlivspolitik-for-patienter">Læs den fulde privatlivspolitik
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a></p>
+    </div>
+  </details>
+
+  </div>
+</section>
+
+<!-- ══ Huset ════════════════════════════════════════════════════ -->
+<section class="sec" id="os">
+  <h2 class="h2">Hvem er vi</h2>
+
+  <figure class="team">
+    <img src="../../assets/img/lhf/ejere.webp" srcset="../../assets/img/lhf/ejere-500.webp 500w, ../../assets/img/lhf/ejere.webp 1000w" sizes="(max-width:800px) 92vw, 640px" alt="De fire ejere i Lægehuset Ferritslev" width="1242" height="828" loading="lazy" decoding="async">
+    <figcaption>Fra venstre ejerne: Lone Lund Thomsen, Michael Skov Hejmadi, Dorthe Oxholm og Dorte Høj Drostrup.</figcaption>
+  </figure>
+
+  <div class="cols">
+    <p>Lægehuset Ferritslev Fyn ligger i skønne landlige omgivelser beliggende mellem Odense og
+      Nyborg, lige syd for Langeskov. De fire ejere er alle speciallæger i almen medicin og købte
+      Lægehuset Ferritslev Fyn i 2014.</p>
+    <p>Vi har travlt i det danske sundhedsvæsen og skal holde i mange år. Derfor har vi ansat læger
+      til at aflaste os nogle dage om ugen: Helena Thell, Rikke Bak Toft Andreasen og Nicolai Soll,
+      der alle er speciallæger i almen medicin.</p>
+    <p>Vi deltager i videreuddannelsen af læger i Region Syd og har fast en uddannelseslæge i
+      Lægehuset af 6-15 måneders varighed. De er alle læger, men på forskellige niveauer i deres
+      specialisering.</p>
+    <p>Herudover har vi vores fantastiske personale: Fire sygeplejersker — Anita (der også er
+      praksismanager), Gitte, Helle og Lotte — og vores farmakonom Maria samt en dejlig flok
+      medicinstuderende, der hjælper som praksisassistenter.</p>
+    <p>Vi arbejder efter princippet &bdquo;Tid samme dag&ldquo; og har online booking via Min
+      Læge-appen. Kun kontrol af kronisk sygdom, planlagte børne- og graviditetsundersøgelser samt
+      attester kan få planlagte tider. Det sikrer, at vi ikke har lang ventetid.</p>
+    <p>Du kan også følge os på Facebook. Hér kommer vi med hyppige, relevante opdateringer.
+      Vi glæder os til at se dig.</p>
+  </div>
+
+  <h3 class="idx__h">Lægerne</h3>
+  <ul class="roster">
+    <li><img src="../../assets/img/lhf/dorte-drostrup-500.webp" alt="Dorte Høj Drostrup" width="672" height="1024" loading="lazy" decoding="async"><b>Dorte Høj Drostrup</b><span>Speciallæge i almen medicin, ejer</span><em>Man · tirs · ons</em></li>
+    <li><img src="../../assets/img/lhf/dorthe-oxholm-500.webp" alt="Dorthe Oxholm" width="929" height="960" loading="lazy" decoding="async"><b>Dorte Oxholm Olsen</b><span>Speciallæge i almen medicin, ejer</span><em>Tirs · ons · tors</em></li>
+    <li><img src="../../assets/img/lhf/lone-500.webp" alt="Lone Lund Thomsen" width="417" height="459" loading="lazy" decoding="async"><b>Lone Lund Thomsen</b><span>Speciallæge i almen medicin, ejer</span><em>Ons · tors · fre</em></li>
+    <li><img src="../../assets/img/lhf/michael-500.webp" alt="Michael Skov Hejmadi" width="213" height="202" loading="lazy" decoding="async"><b>Michael Skov Hejmadi</b><span>Speciallæge i almen medicin, ejer</span><em>Man · ons · fre</em></li>
+    <li><img src="../../assets/img/lhf/helena-500.webp" alt="Helena Thell" width="746" height="1024" loading="lazy" decoding="async"><b>Helena Thell</b><span>Speciallæge, fastansat læge</span><em>Man · tirs · ons · fre</em></li>
+    <li><img src="../../assets/img/lhf/nicolai-500.webp" alt="Nicolai Soll Osei" width="690" height="1024" loading="lazy" decoding="async"><b>Nicolai Soll Osei</b><span>Speciallæge, fastansat lægevikar</span><em>Tirs · tors</em></li>
+    <li><img src="../../assets/img/lhf/rikke-500.webp" alt="Rikke Toft Bak Andreasen" width="731" height="1024" loading="lazy" decoding="async"><b>Rikke Toft Bak Andreasen</b><span>Speciallæge, fastansat lægevikar</span><em>Tirs · ons · tors · fre</em></li>
+    <li><img src="../../assets/img/lhf/celia-500.webp" alt="Celia Møllenborg" width="725" height="1024" loading="lazy" decoding="async"><b>Celia Møllenborg</b><span>Hoveduddannelseslæge</span><em>Alle ugens dage</em></li>
+  </ul>
+
+  <h3 class="idx__h">Sygeplejersker og farmakonom</h3>
+  <p class="sub">De er specialuddannet til at arbejde i et lægehus og bliver superviseret flere gange
+    dagligt, så de tager sig af mange komplekse problemstillinger. Alle uddannes i alle kroniske
+    sygdomme, men de er hver især specialiseret i bestemte sygdomme.</p>
+  <ul class="roster">
+    <li><img src="../../assets/img/lhf/anita-500.webp" alt="Anita Skov Hejmadi" width="1006" height="1024" loading="lazy" decoding="async"><b>Anita Skov Hejmadi</b><span>Praksismanager og sygeplejerske</span><em>Ansat siden 2006</em></li>
+    <li><img src="../../assets/img/lhf/gitte-500.webp" alt="Gitte Klüver Nielsen" width="851" height="1024" loading="lazy" decoding="async"><b>Gitte Klüver Nielsen</b><span>Sygeplejerske</span><em>KOL og astma</em></li>
+    <li><img src="../../assets/img/lhf/helle-500.webp" alt="Helle Mørk Berthelsen" width="272" height="348" loading="lazy" decoding="async"><b>Helle Mørk Berthelsen</b><span>Sygeplejerske</span><em>Diabetes</em></li>
+    <li><img src="../../assets/img/lhf/lotte-500.webp" alt="Lotte Hammer Egelund" width="800" height="1024" loading="lazy" decoding="async"><b>Lotte Hammer Egelund</b><span>Sygeplejerske</span><em>Palliation</em></li>
+    <li><img src="../../assets/img/lhf/maria-500.webp" alt="Maria Ahler Jørgensen" width="866" height="1024" loading="lazy" decoding="async"><b>Maria Ahler Jørgensen</b><span>Farmakonom</span><em>Recepter og dosisdispensering</em></li>
+  </ul>
+
+  <h3 class="idx__h">Praksisassistenter</h3>
+  <p class="sub">Primært lægestuderende på Syddansk Universitet Odense. De hjælper os med bl.a.
+    laboratoriefunktioner (EKG, blodprøver, urinprøver mv.) og forskellige superviserede
+    konsultationer alt efter niveau.</p>
+  <ul class="roster roster--sm">
+    <li><img src="../../assets/img/lhf/anna-500.webp" alt="Anna Mørch Munch Christensen" width="776" height="1024" loading="lazy" decoding="async"><b>Anna Mørch Munch Christensen</b><span>Medicin, SDU siden feb. 2023</span></li>
+    <li><img src="../../assets/img/lhf/cecilie-500.webp" alt="Cecilie Schou Hansen" width="730" height="1024" loading="lazy" decoding="async"><b>Cecilie Schou Hansen</b><span>Medicin, SDU siden feb. 2024</span></li>
+    <li><img src="../../assets/img/lhf/hella-500.webp" alt="Hella Saadi Tekriti" width="1005" height="1462" loading="lazy" decoding="async"><b>Hella Saadi Tekriti</b><span>Medicin, SDU siden feb. 2023</span></li>
+    <li><img src="../../assets/img/lhf/rebekka-500.webp" alt="Rebekka Marensgaard Pedersen" width="688" height="1024" loading="lazy" decoding="async"><b>Rebekka Marensgaard Pedersen</b><span>Medicin, SDU siden feb. 2024</span></li>
+    <li><img src="../../assets/img/lhf/annika-500.webp" alt="Annika Skov Vanggaard" width="422" height="595" loading="lazy" decoding="async"><b>Annika Skov Vanggaard</b><span>Studentermedhjælper</span></li>
+    <li><img src="../../assets/img/lhf/poulerik-500.webp" alt="Poul Erik Kristensen" width="696" height="1024" loading="lazy" decoding="async"><b>Poul Erik Kristensen</b><span>Hus-arkitekt og teknisk konsulent</span></li>
+  </ul>
+  <p class="sub">Alle er naturligvis underlagt tavshedspligt som alle andre ansatte i Lægehuset Ferritslev.</p>
+</section>
+
+<!-- ══ Kontakt ══════════════════════════════════════════════════ -->
+<section class="sec sec--dark" id="kontakt">
+  <h2 class="h2">Kontakt</h2>
+  <div class="kontakt">
+    <div>
+      <p class="kontakt__addr"><b>Lægehuset Ferritslev</b><br>Ørbækvej 871 B<br>5863 Ferritslev</p>
+      <a class="big-tel" href="tel:+4565981002">65 98 10 02</a>
+      <p class="kontakt__note">Patienter skal skrive via krypteret mail via &bdquo;Min Læge&ldquo;-appen
+        eller www.lægevejen.dk. Vær opmærksom på, at man i e-mail ikke bør sende cpr-numre og
+        lignende. Børn skal oprettes under eget cpr-nr., men med en forælders mail. Skriv i barnets
+        navn pga. jura.</p>
+    </div>
+    <dl class="facts">
+      <div><dt>Fax</dt><dd>65 98 16 90</dd></div>
+      <div><dt>Offentlig ukrypteret mail</dt><dd><a href="mailto:mail@65981002.dk">mail@65981002.dk</a></dd></div>
+      <div><dt>Hjemmeside</dt><dd><a href="http://laegehusetferritslev.dk/">www.LaegehusetFerritslev.dk</a></dd></div>
+      <div><dt>Facebook</dt><dd><a href="https://www.facebook.com/laegehusetferritslev" target="_blank" rel="noopener">/laegehusetferritslev</a></dd></div>
+      <div><dt>Ydernr.</dt><dd>04 27 81</dd></div>
+      <div><dt>CVR</dt><dd>35 69 63 26</dd></div>
+      <div><dt>Lokationsnummer</dt><dd>5790002012341</dd></div>
+    </dl>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <p><b>Sundt lægehus med patienten i fokus</b></p>
+  <p>Lægehuset Ferritslev · Ørbækvej 871 B · 5863 Ferritslev · 65 98 10 02</p>
+</footer>
+
+<script src="app.js" defer></script>
+</body>
+</html>
