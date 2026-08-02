@@ -201,15 +201,15 @@
     } else if (t < 7.5) {
       kind = 'closed'; head = 'Lukket';
       text = 'Konsultationen åbner kl. 07.30, telefonen kl. 8.00.';
-      next = `Åbner om ${untilTxt(7.5 - t)}.`;
+      next = `Åbner om ${untilTxt(7.5 - t)}`;
     } else if (t < 8) {
       kind = 'open'; head = 'Åbent';
       text = 'Konsultationen er i gang. Telefonen åbner kl. 8.00.';
-      next = `Telefonen åbner om ${untilTxt(8 - t)}.`;
+      next = `Telefonen åbner om ${untilTxt(8 - t)}`;
     } else if (t < 8.5) {
       kind = 'open'; head = 'Telefonen er åben';
       text = 'Lige nu tager vi imod ønsker om tid samme dag. Ring 65 98 10 02.';
-      next = `Tid samme dag-vinduet lukker om ${untilTxt(8.5 - t)}.`;
+      next = `Tid samme dag-vinduet lukker om ${untilTxt(8.5 - t)}`;
     } else if (t < 9.75) {
       kind = 'open'; head = 'Telefonen er åben';
       text = 'Alle henvendelser. Ring 65 98 10 02.';
@@ -217,7 +217,7 @@
     } else if (t < 10.25) {
       kind = 'limited'; head = 'Telefonpause';
       text = 'Vi holder pause og møde. Vi tager telefonen igen kl. 10.15.';
-      next = `Åbner om ${untilTxt(10.25 - t)}.`;
+      next = `Åbner om ${untilTxt(10.25 - t)}`;
     } else if (t < 11.75) {
       kind = 'open'; head = 'Telefonen er åben';
       text = 'Alle henvendelser. Ring 65 98 10 02.';
@@ -225,7 +225,7 @@
     } else if (t < 12) {
       kind = 'limited'; head = 'Telefonen er lukket';
       text = 'Konsultationen kører videre. Vagtmobilen åbner kl. 12.00.';
-      next = `Vagtmobil om ${untilTxt(12 - t)}.`;
+      next = `Vagtmobil om ${untilTxt(12 - t)}`;
     } else if (t < 16) {
       kind = 'limited'; head = 'Kun akut';
       text = 'Ved uopsætteligt behov stilles du om til vagtmobilen. Bemærk, at den vagthavende samtidig har patienter.';
