@@ -98,13 +98,13 @@ html[data-theme="dark"] .siren{color:#0B0B0C}
 .bar__right{display:flex;gap:.45rem}
 .ghost{
   display:inline-flex;align-items:center;gap:.5rem;cursor:pointer;
-  padding:.45rem .8rem;background:var(--bg-2);border:1px solid var(--line-2);
+  padding:.45rem .9rem;min-height:44px;background:var(--bg-2);border:1px solid var(--line-2);
   color:var(--ink);font:inherit;font-size:.85rem;font-weight:500;border-radius:.5rem;
   transition:border-color .2s,background .2s;
 }
 .ghost:hover{border-color:var(--sig);background:var(--sig-soft)}
 .ghost svg{width:1rem;height:1rem}
-.ghost--icon{padding:.45rem;width:2.3rem;justify-content:center}
+.ghost--icon{padding:.45rem;width:44px;min-width:44px;justify-content:center}
 kbd{
   font:inherit;font-size:.72rem;padding:.05rem .35rem;border-radius:.25rem;
   background:var(--bg-3);border:1px solid var(--line-2);color:var(--ink-3);
@@ -171,14 +171,17 @@ html[data-theme="dark"] .i-moon{display:block}
 .results small{display:block;color:var(--ink-3);font-size:.78rem;margin-top:.1rem}
 .results mark{background:var(--sig-soft);color:inherit;font-weight:800;padding:0 .1em;border-radius:.15em}
 .results li[aria-selected="true"] button,.results button:hover{background:var(--sig);color:#fff}
+.results li[aria-selected="true"] b,.results button:hover b{color:#fff}
 .results li[aria-selected="true"] small,.results button:hover small{color:rgba(255,255,255,.8)}
 .results li[aria-selected="true"] mark,.results button:hover mark{background:rgba(255,255,255,.25);color:#fff}
 .results .none{padding:.9rem;color:var(--ink-3);font-size:.92rem}
 
-.search__hint{margin:.85rem 0 0;font-size:.85rem;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:.35rem;align-items:center}
+.search.is-open .search__hint{visibility:hidden}
+.search__hint{margin:.85rem 0 0;font-size:.85rem;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
 .chip{
   cursor:pointer;font:inherit;font-size:.82rem;
-  padding:.22rem .6rem;border-radius:99px;border:1px solid var(--line-2);
+  padding:.4rem .8rem;min-height:44px;display:inline-flex;align-items:center;
+  border-radius:99px;border:1px solid var(--line-2);
   background:var(--bg-2);color:var(--ink-2);transition:all .2s;
 }
 .chip:hover{border-color:var(--sig);color:var(--sig);background:var(--sig-soft)}
@@ -212,7 +215,8 @@ html[data-theme="dark"] .i-moon{display:block}
 }
 .live__strip li:last-child{border-bottom:0}
 .live__strip b{font-weight:700;font-variant-numeric:tabular-nums;color:var(--ink-2)}
-.live__strip li.past{opacity:.42}
+.live__strip li.past{color:var(--ink-3)}
+.live__strip li.past b{color:var(--ink-3);font-weight:500}
 .live__strip li.now{background:var(--sig-soft);color:var(--ink)}
 .live__strip li.now b{color:var(--sig)}
 
@@ -232,6 +236,7 @@ html[data-theme="dark"] .i-moon{display:block}
 .sub{color:var(--ink-3);margin:0 0 1.8rem;max-width:62ch;font-size:.98rem}
 p{margin:0 0 1rem;color:var(--ink-2)}
 strong,b{color:var(--ink);font-weight:700}
+.siren b,.results b,.results button b,.sec--dark b{color:inherit}
 
 /* ═══ Vejen ind ════════════════════════════════════════════════ */
 .paths{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:2px solid var(--ink)}
@@ -281,7 +286,7 @@ strong,b{color:var(--ink);font-weight:700}
 .q[open]>summary::after{transform:rotate(-135deg);margin-top:-.15rem;border-color:var(--sig)}
 .q>summary:hover{color:var(--sig)}
 .q>summary:hover::after{border-color:var(--sig)}
-.q .a{padding:0 0 1.5rem;max-width:74ch}
+.q .a{padding:0 0 1.5rem;max-width:74ch;overflow-wrap:break-word}
 .q .a>*:last-child{margin-bottom:0}
 .q .a ul{margin:0 0 1rem;padding:0;list-style:none}
 .q .a ul li{position:relative;padding-left:1.5rem;margin-bottom:.42rem;color:var(--ink-2);font-size:.96rem}
@@ -305,7 +310,9 @@ strong,b{color:var(--ink);font-weight:700}
 }
 .flag--warn{background:var(--red-soft);border-left-color:var(--red)}
 
-.tbl{width:100%;border-collapse:collapse;margin:.6rem 0 1rem;font-size:.94rem;table-layout:fixed}
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:.6rem 0 1rem}
+.tbl{width:100%;border-collapse:collapse;font-size:.94rem;table-layout:fixed}
+.tbl td,.tbl th{overflow-wrap:anywhere}
 .tbl th{text-align:left;font-weight:600;padding:.55rem .8rem .55rem 0;border-bottom:1px solid var(--line);vertical-align:top}
 .tbl td{padding:.55rem 0;border-bottom:1px solid var(--line);color:var(--ink-2)}
 .tbl--price thead th{

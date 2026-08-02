@@ -132,17 +132,19 @@ body.has-pointer .torch{opacity:1}
 /* ═══ Dybdestige (venstre) ═════════════════════════════════════ */
 .ladder{
   position:fixed;left:1.35rem;top:50%;transform:translateY(-50%);z-index:55;
-  font-family:var(--mono);
+  font-family:var(--mono);padding:.5rem .35rem;border-radius:.7rem;
+  background:var(--pane-2);border:1px solid var(--hair);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
 }
 .ladder ol{list-style:none;margin:0;padding:0;display:grid;gap:.15rem}
 .ladder a{
   display:flex;align-items:center;gap:.6rem;
-  padding:.3rem .35rem;text-decoration:none;color:var(--ink-faint);
+  padding:.3rem .5rem;text-decoration:none;color:var(--ink-soft);
   font-size:.62rem;letter-spacing:.08em;
   border-left:2px solid transparent;
   transition:color .3s,border-color .3s,transform .3s var(--ease);
 }
-.ladder a span{width:2.6rem;text-align:right;font-variant-numeric:tabular-nums;opacity:.75}
+.ladder a span{width:2.6rem;text-align:right;font-variant-numeric:tabular-nums}
 .ladder a em{
   font-style:normal;text-transform:uppercase;letter-spacing:.14em;
   opacity:0;transform:translateX(-.35rem);
@@ -559,8 +561,10 @@ strong{color:var(--ink);font-weight:600}
 .js .reveal.in{opacity:1;transform:none}
 
 /* ═══ Responsivt ═══════════════════════════════════════════════ */
-@media (max-width:1180px){
+@media (max-width:1400px){
   .topbar__menu{display:flex}
+  /* HUD flyttes væk fra burgerens hjørne */
+  .hud{top:auto;bottom:1.1rem;left:1.1rem;right:auto}
   /* Stigen bliver til et fuldskærmspanel */
   .ladder{
     position:fixed;inset:0;transform:none;z-index:57;
@@ -568,9 +572,9 @@ strong{color:var(--ink);font-weight:600}
     background:linear-gradient(160deg,rgba(3,26,40,.94),rgba(1,14,24,.97));
     backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);overflow:hidden;
     opacity:0;visibility:hidden;
-    transition:opacity .4s var(--ease),visibility .4s;
+    transition:opacity .4s var(--ease),visibility 0s .4s;
   }
-  .ladder.open{opacity:1;visibility:visible}
+  .ladder.open{opacity:1;visibility:visible;transition:opacity .4s var(--ease),visibility 0s}
   .ladder ol{gap:.15rem;width:min(22rem,80vw)}
   .ladder a{
     font-size:.8rem;padding:.85rem 1rem;border-left:0;

@@ -189,6 +189,17 @@ Til `hejmadi.github.io` kan mappen lægges direkte ind som fx
 
 ## Ting du selv skal beslutte
 
+* **Tre steder modsiger jeres nuværende sider hinanden.** Jeg har ikke gættet — I skal vælge:
+  * **Kørekortsattest:** prislisten siger «750 kr. inkl. moms», mens kørekortsiden siger
+    «500,- kr. … dog 750 kr. ved erhvervskørekort til personbefordring». Begge står i dag på
+    sitet; nu ligger de tæt på hinanden og er lette at se. Ret det ene sted.
+  * **Receptfornyelse pr. telefon:** receptsiden siger «telefonisk mellem kl. 9.00–12.00»,
+    men åbningstiderne siger, at telefonen er åben 8.30–11.45 med pause 9.45–10.15 og lukker
+    kl. 11.45. De to kan ikke passe samtidig.
+  * **Rejsevaccination:** prislisten siger «tilbydes ikke i lægehuset — kontakt i stedet en
+    vaccinationsklinik», mens rejsevaccinationssiden beskriver en vaccinationsplan hos jeres
+    sygeplejersker til 300 kr. Jeg har brugt prislistens formulering, fordi den er den mest
+    entydige — men den anden tekst ligger stadig på det nuværende site.
 * **To navne staves forskelligt i jeres eget indhold**, og jeg har ladet begge stavemåder
   stå, som de står i dag — men I skal nok vælge én af hver:
   * «Dorte Oxholm Olsen» (overskrift på lægesiden) vs. «Dorthe Oxholm» (billedtekst og forside)
@@ -197,8 +208,10 @@ Til `hejmadi.github.io` kan mappen lægges direkte ind som fx
 * **Bookinglinket.** `https://www.laegevejen.dk/` er brugt som mål for «Book tid samme
   dag». Hvis I har et direkte dybt link ind i jeres booking, skal det ind i stedet
   (søg efter `laegevejen.dk` i de to lægehussider).
-* **Helligdage.** Åbningsstatus regner kun med hverdage kontra weekend. Skal den også
-  kende danske helligdage, skal der en lille datotabel ind i `app.js`.
+* **Helligdage.** Åbningsstatus regner kun med hverdage kontra weekend. På juledag vil den
+  altså sige «Telefonen er åben». Skal den kende danske helligdage, skal der en datotabel
+  (eller en påskeberegning) ind i begge `app.js` — sig til, så lægger jeg den ind.
+  Onsdagens lange konsultationsdag til kl. 16.15 er der taget højde for.
 * **Ventelisten til kurset.** Kontaktoplysningen ligger kun i billedet
   `assets/img/dyk/tilmelding.webp`. Det er formentlig med vilje — en adresse i et billede
   bliver ikke høstet af spamrobotter. Prisen er, at den hverken kan kopieres, klikkes

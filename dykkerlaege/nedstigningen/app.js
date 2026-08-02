@@ -85,7 +85,7 @@
     ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
 
     const area = W * H;
-    const nSnow = clamp(Math.round(area / 9000), 40, 190);
+    const nSnow = clamp(Math.round(area / 14000), 34, 120);
     snow = Array.from({ length: nSnow }, () => ({
       x: Math.random() * W,
       y: Math.random() * H * 3,
@@ -96,7 +96,7 @@
       w: Math.random() * Math.PI * 2           // sidevals
     }));
 
-    const nBub = clamp(Math.round(area / 34000), 10, 46);
+    const nBub = clamp(Math.round(area / 46000), 8, 28);
     bubbles = Array.from({ length: nBub }, () => newBubble(true));
 
     shafts = Array.from({ length: 8 }, (_, i) => ({
@@ -180,16 +180,23 @@
       ctx.restore();
     }
 
-    /* Marinesne — parallakse mod scroll */
+    /* Marinesne — samlet i fire alfa-lag, så det bliver fire fills i stedet for ~190 */
     const sc = state.scroll;
+    const dim = clamp(1.15 - d / 55, 0.25, 1);
     ctx.save();
-    for (const p of snow) {
-      const y = ((p.y - sc * p.z * 0.42 + state.t * p.v * 0.012) % (H + 160) + H + 160) % (H + 160) - 80;
-      const x = p.x + Math.sin(state.t * 0.0004 + p.w) * 9 * p.z;
-      ctx.globalAlpha = p.a * (0.35 + 0.65 * p.z) * clamp(1.15 - d / 55, 0.25, 1);
-      ctx.fillStyle = '#dff4fb';
+    ctx.fillStyle = '#dff4fb';
+    for (let b = 0; b < 4; b++) {
+      ctx.globalAlpha = (0.14 + b * 0.16) * dim;
       ctx.beginPath();
-      ctx.arc(x, y, p.r * (0.5 + p.z * 0.8), 0, 6.284);
+      for (const p of snow) {
+        const a = p.a * (0.35 + 0.65 * p.z);
+        if (Math.min(3, Math.floor(a * 4)) !== b) continue;
+        const y = ((p.y - sc * p.z * 0.42 + state.t * p.v * 0.012) % (H + 160) + H + 160) % (H + 160) - 80;
+        const x = p.x + Math.sin(state.t * 0.0004 + p.w) * 9 * p.z;
+        const r = p.r * (0.5 + p.z * 0.8);
+        ctx.moveTo(x + r, y);
+        ctx.arc(x, y, r, 0, 6.284);
+      }
       ctx.fill();
     }
     ctx.restore();
@@ -277,10 +284,18 @@
     const target = state.depth;
     state.shown += (target - state.shown) * 0.075;
     if (Math.abs(target - state.shown) < 0.003) state.shown = target;
-    if (!reduce) paint(); else paintStatic();
+    paint();
     drawHud();
     markProfile();
     if (running) raf = requestAnimationFrame(frame);
+  }
+
+  /* Under reduceret bevægelse tegner vi kun, når noget faktisk ændrer sig */
+  function still() {
+    state.shown = state.depth;
+    paintStatic();
+    drawHud();
+    markProfile();
   }
 
   function onScroll() {
@@ -292,6 +307,7 @@
     state.depth = d;
     hud.classList.toggle('on', window.scrollY > 40);
     markLadder();
+    if (reduce) still();
   }
 
   /* ── 7. Dybdestige ─────────────────────────────────────────── */
@@ -337,17 +353,49 @@
   }
 
   /* ── 10. Mobilmenu ─────────────────────────────────────────── */
+
+  /* ── Fokusstyring i fuldskærmsmenuen ────────────────────────── */
+  function menuFocus(panel, toggle, isOpen) {
+    if (isOpen) {
+      /* visibility skifter først ved næste frame — vent, ellers ignoreres focus() */
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        const first = panel.querySelector('a,button');
+        if (first) first.focus();
+      }));
+    } else {
+      toggle.focus();
+    }
+  }
+  function trapTab(panel, e) {
+    if (e.key !== 'Tab') return;
+    const items = [...panel.querySelectorAll('a,button')]
+      .filter(el => el.getBoundingClientRect().width > 0);
+    if (!items.length) return;
+    const first = items[0], last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+
   const menuBtn = document.getElementById('menuBtn');
   menuBtn.addEventListener('click', () => {
     const open = ladder.classList.toggle('open');
     menuBtn.setAttribute('aria-expanded', String(open));
     menuBtn.classList.toggle('x', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+    menuFocus(ladder, menuBtn, open);
+  });
+  ladder.addEventListener('keydown', e => {
+    if (ladder.classList.contains('open')) trapTab(ladder, e);
+  });
+  matchMedia('(min-width:1401px)').addEventListener('change', e => {
+    if (e.matches && ladder.classList.contains('open')) menuBtn.click();
   });
   ladder.addEventListener('click', e => {
     if (e.target.closest('a')) {
       ladder.classList.remove('open');
       menuBtn.classList.remove('x');
       menuBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
     }
   });
   addEventListener('keydown', e => {
@@ -356,10 +404,12 @@
 
   /* ── 11. Video: pause baggrundsanimation under afspilning ──── */
   const vid = document.getElementById('introVideo');
-  if (vid) {
-    vid.addEventListener('play',  () => document.body.classList.add('playing'));
-    vid.addEventListener('pause', () => document.body.classList.remove('playing'));
-    vid.addEventListener('ended', () => document.body.classList.remove('playing'));
+  if (vid && !reduce) {
+    const halt = () => { running = false; cancelAnimationFrame(raf); };
+    const go   = () => { if (!running && !document.hidden) { running = true; raf = requestAnimationFrame(frame); } };
+    vid.addEventListener('play',  halt);
+    vid.addEventListener('pause', go);
+    vid.addEventListener('ended', go);
   }
 
   /* ── 12. Sidens dykkerprofil (footer) ──────────────────────── */
@@ -424,7 +474,7 @@
   let rTo = 0;
   function onResize() {
     clearTimeout(rTo);
-    rTo = setTimeout(() => { build(); measure(); buildProfile(); onScroll(); lastHud = -1; }, 110);
+    rTo = setTimeout(() => { build(); measure(); buildProfile(); onScroll(); lastHud = -1; if (reduce) still(); }, 110);
   }
 
   build(); measure(); buildProfile(); onScroll();
@@ -435,9 +485,10 @@
   addEventListener('load', () => { measure(); buildProfile(); onScroll(); });
 
   document.addEventListener('visibilitychange', () => {
+    if (reduce) return;
     if (document.hidden) { running = false; cancelAnimationFrame(raf); }
     else if (!running)   { running = true; raf = requestAnimationFrame(frame); }
   });
 
-  raf = requestAnimationFrame(frame);
+  if (reduce) still(); else raf = requestAnimationFrame(frame);
 })();

@@ -37,6 +37,8 @@
     if (t < 16)   return ['limited', t < closeCons
                           ? 'Kun akut uopsætteligt behov — du stilles om til vagtmobilen'
                           : 'Konsultationen er slut. Kun akut uopsætteligt behov indtil kl. 16.00'];
+    if (t < closeCons)
+                  return ['limited', 'Konsultationen kører til kl. 16.15. Telefonisk er det lægevagten fra kl. 16.00'];
     return ['closed', 'Lukket for i dag — ring til Lægevagten på 70 11 07 07'];
   }
 
@@ -141,6 +143,29 @@
   });
 
   /* ── 4. Menu ──────────────────────────────────────────────── */
+
+  /* ── Fokusstyring i fuldskærmsmenuen ────────────────────────── */
+  function menuFocus(panel, toggle, isOpen) {
+    if (isOpen) {
+      /* visibility skifter først ved næste frame — vent, ellers ignoreres focus() */
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        const first = panel.querySelector('a,button');
+        if (first) first.focus();
+      }));
+    } else {
+      toggle.focus();
+    }
+  }
+  function trapTab(panel, e) {
+    if (e.key !== 'Tab') return;
+    const items = [...panel.querySelectorAll('a,button')]
+      .filter(el => el.getBoundingClientRect().width > 0);
+    if (!items.length) return;
+    const first = items[0], last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+
   const hamb = document.getElementById('hamb');
   const menu = document.getElementById('menu');
   hamb.addEventListener('click', () => {
@@ -148,6 +173,11 @@
     hamb.classList.toggle('x', open);
     hamb.setAttribute('aria-expanded', String(open));
     document.body.style.overflow = open ? 'hidden' : '';
+    menuFocus(menu, hamb, open);
+  });
+  menu.addEventListener('keydown', e => { if (menu.classList.contains('open')) trapTab(menu, e); });
+  matchMedia('(min-width:861px)').addEventListener('change', e => {
+    if (e.matches && menu.classList.contains('open')) hamb.click();
   });
   menu.addEventListener('click', e => {
     if (e.target.closest('a') && menu.classList.contains('open')) hamb.click();

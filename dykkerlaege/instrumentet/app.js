@@ -23,6 +23,29 @@
   });
 
   /* ── Mobilmenu ─────────────────────────────────────────────── */
+
+  /* ── Fokusstyring i fuldskærmsmenuen ────────────────────────── */
+  function menuFocus(panel, toggle, isOpen) {
+    if (isOpen) {
+      /* visibility skifter først ved næste frame — vent, ellers ignoreres focus() */
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        const first = panel.querySelector('a,button');
+        if (first) first.focus();
+      }));
+    } else {
+      toggle.focus();
+    }
+  }
+  function trapTab(panel, e) {
+    if (e.key !== 'Tab') return;
+    const items = [...panel.querySelectorAll('a,button')]
+      .filter(el => el.getBoundingClientRect().width > 0);
+    if (!items.length) return;
+    const first = items[0], last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+
   const burger = document.getElementById('burger');
   const nav = document.getElementById('nav');
   burger.addEventListener('click', () => {
@@ -30,6 +53,11 @@
     burger.classList.toggle('x', open);
     burger.setAttribute('aria-expanded', String(open));
     document.body.style.overflow = open ? 'hidden' : '';
+    menuFocus(nav, burger, open);
+  });
+  nav.addEventListener('keydown', e => { if (nav.classList.contains('open')) trapTab(nav, e); });
+  matchMedia('(min-width:901px)').addEventListener('change', e => {
+    if (e.matches && nav.classList.contains('open')) burger.click();
   });
   nav.addEventListener('click', e => {
     if (e.target.closest('a') && nav.classList.contains('open')) burger.click();
@@ -138,6 +166,8 @@
   const flags   = document.getElementById('flags');
   const presets = [...document.querySelectorAll('.inst__presets button')];
 
+  let lastFlags = '';
+
   function render(d) {
     const P    = 1 + d / 10;
     const Palv = Math.max(0, P - PH2O);
@@ -175,8 +205,9 @@
     if (d >= 40) f.push(['warn', 'Ud over sportsdykkergrænsen på 40 m']);
     if (!f.length) f.push(['', 'Inden for nul-stop']);
 
-    flags.innerHTML = f.map(([k, t]) =>
+    const html = f.map(([k, t]) =>
       `<li class="flag"${k ? ` data-flag="${k}"` : ''}>${t}</li>`).join('');
+    if (html !== lastFlags) { flags.innerHTML = html; lastFlags = html; }
 
     presets.forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.d === d)));
   }
@@ -193,13 +224,19 @@
     /* Kør ét blødt sweep første gang instrumentet ses — så man
        opdager at det kan bruges. */
     if ('IntersectionObserver' in window && !reduce) {
-      let done = false;
+      let done = false, taken = false;
+      const grab = () => { taken = true; };
+      ['pointerdown','keydown','input','wheel','touchstart'].forEach(ev =>
+        slider.addEventListener(ev, grab, { once: true, passive: true }));
+      presets.forEach(b => b.addEventListener('pointerdown', grab, { once: true }));
+
       const iio = new IntersectionObserver(es => {
         es.forEach(e => {
           if (!e.isIntersecting || done) return;
           done = true; iio.disconnect();
           const t0 = performance.now(), dur = 2200, to = 30;
           (function step(t) {
+            if (taken) return;               /* brugeren har overtaget */
             const p = clamp((t - t0) / dur, 0, 1);
             const e2 = p < 0.5 ? 2*p*p : 1 - Math.pow(-2*p + 2, 2) / 2;
             const v = Math.round(to * e2);

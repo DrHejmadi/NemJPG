@@ -87,21 +87,32 @@
     }
     list.forEach((it, i) => {
       const li = document.createElement('li');
+      li.id = 'res-' + i;
       li.setAttribute('role','option');
       li.setAttribute('aria-selected', String(i === cursor));
       const b = document.createElement('button');
       b.type = 'button';
+      b.tabIndex = -1;
       b.innerHTML = `<b>${highlight(it.title, terms)}</b><small>${it.group}</small>`;
       b.addEventListener('click', () => jump(it));
       li.appendChild(b);
       results.appendChild(li);
     });
     show(true);
+    setActive(cursor);
   }
 
   function show(on) {
     results.hidden = !on;
     q.setAttribute('aria-expanded', String(on));
+    document.getElementById('search').classList.toggle('is-open', on);
+    if (!on) q.removeAttribute('aria-activedescendant');
+  }
+
+  function setActive(i) {
+    [...results.children].forEach((li, j) => li.setAttribute('aria-selected', String(j === i)));
+    if (i >= 0 && results.children[i]) q.setAttribute('aria-activedescendant', 'res-' + i);
+    else q.removeAttribute('aria-activedescendant');
   }
 
   function jump(item) {
@@ -122,6 +133,7 @@
     clearQ.hidden = !raw;
     if (raw.length < 2) { show(false); current = []; cursor = -1; return; }
     const terms = norm(raw).split(' ').filter(Boolean);
+    const rawTerms = raw.toLowerCase().split(/\s+/).filter(Boolean);
     current = index
       .map(it => ({ it, s: score(it, terms) }))
       .filter(r => r.s >= 0)
@@ -129,7 +141,7 @@
       .slice(0, 8)
       .map(r => r.it);
     cursor = current.length ? 0 : -1;
-    render(current, terms);
+    render(current, [...new Set([...rawTerms, ...terms])]);
   }
 
   q.addEventListener('input', search);
@@ -141,7 +153,7 @@
     if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
       e.preventDefault();
       cursor = (cursor + (e.key === 'ArrowDown' ? 1 : -1) + current.length) % current.length;
-      [...results.children].forEach((li,i) => li.setAttribute('aria-selected', String(i === cursor)));
+      setActive(cursor);
       results.children[cursor]?.scrollIntoView({ block:'nearest' });
     } else if (e.key === 'Enter') {
       e.preventDefault();
@@ -191,6 +203,7 @@
     const now = new Date();
     const day = now.getDay();
     const t = now.getHours() + now.getMinutes()/60;
+    const closeCons = day === 3 ? 16.25 : 14;   /* onsdag har konsultation til 16.15 */
     let kind, head, text, next = '';
 
     if (day === 0 || day === 6) {
@@ -230,6 +243,10 @@
       kind = 'limited'; head = 'Kun akut';
       text = 'Ved uopsætteligt behov stilles du om til vagtmobilen. Bemærk, at den vagthavende samtidig har patienter.';
       next = `Lægevagten overtager kl. 16.00 (om ${untilTxt(16 - t)}).`;
+    } else if (t < closeCons) {
+      kind = 'limited'; head = 'Kun akut';
+      text = 'Konsultationen kører til kl. 16.15. Telefonisk er det Lægevagten på 70 11 07 07 fra kl. 16.00.';
+      next = `Konsultationen slutter om ${untilTxt(closeCons - t)}`;
     } else {
       kind = 'closed'; head = 'Lukket';
       text = 'Ring til Lægevagten på 70 11 07 07 ved akut behov.';
