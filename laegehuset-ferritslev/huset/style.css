@@ -478,6 +478,9 @@ strong{color:var(--ink);font-weight:650}
   .prose--wide{columns:1}
 }
 @media (max-width:860px){
+  /* backdrop-filter gør .top til containing block for position:fixed —
+     så ville overlay-menuen kun blive lige så høj som headeren. */
+  .top{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--cream)}
   .menu{
     position:fixed;inset:0;z-index:75;flex-direction:column;justify-content:center;gap:.2rem;
     background:var(--cream);padding:0 var(--gut);overflow:hidden;
