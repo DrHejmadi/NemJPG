@@ -402,6 +402,29 @@
 </main>
 
 <footer class="foot">
+  <figure class="profile" id="profile">
+    <figcaption>Sidens dykkerprofil — 0 m ned til 40 m og op til sikkerhedsstop på 5 m</figcaption>
+    <div class="profile__stage">
+    <svg class="profile__svg" viewBox="0 0 1000 150" preserveAspectRatio="none" role="img"
+         aria-label="Grafik: sidens dybdeprofil fra overfladen til 40 meter og op til sikkerhedsstop på 5 meter">
+      <defs>
+        <linearGradient id="pfill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#5fe6d0" stop-opacity=".22"/>
+          <stop offset="1" stop-color="#0a4c66" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <g class="profile__grid" id="pfGrid"></g>
+      <path class="profile__area" id="pfArea" fill="url(#pfill)"></path>
+      <!-- dybdeetiketter ligger som HTML uden for svg'en, så de ikke skæves -->
+      <path class="profile__line" id="pfLine"></path>
+      <line class="profile__now" id="pfNow" x1="0" y1="0" x2="0" y2="150"></line>
+      <circle class="profile__dot" id="pfDot" r="5" cx="0" cy="0"></circle>
+    </svg>
+    <div class="profile__depths" id="pfDepths" aria-hidden="true"></div>
+    </div>
+    <div class="profile__axis" id="pfAxis" aria-hidden="true"></div>
+  </figure>
+
   <div class="wrap">
     <nav class="foot__links" aria-label="Eksterne links">
       <a href="https://hejmadi.com/">Hejmadi.com</a>

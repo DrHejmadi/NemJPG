@@ -279,6 +279,7 @@
     if (Math.abs(target - state.shown) < 0.003) state.shown = target;
     if (!reduce) paint(); else paintStatic();
     drawHud();
+    markProfile();
     if (running) raf = requestAnimationFrame(frame);
   }
 
@@ -361,19 +362,77 @@
     vid.addEventListener('ended', () => document.body.classList.remove('playing'));
   }
 
-  /* ── 12. Opstart ───────────────────────────────────────────── */
+  /* ── 12. Sidens dykkerprofil (footer) ──────────────────────── */
+  const PF = {
+    svg:  document.getElementById('profile'),
+    grid: document.getElementById('pfGrid'),
+    line: document.getElementById('pfLine'),
+    area: document.getElementById('pfArea'),
+    now:  document.getElementById('pfNow'),
+    dot:  document.getElementById('pfDot'),
+    axis: document.getElementById('pfAxis'),
+    depths: document.getElementById('pfDepths'),
+    W: 1000, H: 150, MAX: 45, built: false
+  };
+
+  function buildProfile() {
+    if (!PF.svg || !stops.length) return;
+    const docH = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    const px = t => t * PF.W;
+    const py = d => (d / PF.MAX) * PF.H;
+
+    /* Kurven samples ved samme funktion som baggrunden bruger */
+    const N = 160, pts = [];
+    for (let i = 0; i <= N; i++) {
+      const t = i / N;
+      const y = t * docH + window.innerHeight * 0.5;
+      pts.push([px(t), py(clamp(depthAt(y), 0, PF.MAX))]);
+    }
+    const d = pts.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' ');
+    PF.line.setAttribute('d', d);
+    PF.area.setAttribute('d', `${d} L${PF.W} ${PF.H} L0 ${PF.H} Z`);
+
+    /* Dybdelinjer i svg'en, etiketter som HTML (svg'en er skævt skaleret) */
+    PF.grid.innerHTML = [10, 20, 30, 40].map(m =>
+      `<line x1="0" y1="${py(m).toFixed(1)}" x2="${PF.W}" y2="${py(m).toFixed(1)}"></line>`).join('');
+    if (PF.depths && !PF.depths.children.length) {
+      PF.depths.innerHTML = [10, 20, 30, 40]
+        .map(m => `<span style="top:${((m / PF.MAX) * 100).toFixed(1)}%">${m} m</span>`).join('');
+    }
+
+    /* Sektionsnavne under grafen */
+    if (!PF.built) {
+      PF.axis.innerHTML = links.map((a, i) => {
+        const t = clamp((targets[i].offsetTop) / docH, 0, 1);
+        return `<span style="left:${(t * 100).toFixed(2)}%">${a.querySelector('em').textContent}</span>`;
+      }).join('');
+      PF.built = true;
+    }
+  }
+
+  function markProfile() {
+    if (!PF.svg || !PF.line.getAttribute('d')) return;
+    const docH = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    const t = clamp(window.scrollY / docH, 0, 1);
+    const x = t * PF.W;
+    const y = (clamp(state.shown, 0, PF.MAX) / PF.MAX) * PF.H;
+    PF.now.setAttribute('x1', x); PF.now.setAttribute('x2', x);
+    PF.dot.setAttribute('cx', x); PF.dot.setAttribute('cy', y);
+  }
+
+  /* ── 13. Opstart ───────────────────────────────────────────── */
   let rTo = 0;
   function onResize() {
     clearTimeout(rTo);
-    rTo = setTimeout(() => { build(); measure(); onScroll(); lastHud = -1; }, 110);
+    rTo = setTimeout(() => { build(); measure(); buildProfile(); onScroll(); lastHud = -1; }, 110);
   }
 
-  build(); measure(); onScroll();
+  build(); measure(); buildProfile(); onScroll();
   state.shown = state.depth;
   addEventListener('scroll', onScroll, { passive: true });
   addEventListener('resize', onResize, { passive: true });
   addEventListener('orientationchange', onResize, { passive: true });
-  addEventListener('load', () => { measure(); onScroll(); });
+  addEventListener('load', () => { measure(); buildProfile(); onScroll(); });
 
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) { running = false; cancelAnimationFrame(raf); }
