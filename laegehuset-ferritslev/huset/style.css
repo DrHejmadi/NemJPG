@@ -14,7 +14,7 @@
   --cream-3:#FFFDF9;
   --ink:#241F19;
   --ink-2:#554E44;
-  --ink-3:#7A7367;
+  --ink-3:#6B6455;
   --line:#E2D8C6;
   --line-2:#CFC2AA;
 
@@ -22,6 +22,7 @@
   --green-2:#3E6B51;
   --green-soft:#E4EDE5;
   --clay:#B85A32;
+  --clay-txt:#9E4622;   /* mørk nok til lille tekst på creme */
   --clay-soft:#FAE7DD;
   --wheat:#D9A945;
   --sky:#5E93B5;
@@ -51,7 +52,7 @@ img,svg,video{max-width:100%;height:auto;display:block}
 svg{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 a{color:inherit}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.skip{position:absolute;left:-999px;top:0;z-index:300;background:var(--green);color:#fff;padding:.7rem 1.2rem;border-radius:0 0 .6rem 0;font-weight:600}
+.skip{position:absolute;left:-999px;top:0;z-index:300;background:var(--ink);color:var(--cream);padding:.7rem 1.2rem;border-radius:0 0 .6rem 0;font-weight:600}
 .skip:focus{left:0}
 :focus-visible{outline:2.5px solid var(--clay);outline-offset:3px;border-radius:4px}
 
@@ -64,7 +65,7 @@ a{color:inherit}
   display:flex;flex-wrap:wrap;justify-content:center;gap:.3rem 2rem;
   padding:.5rem var(--gut);font-size:.86rem;
 }
-.alarm p{margin:0;color:#fff;display:inline-flex;align-items:center;gap:.5rem}
+.alarm p,.alarm strong{margin:0;color:#fff;display:inline-flex;align-items:center;gap:.5rem}
 .alarm span{opacity:.85}
 .alarm a{
   font-weight:700;color:#fff;text-decoration:none;
@@ -183,7 +184,7 @@ a{color:inherit}
 
 .eyebrow{
   font-size:.74rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--clay);margin:0 0 .7rem;
+  color:var(--clay-txt);margin:0 0 .7rem;
 }
 .sec--contact .eyebrow{color:var(--wheat)}
 .h2{
@@ -206,7 +207,7 @@ a{color:inherit}
 .note{font-size:.94rem;color:var(--ink-3);max-width:70ch;margin:0 0 1.6rem}
 p{margin:0 0 1.05rem;color:var(--ink-2)}
 strong{color:var(--ink);font-weight:650}
-.ilink{color:var(--clay);font-weight:600;text-decoration:none;border-bottom:1.5px solid currentColor}
+.ilink{color:var(--clay-txt);font-weight:600;text-decoration:none;border-bottom:1.5px solid currentColor}
 
 /* ═══ Triage ═══════════════════════════════════════════════════ */
 .triage{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:0 0 1.4rem}
@@ -244,7 +245,7 @@ strong{color:var(--ink);font-weight:650}
 .panel__h2{margin-top:1.6rem !important}
 .panel p{font-size:.94rem}
 .panel__contact{line-height:1.75}
-.panel a,.tri a{color:var(--clay);font-weight:600}
+.panel a,.tri a{color:var(--clay-txt);font-weight:600}
 
 /* ═══ Kort og lister ═══════════════════════════════════════════ */
 .card{
@@ -362,7 +363,7 @@ strong{color:var(--ink);font-weight:650}
   border-radius:5rem 5rem .8rem .8rem;border:1px solid var(--line);
 }
 .p-card h4{font-family:var(--serif);font-weight:600;font-size:1.15rem;margin:0 0 .1rem;letter-spacing:-.01em}
-.p-role{font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--clay);margin:0 0 .7rem}
+.p-role{font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--clay-txt);margin:0 0 .7rem}
 .p-card ul{list-style:none;margin:0;padding:0;display:grid;gap:.32rem}
 .p-card ul li{position:relative;padding-left:.85rem;font-size:.86rem;color:var(--ink-2);line-height:1.55}
 .p-card ul li::before{content:"";position:absolute;left:0;top:.62em;width:.3rem;height:.3rem;border-radius:50%;background:var(--line-2)}

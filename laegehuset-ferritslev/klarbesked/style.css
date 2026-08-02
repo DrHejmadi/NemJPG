@@ -60,7 +60,7 @@ img,svg{max-width:100%;height:auto;display:block}
 svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 a{color:inherit}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.skip{position:absolute;left:-999px;top:0;z-index:300;background:var(--sig);color:#fff;padding:.7rem 1.2rem;font-weight:700}
+.skip{position:absolute;left:-999px;top:0;z-index:300;background:var(--ink);color:var(--bg);padding:.7rem 1.2rem;font-weight:700}
 .skip:focus{left:0}
 :focus-visible{outline:3px solid var(--sig);outline-offset:2px}
 
@@ -79,7 +79,7 @@ html[data-theme="dark"] .siren{color:#0B0B0C}
 }
 .siren a:last-child{border-right:0}
 .siren a:hover{background:rgba(0,0,0,.14)}
-.siren b{font-size:1.02rem;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.siren b{color:inherit;font-size:1.02rem;font-weight:800;letter-spacing:-.02em;line-height:1.1}
 .siren span{font-size:.68rem;font-weight:500;opacity:.9;letter-spacing:.02em;line-height:1.25}
 
 /* ═══ Header ═══════════════════════════════════════════════════ */

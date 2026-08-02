@@ -60,7 +60,7 @@ img,video,svg{max-width:100%;height:auto;display:block}
 svg{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.skip{position:absolute;left:-999px;top:0;z-index:200;background:var(--glow);color:#02202f;padding:.7rem 1.2rem;border-radius:0 0 .6rem 0;font-weight:600}
+.skip{position:absolute;left:-999px;top:0;z-index:200;background:#02202f;color:var(--glow);border:1px solid var(--glow);padding:.7rem 1.2rem;border-radius:0 0 .6rem 0;font-weight:600}
 .skip:focus{left:0}
 
 :focus-visible{outline:2px solid var(--glow);outline-offset:3px;border-radius:3px}
@@ -319,7 +319,7 @@ strong{color:var(--ink);font-weight:600}
 .porthole__rim::before{top:.6rem;left:.6rem}
 .porthole__rim::after{bottom:.6rem;right:.6rem}
 .porthole video{
-  width:100%;border-radius:1rem;background:#01121b;display:block;
+  width:100%;border-radius:1rem;background:#01121b;color:#fff;display:block;
   aspect-ratio:16/9;object-fit:cover;
 }
 .porthole__glare{
