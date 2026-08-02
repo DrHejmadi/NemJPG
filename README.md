@@ -146,7 +146,8 @@ find-speciallæge-værktøjet.
 * **Print.** Alle fire sider har et print-stylesheet: baggrunde og HUD forsvinder,
   foldelister åbnes, teksten bliver sort på hvidt.
 * **Ydelse.** Canvas-løkkerne stopper på `visibilitychange`, scroll-handlers er
-  rAF-throttlede, og partikelantal skaleres efter skærmareal.
+  rAF-throttlede, og partikelantal skaleres efter skærmareal. Første visning vejer
+  120–320 KB pr. side; videoen hentes først, når nogen trykker play (`preload="none"`).
 
 ### Struktureret data
 
@@ -193,9 +194,14 @@ Til `hejmadi.github.io` kan mappen lægges direkte ind som fx
   (søg efter `laegevejen.dk` i de to lægehussider).
 * **Helligdage.** Åbningsstatus regner kun med hverdage kontra weekend. Skal den også
   kende danske helligdage, skal der en lille datotabel ind i `app.js`.
-* **Ventelisten til kurset.** Kontaktoplysningen ligger i billedet
-  `assets/img/dyk/tilmelding.webp`. Overvej at skrive mailadressen som tekst også — den
-  kan hverken kopieres, læses op eller klikkes som den er nu.
+* **Ventelisten til kurset.** Kontaktoplysningen ligger kun i billedet
+  `assets/img/dyk/tilmelding.webp`. Det er formentlig med vilje — en adresse i et billede
+  bliver ikke høstet af spamrobotter. Prisen er, at den hverken kan kopieres, klikkes
+  eller læses op af en skærmlæser. Vil du have begge dele, er en almindelig løsning at
+  skrive adressen som tekst og sætte den sammen med JavaScript. Sig til, hvis den skal ind.
+* **Introvideoen** fylder 11 MB. Den hentes ikke, før nogen trykker play, så den koster
+  intet ved sidevisning — men skal nogen se den på mobildata, er det stadig 11 MB.
+  En omkodning til H.264 720p ville typisk lande på 2–3 MB uden synligt tab.
 * **Billedernes ophav.** Dykkerbillederne ser ud til at være AI-genererede (der er et
   sparkle-mærke i nederste højre hjørne på flere af dem). Til en artikel i et
   fagtidsskrift bør det formentlig oplyses.
