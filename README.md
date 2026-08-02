@@ -189,6 +189,11 @@ Til `hejmadi.github.io` kan mappen lægges direkte ind som fx
 
 ## Ting du selv skal beslutte
 
+* **To navne staves forskelligt i jeres eget indhold**, og jeg har ladet begge stavemåder
+  stå, som de står i dag — men I skal nok vælge én af hver:
+  * «Dorte Oxholm Olsen» (overskrift på lægesiden) vs. «Dorthe Oxholm» (billedtekst og forside)
+  * «Rikke Bak Toft Andreasen» (forside) vs. «Rikke Toft Bak Andreasen» (lægesiden)
+  * «Nicolai Soll» (forside) vs. «Nicolai Soll Osei» (lægesiden)
 * **Bookinglinket.** `https://www.laegevejen.dk/` er brugt som mål for «Book tid samme
   dag». Hvis I har et direkte dybt link ind i jeres booking, skal det ind i stedet
   (søg efter `laegevejen.dk` i de to lægehussider).
