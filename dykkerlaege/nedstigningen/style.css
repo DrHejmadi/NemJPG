@@ -56,7 +56,7 @@ body{
   text-rendering:optimizeLegibility;
 }
 
-img,video,svg{max-width:100%;display:block}
+img,video,svg{max-width:100%;height:auto;display:block}
 svg{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}

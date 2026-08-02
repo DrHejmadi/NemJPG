@@ -56,7 +56,7 @@ body{
   font-family:var(--sans);font-size:clamp(1rem,.96rem + .25vw,1.1rem);
   line-height:1.62;overflow-x:hidden;-webkit-font-smoothing:antialiased;
 }
-img,svg{max-width:100%;display:block}
+img,svg{max-width:100%;height:auto;display:block}
 svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 a{color:inherit}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -327,7 +327,7 @@ strong,b{color:var(--ink);font-weight:700}
 .roster--sm{grid-template-columns:repeat(6,1fr)}
 .roster li{display:flex;flex-direction:column;gap:.28rem}
 .roster img{
-  width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 20%;
+  width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;object-position:center 20%;
   border-radius:.5rem;border:1px solid var(--line);
   filter:grayscale(1) contrast(1.05);transition:filter .5s var(--ease);
 }

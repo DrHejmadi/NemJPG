@@ -64,7 +64,7 @@ body{
   line-height:1.68;overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
 }
-img,video{max-width:100%;display:block}
+img,video{max-width:100%;height:auto;display:block}
 svg{fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 a{color:inherit}
 
