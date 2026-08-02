@@ -247,7 +247,7 @@ strong,b{color:var(--ink);font-weight:700}
 .path h3{font-size:1.15rem;font-weight:700;letter-spacing:-.02em;margin:0 0 .55rem;line-height:1.25}
 .path p{font-size:.94rem;margin:0 0 1rem}
 .go{
-  display:inline-flex;align-items:center;gap:.4rem;text-decoration:none;
+  display:inline-flex;align-items:center;gap:.4rem;text-decoration:none;padding-block:.25rem;
   font-weight:700;font-size:.9rem;color:var(--sig);
   border-bottom:2px solid transparent;transition:border-color .2s,gap .25s var(--ease);
 }
@@ -305,7 +305,7 @@ strong,b{color:var(--ink);font-weight:700}
 }
 .flag--warn{background:var(--red-soft);border-left-color:var(--red)}
 
-.tbl{width:100%;border-collapse:collapse;margin:.6rem 0 1rem;font-size:.94rem}
+.tbl{width:100%;border-collapse:collapse;margin:.6rem 0 1rem;font-size:.94rem;table-layout:fixed}
 .tbl th{text-align:left;font-weight:600;padding:.55rem .8rem .55rem 0;border-bottom:1px solid var(--line);vertical-align:top}
 .tbl td{padding:.55rem 0;border-bottom:1px solid var(--line);color:var(--ink-2)}
 .tbl--price thead th{

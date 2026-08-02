@@ -397,8 +397,9 @@ strong{color:var(--ink);font-weight:650}
 .tile .ticks{margin:.8rem 0 1rem}
 
 /* ═══ Pristabel ════════════════════════════════════════════════ */
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:1.2rem}
 .prices{
-  width:100%;border-collapse:collapse;margin-top:1.2rem;
+  width:100%;min-width:19rem;border-collapse:collapse;
   background:var(--cream-3);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
 }
 .prices thead th{
@@ -455,7 +456,7 @@ strong{color:var(--ink);font-weight:650}
 }
 .foot__nav{display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;margin-bottom:1.6rem}
 .foot__nav a{
-  text-decoration:none;color:color-mix(in srgb,var(--cream) 78%,transparent);font-size:.92rem;
+  text-decoration:none;color:color-mix(in srgb,var(--cream) 78%,transparent);font-size:.92rem;padding-block:.25rem;
   border-bottom:1px solid transparent;transition:color .25s,border-color .25s;
 }
 .foot__nav a:hover{color:var(--wheat);border-bottom-color:currentColor}
@@ -479,7 +480,7 @@ strong{color:var(--ink);font-weight:650}
 @media (max-width:860px){
   .menu{
     position:fixed;inset:0;z-index:75;flex-direction:column;justify-content:center;gap:.2rem;
-    background:var(--cream);padding:0 var(--gut);
+    background:var(--cream);padding:0 var(--gut);overflow:hidden;
     opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;
   }
   .menu.open{opacity:1;visibility:visible}

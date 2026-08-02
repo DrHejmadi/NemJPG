@@ -441,9 +441,9 @@ input[type=range]::-moz-range-thumb{
 .bleed img{width:100%;height:clamp(13rem,42vh,26rem);object-fit:cover}
 
 /* ═══ Program ══════════════════════════════════════════════════ */
-.sched{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--ink)}
+.sched{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--ink);min-width:0}
 .sched__day{
-  padding:1.5rem clamp(1rem,2vw,1.8rem) 1.8rem;
+  min-width:0;padding:1.5rem clamp(1rem,2vw,1.8rem) 1.8rem;
   border-bottom:1px solid var(--rule);border-right:1px solid var(--rule);
 }
 .sched__day:nth-child(2n){border-right:0}
@@ -456,7 +456,7 @@ input[type=range]::-moz-range-thumb{
   font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;
   color:var(--ink-3);font-weight:400;
 }
-.sched table{width:100%;border-collapse:collapse}
+.sched table{width:100%;border-collapse:collapse;table-layout:fixed}
 .sched th{
   text-align:left;font-family:var(--mono);font-size:.68rem;font-weight:500;
   color:var(--sig);white-space:nowrap;padding:.55rem .9rem .55rem 0;
@@ -490,7 +490,7 @@ input[type=range]::-moz-range-thumb{
 .faculty__txt p:last-child{margin:0}
 .faculty__sk span{color:var(--ink);font-weight:600}
 .faculty__lnk{
-  display:inline-flex;align-items:center;gap:.4rem;white-space:nowrap;
+  display:inline-flex;align-items:center;gap:.4rem;white-space:nowrap;padding-block:.28rem;
   font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;
   text-decoration:none;color:var(--sig);border-bottom:1px solid transparent;
   transition:border-color .25s;
@@ -500,7 +500,7 @@ input[type=range]::-moz-range-thumb{
 
 /* ═══ Datablad ═════════════════════════════════════════════════ */
 .datasheet{
-  width:100%;border-collapse:collapse;margin:0 0 clamp(2rem,5vh,3.2rem);
+  width:100%;border-collapse:collapse;table-layout:fixed;margin:0 0 clamp(2rem,5vh,3.2rem);
   border-top:1px solid var(--ink);
 }
 .datasheet th{
@@ -568,7 +568,7 @@ input[type=range]::-moz-range-thumb{
   .mast__nav{
     position:fixed;inset:0;top:0;z-index:70;
     flex-direction:column;justify-content:center;gap:.2rem;
-    background:var(--paper);padding:0 var(--gut);
+    background:var(--paper);padding:0 var(--gut);overflow:hidden;
     opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;
   }
   .mast__nav.open{opacity:1;visibility:visible}

@@ -375,7 +375,7 @@ strong{color:var(--ink);font-weight:600}
 .wide img{width:100%;height:clamp(13rem,34vh,24rem);object-fit:cover}
 
 /* ═══ Kort ═════════════════════════════════════════════════════ */
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.1rem}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(15rem,100%),1fr));gap:1.1rem}
 .card{
   padding:1.7rem 1.5rem;border-radius:1.1rem;
   background:var(--pane);border:1px solid var(--hair);
@@ -416,7 +416,7 @@ strong{color:var(--ink);font-weight:600}
 .ticks em{font-style:italic;color:var(--ink)}
 
 /* ═══ Program ══════════════════════════════════════════════════ */
-.days{display:grid;grid-template-columns:repeat(auto-fit,minmax(19rem,1fr));gap:1.1rem}
+.days{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(19rem,100%),1fr));gap:1.1rem}
 .day{
   border-radius:1.1rem;overflow:hidden;
   background:var(--pane);border:1px solid var(--hair);
@@ -446,7 +446,7 @@ strong{color:var(--ink);font-weight:600}
 }
 
 /* ═══ Undervisere ══════════════════════════════════════════════ */
-.people{display:grid;grid-template-columns:repeat(auto-fit,minmax(17.5rem,1fr));gap:1.1rem;margin-top:.6rem}
+.people{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(17.5rem,100%),1fr));gap:1.1rem;margin-top:.6rem}
 .person{
   padding:1.7rem 1.5rem;border-radius:1.1rem;
   background:var(--pane);border:1px solid var(--hair);
@@ -471,8 +471,8 @@ strong{color:var(--ink);font-weight:600}
 
 /* ═══ Praktisk ═════════════════════════════════════════════════ */
 .facts{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));
-  gap:1px;margin:0 0 3rem;padding:0;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(min(13rem,100%),1fr));
+  gap:1px;margin:0 0 3rem;padding:0;min-width:0;
   background:var(--hair);border:1px solid var(--hair);border-radius:1.1rem;overflow:hidden;
 }
 .facts>div{
@@ -530,7 +530,7 @@ strong{color:var(--ink);font-weight:600}
     position:fixed;inset:0;transform:none;z-index:57;
     display:grid;place-items:center;
     background:linear-gradient(160deg,rgba(3,26,40,.94),rgba(1,14,24,.97));
-    backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+    backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);overflow:hidden;
     opacity:0;visibility:hidden;
     transition:opacity .4s var(--ease),visibility .4s;
   }
