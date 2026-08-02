@@ -118,6 +118,11 @@ Rettede eksempler:
 | «udenlanske prostituerede» | «udenlandske prostituerede» |
 | «kunstig inteligens» | «kunstig intelligens» |
 | «universiterne» | «universiteterne» |
+| «Vi har aktuelt 2 ansat til at gøre rent» | «… 2 ansatte …» |
+
+Ét sted har jeg ensrettet, fordi de to former nu står på samme side og ellers ville se ud
+som to forskellige personer: **Rikke Toft Bak Andreasen** (formen fra hendes egen profil)
+bruges nu også i velkomstafsnittet, hvor forsiden i dag skriver «Rikke Bak Toft Andreasen».
 
 **Nyskrevet tekst** — det eneste, der ikke stod på de gamle sider — er den korte
 brugstekst, som de nye elementer kræver: introduktionen til instrumentet, etiketterne i
@@ -189,10 +194,7 @@ Til `hejmadi.github.io` kan mappen lægges direkte ind som fx
 
 ## Ting du selv skal beslutte
 
-* **Tre steder modsiger jeres nuværende sider hinanden.** Jeg har ikke gættet — I skal vælge:
-  * **Kørekortsattest:** prislisten siger «750 kr. inkl. moms», mens kørekortsiden siger
-    «500,- kr. … dog 750 kr. ved erhvervskørekort til personbefordring». Begge står i dag på
-    sitet; nu ligger de tæt på hinanden og er lette at se. Ret det ene sted.
+* **To steder modsiger jeres nuværende sider hinanden.** Jeg har ikke gættet — I skal vælge:
   * **Receptfornyelse pr. telefon:** receptsiden siger «telefonisk mellem kl. 9.00–12.00»,
     men åbningstiderne siger, at telefonen er åben 8.30–11.45 med pause 9.45–10.15 og lukker
     kl. 11.45. De to kan ikke passe samtidig.
@@ -208,10 +210,12 @@ Til `hejmadi.github.io` kan mappen lægges direkte ind som fx
 * **Bookinglinket.** `https://www.laegevejen.dk/` er brugt som mål for «Book tid samme
   dag». Hvis I har et direkte dybt link ind i jeres booking, skal det ind i stedet
   (søg efter `laegevejen.dk` i de to lægehussider).
-* **Helligdage.** Åbningsstatus regner kun med hverdage kontra weekend. På juledag vil den
-  altså sige «Telefonen er åben». Skal den kende danske helligdage, skal der en datotabel
-  (eller en påskeberegning) ind i begge `app.js` — sig til, så lægger jeg den ind.
-  Onsdagens lange konsultationsdag til kl. 16.15 er der taget højde for.
+* **Helligdage.** Åbningsstatus kender nytårsdag, skærtorsdag, langfredag, påskedag,
+  2. påskedag, Kristi himmelfartsdag, pinsedag, 2. pinsedag, juledag og 2. juledag —
+  påsken beregnes, så det holder år efter år. Store bededag er udeladt, da den ikke længere
+  er helligdag. Juleaftensdag og nytårsaftensdag tæller som almindelige hverdage; sig til,
+  hvis I vil have dem med som lukkedage. Onsdagens konsultation til kl. 16.15 er der også
+  taget højde for.
 * **Ventelisten til kurset.** Kontaktoplysningen ligger kun i billedet
   `assets/img/dyk/tilmelding.webp`. Det er formentlig med vilje — en adresse i et billede
   bliver ikke høstet af spamrobotter. Prisen er, at den hverken kan kopieres, klikkes

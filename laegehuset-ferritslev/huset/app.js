@@ -15,6 +15,45 @@
      Vagtmobil    12.00–16.00 (kun uopsætteligt behov)
      Lægevagten   16.00–08.00 samt weekend
      ─────────────────────────────────────────────────────────── */
+
+  /* ── Danske helligdage ────────────────────────────────────────
+     Lægehuset følger lægevagtens regler: »I weekend samt aften/nat
+     og helligdage: Ring til Lægevagten«. Store bededag er ikke
+     medtaget — den er ikke længere en helligdag i Danmark.
+     ─────────────────────────────────────────────────────────── */
+  function easter(y) {
+    const a = y % 19, b = Math.floor(y / 100), c = y % 100;
+    const d = Math.floor(b / 4), e = b % 4, f = Math.floor((b + 8) / 25);
+    const g = Math.floor((b - f + 1) / 3), h = (19 * a + b - d - g + 15) % 30;
+    const i = Math.floor(c / 4), k = c % 4;
+    const l = (32 + 2 * e + 2 * i - h - k) % 7;
+    const m = Math.floor((a + 11 * h + 22 * l) / 451);
+    const mo = Math.floor((h + l - 7 * m + 114) / 31);
+    const da = ((h + l - 7 * m + 114) % 31) + 1;
+    return new Date(y, mo - 1, da);
+  }
+  let holiCache = { year: 0, map: null };
+  function holidayName(now) {
+    const y = now.getFullYear();
+    if (holiCache.year !== y) {
+      const E = easter(y), key = dt => dt.getMonth() + '-' + dt.getDate();
+      const shift = n => { const x = new Date(E); x.setDate(E.getDate() + n); return x; };
+      holiCache = { year: y, map: {
+        '0-1':   'nytårsdag',
+        '11-25': 'juledag',
+        '11-26': '2. juledag',
+        [key(shift(-3))]: 'skærtorsdag',
+        [key(shift(-2))]: 'langfredag',
+        [key(shift(0))]:  'påskedag',
+        [key(shift(1))]:  '2. påskedag',
+        [key(shift(39))]: 'Kristi himmelfartsdag',
+        [key(shift(49))]: 'pinsedag',
+        [key(shift(50))]: '2. pinsedag'
+      } };
+    }
+    return holiCache.map[now.getMonth() + '-' + now.getDate()] || null;
+  }
+
   const statusEl  = document.getElementById('status');
   const statusTxt = document.getElementById('statusTxt');
 
@@ -24,6 +63,9 @@
     const wed = day === 3;
     const closeCons = wed ? 16.25 : 14;
 
+    const holi = holidayName(now);
+    if (holi)
+      return ['closed', `Lukket — det er ${holi}. Ring til Lægevagten på 70 11 07 07`];
     if (day === 0 || day === 6)
       return ['closed', 'Lukket i weekenden — ring til Lægevagten på 70 11 07 07'];
 
@@ -63,7 +105,7 @@
     const now = new Date();
     const t = now.getHours() + now.getMinutes()/60;
     const day = now.getDay();
-    if (day === 0 || day === 6 || t < 7 || t > 17) { dbNow.classList.add('off'); return; }
+    if (day === 0 || day === 6 || holidayName(now) || t < 7 || t > 17) { dbNow.classList.add('off'); return; }
     dbNow.classList.remove('off');
     dbNow.style.left = (((t - 7) / 10) * 100).toFixed(2) + '%';
   }

@@ -47,6 +47,21 @@
     });
   });
 
+  /* Sektioner uden foldeliste skal også kunne findes */
+  [
+    ['#kontakt',   'Kontakt, adresse og telefonnumre', 'Kontakt',
+     'kontakt, adresse, telefon, telefonnummer, mail, e-mail, fax, ydernummer, cvr, lokationsnummer, facebook, ørbækvej, ferritslev, find os, vej'],
+    ['#os',        'Hvem er vi — læger, personale og praksisassistenter', 'Hvem er vi',
+     'hvem er vi, læger, lægerne, ejere, sygeplejersker, farmakonom, uddannelseslæge, praksisassistenter, personale, medarbejdere, hvem, navne, faste dage'],
+    ['#vej',       'Din vej ind — hvilken tid skal du bruge?', 'Sådan kommer du ind',
+     'vej ind, hvilken tid, book, booking, hvordan, kontakt os, min læge app']
+  ].forEach(([sel, title, group, tags]) => {
+    const el = document.querySelector(sel);
+    if (!el) return;
+    index.push({ el, title, group, tags,
+      hay: norm([title, group, tags, el.textContent].join(' ')) });
+  });
+
   const q       = document.getElementById('q');
   const results = document.getElementById('results');
   const clearQ  = document.getElementById('clearQ');
@@ -117,15 +132,22 @@
 
   function jump(item) {
     show(false);
+    const isDetails = item.el.tagName === 'DETAILS';
     document.querySelectorAll('details.q[open]').forEach(d => { if (d !== item.el) d.open = false; });
-    item.el.open = true;
+    if (isDetails) item.el.open = true;
     const y = item.el.getBoundingClientRect().top + scrollY - 110;
     scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
     item.el.classList.remove('hit');
     void item.el.offsetWidth;
     item.el.classList.add('hit');
     setTimeout(() => item.el.classList.remove('hit'), 1800);
-    item.el.querySelector('summary').focus({ preventScroll: true });
+    const focusTarget = isDetails
+      ? item.el.querySelector('summary')
+      : item.el.querySelector('h2, h3, a, button');
+    if (focusTarget) {
+      if (!isDetails && !focusTarget.hasAttribute('tabindex')) focusTarget.tabIndex = -1;
+      focusTarget.focus({ preventScroll: true });
+    }
   }
 
   function search() {
@@ -187,6 +209,45 @@
   });
 
   /* ══ 2. Live-status ══════════════════════════════════════════ */
+
+  /* ── Danske helligdage ────────────────────────────────────────
+     Lægehuset følger lægevagtens regler: »I weekend samt aften/nat
+     og helligdage: Ring til Lægevagten«. Store bededag er ikke
+     medtaget — den er ikke længere en helligdag i Danmark.
+     ─────────────────────────────────────────────────────────── */
+  function easter(y) {
+    const a = y % 19, b = Math.floor(y / 100), c = y % 100;
+    const d = Math.floor(b / 4), e = b % 4, f = Math.floor((b + 8) / 25);
+    const g = Math.floor((b - f + 1) / 3), h = (19 * a + b - d - g + 15) % 30;
+    const i = Math.floor(c / 4), k = c % 4;
+    const l = (32 + 2 * e + 2 * i - h - k) % 7;
+    const m = Math.floor((a + 11 * h + 22 * l) / 451);
+    const mo = Math.floor((h + l - 7 * m + 114) / 31);
+    const da = ((h + l - 7 * m + 114) % 31) + 1;
+    return new Date(y, mo - 1, da);
+  }
+  let holiCache = { year: 0, map: null };
+  function holidayName(now) {
+    const y = now.getFullYear();
+    if (holiCache.year !== y) {
+      const E = easter(y), key = dt => dt.getMonth() + '-' + dt.getDate();
+      const shift = n => { const x = new Date(E); x.setDate(E.getDate() + n); return x; };
+      holiCache = { year: y, map: {
+        '0-1':   'nytårsdag',
+        '11-25': 'juledag',
+        '11-26': '2. juledag',
+        [key(shift(-3))]: 'skærtorsdag',
+        [key(shift(-2))]: 'langfredag',
+        [key(shift(0))]:  'påskedag',
+        [key(shift(1))]:  '2. påskedag',
+        [key(shift(39))]: 'Kristi himmelfartsdag',
+        [key(shift(49))]: 'pinsedag',
+        [key(shift(50))]: '2. pinsedag'
+      } };
+    }
+    return holiCache.map[now.getMonth() + '-' + now.getDate()] || null;
+  }
+
   const live = document.getElementById('live');
   const big  = document.getElementById('liveBig');
   const sub  = document.getElementById('liveSub');
@@ -206,7 +267,12 @@
     const closeCons = day === 3 ? 16.25 : 14;   /* onsdag har konsultation til 16.15 */
     let kind, head, text, next = '';
 
-    if (day === 0 || day === 6) {
+    const holi = holidayName(now);
+    if (holi) {
+      kind = 'closed'; head = 'Lukket';
+      text = `Det er ${holi}. Ved akut behov: ring til Lægevagten på 70 11 07 07.`;
+      next = 'Vi åbner igen den første hverdag kl. 07.30.';
+    } else if (day === 0 || day === 6) {
       kind = 'closed'; head = 'Lukket';
       text = 'Det er weekend. Ved akut behov: ring til Lægevagten på 70 11 07 07.';
       const daysTo = day === 6 ? 2 : 1;
@@ -259,7 +325,7 @@
     sub.textContent = text;
     nxt.textContent = next;
 
-    const weekend = (day === 0 || day === 6);
+    const weekend = (day === 0 || day === 6) || !!holi;
     strip.forEach(li => {
       const a = parseFloat(li.dataset.from), b = parseFloat(li.dataset.to);
       li.classList.toggle('now', !weekend && t >= a && t < b);
