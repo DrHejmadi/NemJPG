@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dykkerlægen Odense – Helbredsundersøgelse af dykkere</title>
+<meta name="description" content="Autoriseret dykkerlæge i Odense C. Årlig erhvervsdykkerundersøgelse og fritids- og sportsdykkerattest hos læge Michael Skov Hejmadi og sygeplejerske Anita Skov Hejmadi." />
+<link rel="canonical" href="https://dykkerlaege.hejmadi.com/" />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#0A2540" />
+<link rel="icon" href="favicon.svg" type="image/svg+xml" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="da_DK" />
+<meta property="og:site_name" content="Dykkerlægen Odense" />
+<meta property="og:title" content="Dykkerlægen Odense – Helbredsundersøgelse af dykkere" />
+<meta property="og:description" content="Autoriseret dykkerlæge i Odense C. Årlig erhvervsdykkerundersøgelse og fritids- og sportsdykkerattest." />
+<meta property="og:url" content="https://dykkerlaege.hejmadi.com/" />
+<meta property="og:image" content="https://dykkerlaege.hejmadi.com/img/og-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Michael og Anita Skov Hejmadi under vandet" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://dykkerlaege.hejmadi.com/img/og-image.jpg" />
+<style>
+  :root{
+    --navy:#0A2540; --navy-2:#123a5e; --navy-deep:#061a2e;
+    --teal:#16A6B8; --teal-dark:#0F7E8C; --teal-light:#E4F5F7;
+    --ink:#1A2B3C; --muted:#5B7184; --line:#E2E9F0;
+    --bg:#F5F8FB; --card:#FFFFFF; --sand:#F1F5F9;
+    --radius:14px; --maxw:1140px;
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+    --shadow:0 1px 2px rgba(10,37,64,.06), 0 8px 24px rgba(10,37,64,.06);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth; scroll-padding-top:84px}
+  body{margin:0;font-family:var(--font);color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  :focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+  h1,h2,h3{line-height:1.2;color:var(--navy);margin:0 0 .4em}
+  h1{font-size:clamp(2rem,4vw,3.1rem);font-weight:700;letter-spacing:-.02em}
+  h2{font-size:clamp(1.5rem,2.6vw,2.1rem);font-weight:700;letter-spacing:-.01em}
+  h3{font-size:1.2rem;font-weight:600}
+  p{margin:0 0 1em}
+  a{color:var(--teal-dark);text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .eyebrow{display:inline-block;font-size:.8rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-dark);margin-bottom:14px}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:1rem;padding:14px 26px;border-radius:999px;cursor:pointer;border:2px solid transparent;transition:.18s;white-space:nowrap}
+  .btn-primary{background:var(--teal);color:#fff}
+  .btn-primary:hover{background:var(--teal-dark)}
+  .btn-ghost{background:transparent;border-color:rgba(255,255,255,.4);color:#fff}
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+  .btn-outline{background:#fff;border-color:var(--line);color:var(--navy)}
+  .btn-outline:hover{border-color:var(--teal)}
+
+  /* HEADER */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:700;color:var(--navy);font-size:1.18rem;letter-spacing:-.01em}
+  .brand .mark{width:38px;height:38px;flex:none}
+  .navlinks{display:flex;align-items:center;gap:28px;list-style:none;margin:0;padding:0}
+  .navlinks a{color:var(--ink);font-weight:500;font-size:.97rem;transition:.15s}
+  .navlinks a:hover{color:var(--teal-dark)}
+  .nav-cta{display:flex;align-items:center;gap:16px}
+  .nav-cta .btn{padding:10px 20px;font-size:.95rem}
+  .burger{display:none;background:none;border:0;cursor:pointer;color:var(--navy)}
+
+  /* HERO */
+  .hero{position:relative;background:linear-gradient(160deg,var(--navy) 0%,var(--navy-deep) 100%);color:#fff;overflow:hidden}
+  .band-img{position:relative;height:380px;background-image:url('img/dykkere-rev.jpg');background-size:cover;background-position:center 40%;display:flex;align-items:flex-end;justify-content:center}
+  .band-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,37,64,.10) 40%,rgba(10,37,64,.78) 100%)}
+  .band-img p{position:relative;z-index:2;color:#fff;font-size:1.3rem;font-weight:600;max-width:30ch;text-align:center;margin:0;padding:0 24px 34px;line-height:1.4;text-shadow:0 1px 12px rgba(6,26,46,.6)}
+  @media(max-width:700px){.band-img{height:260px}.band-img p{font-size:1.05rem;padding-bottom:24px}}
+  .hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;padding:84px 24px 120px}
+  .hero h1{color:#fff;margin-bottom:.5em}
+  .hero p.lead{font-size:1.18rem;color:#C7D6E6;max-width:34ch;margin-bottom:28px}
+  .hero .eyebrow{color:#6FD3DF}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-trust{display:flex;gap:26px;margin-top:38px;flex-wrap:wrap}
+  .hero-trust div{display:flex;align-items:center;gap:9px;font-size:.92rem;color:#AFC3D6}
+  .hero-trust svg{flex:none;color:#6FD3DF}
+  .hero-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);padding:28px;backdrop-filter:blur(4px)}
+  .hero-card h3{color:#fff;font-size:1.05rem;margin-bottom:16px}
+  .hero-card ul{list-style:none;margin:0;padding:0}
+  .hero-card li{display:flex;gap:11px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.1);color:#DCE7F1;font-size:.97rem}
+  .hero-card li:last-child{border:0}
+  .hero-card .price{margin-left:auto;font-weight:700;color:#6FD3DF}
+  .wave{position:absolute;bottom:-1px;left:0;width:100%;line-height:0;z-index:1}
+  .wave svg{width:100%;height:90px;display:block}
+
+  section{padding:80px 0}
+  .section-head{max-width:680px;margin-bottom:48px}
+  .section-head.center{margin:0 auto 48px;text-align:center}
+
+  /* SERVICES */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:34px 30px;box-shadow:var(--shadow);transition:.2s}
+  .card:hover{transform:translateY(-4px);box-shadow:0 12px 34px rgba(10,37,64,.10)}
+  .card .ic{width:54px;height:54px;border-radius:14px;background:var(--teal-light);color:var(--teal-dark);display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+  .card ul{margin:16px 0 0;padding:0;list-style:none}
+  .card li{display:flex;gap:10px;padding:7px 0;color:var(--muted);font-size:.95rem}
+  .card li svg{flex:none;color:var(--teal);margin-top:3px}
+  .tag{display:inline-block;font-size:.78rem;font-weight:600;color:var(--teal-dark);background:var(--teal-light);padding:5px 12px;border-radius:999px;margin-bottom:18px}
+  .note{background:var(--sand);border:1px dashed var(--line);border-radius:var(--radius);padding:24px 28px;margin-top:28px;display:flex;gap:16px;align-items:flex-start}
+  .note svg{flex:none;color:var(--navy-2);margin-top:2px}
+  .note b{color:var(--navy)}
+
+  /* STEPS */
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:22px;counter-reset:s}
+  .step{position:relative;padding:30px 26px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius)}
+  .step::before{counter-increment:s;content:counter(s);position:absolute;top:-18px;left:26px;width:40px;height:40px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.05rem}
+  .step h3{margin-top:8px;font-size:1.08rem}
+  .step p{margin:0;color:var(--muted);font-size:.95rem}
+
+  /* PRICES */
+  .price-band{background:var(--navy);color:#fff}
+  .price-band h2,.price-band .eyebrow{color:#fff}
+  .price-band .eyebrow{color:#6FD3DF}
+  .price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;margin-top:8px}
+  .ptile{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);padding:30px}
+  .ptile h3{color:#fff;font-size:1.1rem}
+  .ptile .amount{font-size:2.4rem;font-weight:700;color:#fff;margin:10px 0 2px}
+  .ptile .amount span{font-size:1rem;font-weight:500;color:#9FB6C9}
+  .ptile p{color:#AFC3D6;font-size:.93rem;margin:0}
+  .price-foot{margin-top:26px;color:#9FB6C9;font-size:.9rem}
+
+  /* OM OS */
+  .people{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+  .person{display:flex;gap:22px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow)}
+  .avatar{position:relative;width:104px;height:104px;border-radius:16px;flex:none;background:linear-gradient(160deg,var(--navy-2),var(--navy));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.6rem;letter-spacing:.02em;overflow:hidden}
+  .avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .person h3{margin-bottom:2px}
+  .person .role{color:var(--teal-dark);font-weight:600;font-size:.92rem;margin-bottom:10px}
+  .person p{color:var(--muted);font-size:.94rem;margin:0}
+
+  /* CONTACT */
+  .contact{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+  .info-row{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+  .info-row:last-child{border:0}
+  .info-row .ic{width:44px;height:44px;border-radius:12px;background:var(--teal-light);color:var(--teal-dark);display:flex;align-items:center;justify-content:center;flex:none}
+  .info-row .lbl{font-size:.82rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+  .info-row .val{font-weight:600;color:var(--navy);font-size:1.05rem}
+  .map{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);min-height:340px;background:
+     repeating-linear-gradient(45deg,#E8EFF5,#E8EFF5 14px,#EEF3F8 14px,#EEF3F8 28px);
+     display:flex;align-items:center;justify-content:center;color:var(--muted);text-align:center;flex-direction:column;gap:8px}
+  .map svg{color:var(--teal)}
+
+  /* CTA */
+  .cta{background:linear-gradient(160deg,var(--teal-dark),var(--teal));color:#fff;border-radius:24px;padding:60px;text-align:center;margin:0 24px}
+  .cta h2{color:#fff}
+  .cta p{color:#E0F6F8;max-width:46ch;margin:0 auto 26px;font-size:1.1rem}
+  .cta .btn-primary{background:#fff;color:var(--teal-dark)}
+  .cta .btn-primary:hover{background:#eaffff}
+
+  /* FOOTER */
+  footer{background:var(--navy-deep);color:#9FB6C9;padding:60px 0 30px;margin-top:80px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1)}
+  footer .brand{color:#fff;margin-bottom:14px}
+  footer h4{color:#fff;font-size:.95rem;margin:0 0 14px}
+  footer ul{list-style:none;margin:0;padding:0}
+  footer li{padding:5px 0}
+  footer a{color:#9FB6C9}
+  footer a:hover{color:#fff}
+  .foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:24px;font-size:.85rem}
+  .ph{color:#D98A2B;font-weight:600}
+
+  @media(max-width:880px){
+    .navlinks,.nav-cta .btn{display:none}
+    .burger{display:block}
+    .hero .wrap{grid-template-columns:1fr;gap:36px;padding:56px 24px 100px}
+    .people,.contact,.foot-grid{grid-template-columns:1fr}
+    .cta{padding:44px 26px}
+    section{padding:60px 0}
+  }
+  .mobile-menu{display:none;flex-direction:column;background:#fff;border-bottom:1px solid var(--line);padding:12px 24px}
+  .mobile-menu a{padding:12px 0;color:var(--ink);font-weight:500;border-bottom:1px solid var(--line)}
+  .mobile-menu.open{display:flex}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Spring til hovedindhold</a>
+<style>.skip-link{position:absolute;left:-999px;top:0;background:#0A2540;color:#fff;padding:10px 16px;border-radius:0 0 8px 0;z-index:200}.skip-link:focus{left:0}</style>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top">
+      <svg class="mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="20" cy="20" r="19" fill="#0A2540"/>
+        <path d="M11 24c2.5 0 2.5 2 5 2s2.5-2 5-2 2.5 2 5 2 2.5-2 4-2" stroke="#16A6B8" stroke-width="2" stroke-linecap="round"/>
+        <path d="M11 29c2.5 0 2.5 2 5 2s2.5-2 5-2 2.5 2 5 2 2.5-2 4-2" stroke="#16A6B8" stroke-width="2" stroke-linecap="round" opacity=".55"/>
+        <path d="M20 9v9M15.5 13.5h9" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+      </svg>
+      <span>Dykkerlægen<span style="color:var(--teal)">·</span>Odense</span>
+    </a>
+    <ul class="navlinks">
+      <li><a href="#ydelser">Undersøgelser</a></li>
+      <li><a href="#forloeb">Sådan foregår det</a></li>
+      <li><a href="#priser">Priser</a></li>
+      <li><a href="#om">Om os</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a class="btn btn-primary" href="#kontakt">Book tid</a>
+    </div>
+    <button class="burger" aria-label="Menu" onclick="document.getElementById('mm').classList.toggle('open')">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mm">
+    <a href="#ydelser" onclick="mm.classList.remove('open')">Undersøgelser</a>
+    <a href="#forloeb" onclick="mm.classList.remove('open')">Sådan foregår det</a>
+    <a href="#priser" onclick="mm.classList.remove('open')">Priser</a>
+    <a href="#om" onclick="mm.classList.remove('open')">Om os</a>
+    <a href="#kontakt" onclick="mm.classList.remove('open')">Kontakt</a>
+  </div>
+</header>
+
+<a id="top"></a>
+<main id="main">
+<section class="hero" style="padding:0">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Autoriseret dykkerlæge · Odense C</span>
+      <h1>Helbredsundersøgelse af dykkere i Odense</h1>
+      <p class="lead">Årlig erhvervsdykkerundersøgelse og fritids- og sportsdykkerattest. Klinik på Torvegade 10B i Odense C.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#kontakt">Book en tid
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="#ydelser">Se undersøgelser</a>
+      </div>
+      <div class="hero-trust">
+        <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4" stroke-linecap="round"/></svg> Godkendt af Søfartsstyrelsen</div>
+        <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg> Læge + erfaren sygeplejerske</div>
+        <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg> EDTC Niveau 1</div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <h3>Ydelser og priser</h3>
+      <ul>
+        <li>Årlig erhvervsdykkerundersøgelse <span class="price">1.500 kr</span></li>
+        <li>Fritids- og sportsdykkerattest <span class="price">700 kr</span></li>
+        <li>Andre attester <span class="price">500 kr/kvarter</span></li>
+      </ul>
+      <p style="color:#8AA3B8;font-size:.8rem;margin:14px 0 0">Alle priser er ekskl. moms.</p>
+    </div>
+  </div>
+  <div class="wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path fill="#F5F8FB" d="M0,40 C240,90 480,90 720,55 C960,20 1200,20 1440,55 L1440,90 L0,90 Z"/></svg>
+  </div>
+</section>
+
+<!-- YDELSER -->
+<section id="ydelser">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Undersøgelser</span>
+      <h2>Erhvervs- og fritidsdykkere</h2>
+      <p style="color:var(--muted);font-size:1.08rem">Som dykkerlæge på EDTC Niveau 1 udfører klinikken den årlige rutineundersøgelse af erhvervsdykkere samt attester til fritids- og sportsdykkere. Ved undersøgelsen er både læge og sygeplejerske til stede.</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M12 8v6M9 11h6" stroke-linecap="round"/></svg></div>
+        <span class="tag">Erhvervsdykkere</span>
+        <h3>Årlig undersøgelse — den "lille"</h3>
+        <p style="color:var(--muted)">Den lovpligtige årlige rutineundersøgelse, du skal have i de år, hvor den store 5-årsundersøgelse ikke er aktuel. Føres direkte ind i dit dykkercertifikat.</p>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l4 4L19 6" stroke-linecap="round"/></svg> Helbredssamtale og klinisk undersøgelse</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l4 4L19 6" stroke-linecap="round"/></svg> Hjerte, lunger, blodtryk, syn og hørelse</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l4 4L19 6" stroke-linecap="round"/></svg> Attest godkendt af Søfartsstyrelsen</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18" /></svg></div>
+        <span class="tag">Fritid &amp; sport</span>
+        <h3>Fritids- &amp; sportsdykkerattest</h3>
+        <p style="color:var(--muted)">Til dig der dykker i fritiden — krævet ved CMAS-kurser, ved "ja"-svar på PADI's helbredsskema, og ofte ved dykkerrejser i udlandet.</p>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l4 4L19 6" stroke-linecap="round"/></svg> CMAS, PADI og internationale centre</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l4 4L19 6" stroke-linecap="round"/></svg> Gennemgang af fit-to-dive helbredsskema</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l4 4L19 6" stroke-linecap="round"/></svg> Attest med det samme</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.5v.5" stroke-linecap="round"/></svg>
+      <p style="margin:0">Den store 5-årsundersøgelse kræver en dykkerlæge på EDTC Niveau 2D og udføres ikke her. Se <a href="https://www.soefartsstyrelsen.dk/sikkerhed-til-soes/erhvervsdykning/laegeundersoegelse-af-dykkere" target="_blank" rel="noopener">Søfartsstyrelsens liste over godkendte dykkerlæger</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FORLØB -->
+<section id="forloeb" style="background:var(--sand)">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">Sådan foregår det</span>
+      <h2>Fra booking til attest</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><h3>Book tid</h3><p>Skriv en bookingforespørgsel — vi finder en tid, der passer dig.</p></div>
+      <div class="step"><h3>Forbered</h3><p>Medbring billed-ID, briller/linser og evt. din tidligere dykkerattest.</p></div>
+      <div class="step"><h3>Undersøgelsen</h3><p>Ca. 30 minutter med samtale og klinisk undersøgelse hos læge og sygeplejerske.</p></div>
+      <div class="step"><h3>Din attest</h3><p>Du får din vurdering med det samme og attesten ført ind i certifikatet.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="band-img" role="img" aria-label="To dykkere ved et rev">
+  <p>Vi dykker selv — i Danmark og på rejser</p>
+</div>
+
+<!-- PRISER -->
+<section id="priser" class="price-band">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Priser</span>
+      <h2>Priser</h2>
+    </div>
+    <div class="price-grid">
+      <div class="ptile">
+        <h3>Årlig erhvervsdykkerundersøgelse</h3>
+        <div class="amount">1.500 kr <span>ekskl. moms</span></div>
+        <p>Fast pris. 1.875 kr inkl. moms.</p>
+      </div>
+      <div class="ptile">
+        <h3>Fritids- og sportsdykkerattest</h3>
+        <div class="amount">700 kr <span>ekskl. moms</span></div>
+        <p>Fast pris. 875 kr inkl. moms.</p>
+      </div>
+      <div class="ptile">
+        <h3>Andre attester</h3>
+        <div class="amount">500 kr <span>/ påbeg. kvarter</span></div>
+        <p>Efter tidsforbrug. 625 kr inkl. moms pr. kvarter.</p>
+      </div>
+    </div>
+    <p class="price-foot">De to dykkerundersøgelser afregnes til fast pris. Øvrige attester afregnes efter tidsforbrug pr. påbegyndt kvarter. Betaling med kort eller MobilePay.</p>
+  </div>
+</section>
+
+<!-- OM OS -->
+<section id="om">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Om os</span>
+      <h2>Om klinikken</h2>
+      <p style="color:var(--muted);font-size:1.08rem">Klinikken drives af læge Michael Skov Hejmadi og sygeplejerske Anita Skov Hejmadi i fællesskab. Begge er aktive dykkere og har bestået eksamen i dykkermedicin. Vi dykker selv i Danmark og har erfaring fra blandt andet Egypten, Bonaire og Maldiverne.</p>
+    </div>
+    <div class="people">
+      <div class="person">
+        <div class="avatar">MH<img src="img/michael.jpg" alt="Michael Skov Hejmadi" onerror="this.remove()"></div>
+        <div>
+          <h3>Michael Skov Hejmadi</h3>
+          <div class="role">Læge &amp; autoriseret dykkerlæge (EDTC Niveau 1)</div>
+          <p>Praktiserende læge på Fyn og autoriseret dykkerlæge på EDTC Niveau 1. Aktiv dykker.</p>
+          <p style="font-size:.88rem;margin:8px 0 0">Dykkerlæge nr. 2601, godkendt af Søfartsstyrelsen.</p>
+        </div>
+      </div>
+      <div class="person">
+        <div class="avatar">AH<img src="img/anita.jpg" alt="Anita Skov Hejmadi" onerror="this.remove()"></div>
+        <div>
+          <h3>Anita Skov Hejmadi</h3>
+          <div class="role">Sygeplejerske · 25 års erfaring</div>
+          <p>Sygeplejerske med 25 års erfaring og aktiv dykker. Anita har bestået eksamen i dykkermedicin og driver klinikken sammen med Michael.</p>
+          <p style="font-size:.88rem;margin:8px 0 0">Varetager undersøgelser og vurdering på linje med Michael.</p>
+        </div>
+      </div>
+    </div>
+    <div class="note" style="margin-top:28px">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4" stroke-linecap="round"/></svg>
+      <p style="margin:0">Vurdering og godkendelse sker altid i samråd mellem Anita og Michael. Attesten udstedes under Michaels autorisation som dykkerlæge.</p>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section id="kontakt" style="background:var(--sand)">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Kontakt og booking</span>
+      <h2>Kontakt</h2>
+    </div>
+    <div class="contact">
+      <div>
+        <div class="info-row">
+          <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.2-7-11a7 7 0 1 1 14 0c0 5.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+          <div><div class="lbl">Adresse</div><div class="val">Torvegade 10B, 7.<br>5000 Odense C</div></div>
+        </div>
+        <div class="info-row">
+          <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg></div>
+          <div><div class="lbl">E-mail</div><div class="val"><a href="mailto:michael@hejmadi.com" style="color:inherit;word-break:break-all">michael@hejmadi.com</a></div></div>
+        </div>
+        <div class="info-row">
+          <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg></div>
+          <div><div class="lbl">Åbningstider</div><div class="val">Efter aftale</div></div>
+        </div>
+        <p style="font-size:.86rem;color:var(--muted);margin:18px 0 0">E-mail er ikke krypteret. Send ikke CPR-nummer eller helbredsoplysninger via e-mail.</p>
+        <a class="btn btn-primary" style="margin-top:18px" href="mailto:michael@hejmadi.com?subject=Booking%20af%20dykkerunders%C3%B8gelse&amp;body=Navn%3A%20%0ATelefon%3A%20%0A%0AType%20unders%C3%B8gelse%20(s%C3%A6t%20kryds)%3A%0A-%20%5B%20%5D%20%C3%85rlig%20erhvervsdykkerunders%C3%B8gelse%0A-%20%5B%20%5D%20Fritids-%20og%20sportsdykkerattest%0A-%20%5B%20%5D%20Anden%20attest%0A%0A%C3%98nsket%20tidspunkt%3A%20%0A%0A(Send%20ikke%20CPR-nummer%20eller%20helbredsoplysninger%20i%20denne%20mail.)">Send bookingforespørgsel
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <div class="map">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-5.2-7-11a7 7 0 1 1 14 0c0 5.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        <div style="font-weight:600;color:var(--navy)">Torvegade 10B, 7. · 5000 Odense C</div>
+        <div style="font-size:.85rem;max-width:34ch">Klinikken ligger centralt i Odense C.</div>
+        <a class="btn btn-outline" style="margin-top:6px;padding:11px 20px;font-size:.92rem" href="https://www.google.com/maps/search/?api=1&amp;query=Torvegade+10B+5000+Odense+C" target="_blank" rel="noopener">Åbn i Google Maps
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand">Dykkerlægen · Odense</div>
+        <p style="max-width:34ch">Helbredsundersøgelse af erhvervs-, fritids- og sportsdykkere i hjertet af Odense C. Drevet af læge Michael Skov Hejmadi og sygeplejerske Anita Skov Hejmadi.</p>
+      </div>
+      <div>
+        <h4>Genveje</h4>
+        <ul>
+          <li><a href="#ydelser">Undersøgelser</a></li>
+          <li><a href="#priser">Priser</a></li>
+          <li><a href="#om">Om os</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Klinikken</h4>
+        <ul>
+          <li>Torvegade 10B, 7.</li>
+          <li>5000 Odense C</li>
+          <li><a href="mailto:michael@hejmadi.com">michael@hejmadi.com</a></li>
+          <li>Dykkerlæge nr. 2601 (Søfartsstyrelsen)</li>
+          <li>CVR 31 10 11 58</li>
+        </ul>
+      </div>
+    </div>
+    <p style="color:#7E97AC;font-size:.82rem;margin:0 0 16px">E-mail er ikke krypteret. Send ikke CPR-nummer eller helbredsoplysninger via e-mail — medbring dem til undersøgelsen.</p>
+    <div class="foot-bottom">
+      <span>© 2026 Dykkerlægen Odense</span>
+      <span><a href="privatlivspolitik.html">Privatlivspolitik</a> · <a href="cookiepolitik.html">Cookiepolitik</a> · <a href="tilgaengelighed.html">Tilgængelighed</a> · <button type="button" data-cookie-open style="background:none;border:0;color:#9FB6C9;text-decoration:underline;cursor:pointer;font:inherit;padding:0">Cookieindstillinger</button></span>
+    </div>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalClinic",
+  "name": "Dykkerlægen Odense",
+  "description": "Autoriseret dykkerlæge i Odense C. Årlig erhvervsdykkerundersøgelse og fritids- og sportsdykkerattest.",
+  "url": "https://dykkerlaege.hejmadi.com/",
+  "email": "michael@hejmadi.com",
+  "vatID": "DK31101158",
+  "taxID": "31101158",
+  "legalName": "Læge Michael Skov Hejmadi",
+  "medicalSpecialty": "PublicHealth",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Torvegade 10B, 7.",
+    "postalCode": "5000",
+    "addressLocality": "Odense C",
+    "addressCountry": "DK"
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "description": "Efter aftale"
+  },
+  "employee": [
+    { "@type": "Person", "name": "Michael Skov Hejmadi", "jobTitle": "Læge og autoriseret dykkerlæge (EDTC Niveau 1)" },
+    { "@type": "Person", "name": "Anita Skov Hejmadi", "jobTitle": "Ledende sygeplejerske" }
+  ],
+  "availableService": [
+    { "@type": "MedicalTest", "name": "Årlig erhvervsdykkerundersøgelse" },
+    { "@type": "MedicalTest", "name": "Fritids- og sportsdykkerattest" }
+  ]
+}
+</script>
+<script src="cookie.js"></script>
+</body>
+</html>
