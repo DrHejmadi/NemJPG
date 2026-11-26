@@ -105,32 +105,38 @@ reg add "%IMGBASE%" /v "MUIVerb" /d "NemJPG" /f >nul 2>&1
 reg add "%IMGBASE%" /v "SubCommands" /d "" /f >nul 2>&1
 reg add "%IMGBASE%" /v "Icon" /d "imageres.dll,67" /f >nul 2>&1
 
+:: Submenu: JPG Bedste kvalitet
+set "KEY=%IMGBASE%\shell\01_jpg100"
+reg add "%KEY%" /ve /d "Konverter til JPG (Bedste kvalitet)" /f >nul 2>&1
+reg add "%KEY%" /v "Icon" /d "imageres.dll,67" /f >nul 2>&1
+reg add "%KEY%\command" /ve /d "%PSEXE% \"& '%PSSCRIPT%' -Action jpg100 -Path '%%1'\"" /f >nul 2>&1
+
 :: Submenu: JPG High Quality
-set "KEY=%IMGBASE%\shell\01_jpg95"
-reg add "%KEY%" /ve /d "Konverter til JPG (Hoej kvalitet)" /f >nul 2>&1
+set "KEY=%IMGBASE%\shell\02_jpg95"
+reg add "%KEY%" /ve /d "Konverter til JPG (Hoej kvalitet, 95%%)" /f >nul 2>&1
 reg add "%KEY%" /v "Icon" /d "imageres.dll,67" /f >nul 2>&1
 reg add "%KEY%\command" /ve /d "%PSEXE% \"& '%PSSCRIPT%' -Action jpg95 -Path '%%1'\"" /f >nul 2>&1
 
 :: Submenu: JPG Web
-set "KEY=%IMGBASE%\shell\02_jpg80"
+set "KEY=%IMGBASE%\shell\03_jpg80"
 reg add "%KEY%" /ve /d "Konverter til JPG (Web)" /f >nul 2>&1
 reg add "%KEY%" /v "Icon" /d "imageres.dll,67" /f >nul 2>&1
 reg add "%KEY%\command" /ve /d "%PSEXE% \"& '%PSSCRIPT%' -Action jpg80 -Path '%%1'\"" /f >nul 2>&1
 
 :: Submenu: JPG Resize 1920
-set "KEY=%IMGBASE%\shell\03_jpgresize"
+set "KEY=%IMGBASE%\shell\04_jpgresize"
 reg add "%KEY%" /ve /d "Konverter til JPG + Resize (1920px)" /f >nul 2>&1
 reg add "%KEY%" /v "Icon" /d "imageres.dll,67" /f >nul 2>&1
 reg add "%KEY%\command" /ve /d "%PSEXE% \"& '%PSSCRIPT%' -Action jpgresize1920 -Path '%%1'\"" /f >nul 2>&1
 
 :: Submenu: PNG
-set "KEY=%IMGBASE%\shell\04_png"
+set "KEY=%IMGBASE%\shell\05_png"
 reg add "%KEY%" /ve /d "Konverter til PNG" /f >nul 2>&1
 reg add "%KEY%" /v "Icon" /d "imageres.dll,67" /f >nul 2>&1
 reg add "%KEY%\command" /ve /d "%PSEXE% \"& '%PSSCRIPT%' -Action png -Path '%%1'\"" /f >nul 2>&1
 
 :: Submenu: WebP
-set "KEY=%IMGBASE%\shell\05_webp"
+set "KEY=%IMGBASE%\shell\06_webp"
 reg add "%KEY%" /ve /d "Konverter til WebP" /f >nul 2>&1
 reg add "%KEY%" /v "Icon" /d "imageres.dll,67" /f >nul 2>&1
 reg add "%KEY%\command" /ve /d "%PSEXE% \"& '%PSSCRIPT%' -Action webp -Path '%%1'\"" /f >nul 2>&1
@@ -152,32 +158,38 @@ reg add "%DIRBASE%" /v "MUIVerb" /d "NemJPG" /f >nul 2>&1
 reg add "%DIRBASE%" /v "SubCommands" /d "" /f >nul 2>&1
 reg add "%DIRBASE%" /v "Icon" /d "imageres.dll,67" /f >nul 2>&1
 
+:: Submenu: JPG Bedste kvalitet
+set "KEY=%DIRBASE%\shell\01_jpg100"
+reg add "%KEY%" /ve /d "Konverter til JPG (Bedste kvalitet)" /f >nul 2>&1
+reg add "%KEY%" /v "Icon" /d "imageres.dll,67" /f >nul 2>&1
+reg add "%KEY%\command" /ve /d "%PSEXE% \"& '%PSSCRIPT%' -Action jpg100 -Path '%%1'\"" /f >nul 2>&1
+
 :: Submenu: JPG High Quality
-set "KEY=%DIRBASE%\shell\01_jpg95"
-reg add "%KEY%" /ve /d "Konverter til JPG (Hoej kvalitet)" /f >nul 2>&1
+set "KEY=%DIRBASE%\shell\02_jpg95"
+reg add "%KEY%" /ve /d "Konverter til JPG (Hoej kvalitet, 95%%)" /f >nul 2>&1
 reg add "%KEY%" /v "Icon" /d "imageres.dll,67" /f >nul 2>&1
 reg add "%KEY%\command" /ve /d "%PSEXE% \"& '%PSSCRIPT%' -Action jpg95 -Path '%%1'\"" /f >nul 2>&1
 
 :: Submenu: JPG Web
-set "KEY=%DIRBASE%\shell\02_jpg80"
+set "KEY=%DIRBASE%\shell\03_jpg80"
 reg add "%KEY%" /ve /d "Konverter til JPG (Web)" /f >nul 2>&1
 reg add "%KEY%" /v "Icon" /d "imageres.dll,67" /f >nul 2>&1
 reg add "%KEY%\command" /ve /d "%PSEXE% \"& '%PSSCRIPT%' -Action jpg80 -Path '%%1'\"" /f >nul 2>&1
 
 :: Submenu: JPG Resize 1920
-set "KEY=%DIRBASE%\shell\03_jpgresize"
+set "KEY=%DIRBASE%\shell\04_jpgresize"
 reg add "%KEY%" /ve /d "Konverter til JPG + Resize (1920px)" /f >nul 2>&1
 reg add "%KEY%" /v "Icon" /d "imageres.dll,67" /f >nul 2>&1
 reg add "%KEY%\command" /ve /d "%PSEXE% \"& '%PSSCRIPT%' -Action jpgresize1920 -Path '%%1'\"" /f >nul 2>&1
 
 :: Submenu: PNG
-set "KEY=%DIRBASE%\shell\04_png"
+set "KEY=%DIRBASE%\shell\05_png"
 reg add "%KEY%" /ve /d "Konverter til PNG" /f >nul 2>&1
 reg add "%KEY%" /v "Icon" /d "imageres.dll,67" /f >nul 2>&1
 reg add "%KEY%\command" /ve /d "%PSEXE% \"& '%PSSCRIPT%' -Action png -Path '%%1'\"" /f >nul 2>&1
 
 :: Submenu: WebP
-set "KEY=%DIRBASE%\shell\05_webp"
+set "KEY=%DIRBASE%\shell\06_webp"
 reg add "%KEY%" /ve /d "Konverter til WebP" /f >nul 2>&1
 reg add "%KEY%" /v "Icon" /d "imageres.dll,67" /f >nul 2>&1
 reg add "%KEY%\command" /ve /d "%PSEXE% \"& '%PSSCRIPT%' -Action webp -Path '%%1'\"" /f >nul 2>&1

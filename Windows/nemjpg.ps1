@@ -4,7 +4,7 @@
 
 param(
     [Parameter(Mandatory=$true)]
-    [ValidateSet("jpg95", "jpg80", "jpgresize1920", "png", "webp", "settings")]
+    [ValidateSet("jpg100", "jpg95", "jpg80", "jpgresize1920", "png", "webp", "settings")]
     [string]$Action,
 
     [Parameter(Mandatory=$false)]
@@ -38,8 +38,8 @@ function Read-IniFile {
     param([string]$FilePath)
 
     $config = @{
-        Quality          = 95
-        OutputFolder     = "NemJPG_output"
+        Quality          = 100
+        OutputFolder     = ""
         BackgroundColor  = "White"
         Recursive        = $false
         MaxWidth         = 0
@@ -193,9 +193,13 @@ function Convert-Image {
 
     # Determine output directory
     $sourceDir = $SourceFile.DirectoryName
-    $outDir = Join-Path $sourceDir $OutputFolder
-    if (-not (Test-Path $outDir)) {
-        New-Item -ItemType Directory -Path $outDir -Force | Out-Null
+    if ([string]::IsNullOrWhiteSpace($OutputFolder)) {
+        $outDir = $sourceDir
+    } else {
+        $outDir = Join-Path $sourceDir $OutputFolder
+        if (-not (Test-Path $outDir)) {
+            New-Item -ItemType Directory -Path $outDir -Force | Out-Null
+        }
     }
 
     $outPath = Join-Path $outDir "$baseName.$outExt"
@@ -375,8 +379,8 @@ function Open-Settings {
         # Create default ini
         $defaultIni = @"
 [NemJPG]
-Quality=95
-OutputFolder=NemJPG_output
+Quality=100
+OutputFolder=
 BackgroundColor=White
 Recursive=false
 MaxWidth=0
@@ -419,6 +423,10 @@ $maxWidth = $config.MaxWidth
 $maxHeight = $config.MaxHeight
 
 switch ($Action) {
+    "jpg100" {
+        $outputFormat = "jpg"
+        $quality = 100
+    }
     "jpg95" {
         $outputFormat = "jpg"
         $quality = 95
