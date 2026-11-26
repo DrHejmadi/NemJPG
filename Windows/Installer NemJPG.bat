@@ -98,6 +98,10 @@ echo Registrerer hojrekliksmenu for billedfiler...
 
 set "IMGBASE=HKCU\Software\Classes\SystemFileAssociations\image\shell\NemJPG"
 
+:: Remove old menu entries first (the submenu keys were renumbered when
+:: "Bedste kvalitet" was added, so an upgrade would otherwise show duplicates)
+reg delete "%IMGBASE%" /f >nul 2>&1
+
 :: Main NemJPG menu entry
 reg add "%IMGBASE%" /ve /d "NemJPG" /f >nul 2>&1
 if errorlevel 1 ( echo FEJL: Kunne ikke registrere billedmenu & goto :error )
@@ -150,6 +154,9 @@ echo.
 echo Registrerer hojrekliksmenu for mapper...
 
 set "DIRBASE=HKCU\Software\Classes\Directory\shell\NemJPG"
+
+:: Remove old menu entries first (see above)
+reg delete "%DIRBASE%" /f >nul 2>&1
 
 :: Main NemJPG menu entry for directories
 reg add "%DIRBASE%" /ve /d "NemJPG" /f >nul 2>&1

@@ -19,7 +19,7 @@ Komplet guide og al butikstekst klar til copy-paste.
 
 ## Trin 2 — Opdater AppxManifest.xml
 
-Åbn `NemJPG/Windows/Package/AppxManifest.xml` og erstat linje 14:
+Åbn `Windows/Package/AppxManifest.xml` og erstat linje 17:
 
 ```xml
 Publisher="CN=PUBLISHER-IDENTITY-FROM-PARTNER-CENTER"
