@@ -111,7 +111,7 @@ foreach ($file in $imageFiles) {
 
         # Gem som JPEG
         $encoder = New-Object System.Windows.Media.Imaging.JpegBitmapEncoder
-        $encoder.QualityLevel = 95
+        $encoder.QualityLevel = 100
         $encoder.Frames.Add([System.Windows.Media.Imaging.BitmapFrame]::Create($rtb))
 
         $outStream = [System.IO.File]::Create($outputPath)
